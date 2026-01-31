@@ -1,7 +1,8 @@
 @tool
 extends CollisionPolygon2D
+class_name CollisionShapeRender
 
-var render_shape : Polygon2D
+var render_shape: Polygon2D
 
 func _ready() -> void:
 	for child in get_children():
