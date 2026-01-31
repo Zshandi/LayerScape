@@ -19,10 +19,10 @@ var selected_layer_index: int = 0:
 		layers[selected_layer_index].selected = false
 
 		selected_layer_index = value
-		if selected_layer_index > len(layers):
-			selected_layer_index = 0
-		if selected_layer_index < 0:
+		if selected_layer_index >= len(layers):
 			selected_layer_index = len(layers) - 1
+		if selected_layer_index < 0:
+			selected_layer_index = 0
 		
 		layers[selected_layer_index].selected = true
 
@@ -56,6 +56,11 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("visible_toggle"):
 		selected_layer.visible = not selected_layer.visible
+	
+	if Input.is_action_just_pressed("layer_next"):
+		selected_layer_index += 1
+	if Input.is_action_just_pressed("layer_prev"):
+		selected_layer_index -= 1
 	
 	update_result()
 

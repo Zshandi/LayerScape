@@ -17,7 +17,7 @@ script = ExtResource("2_1bvp3")
 blend_operation = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer1" unique_id=2123577011]
-position = Vector2(-625.88586, 99.110016)
+position = Vector2(-529.88586, 187.11002)
 scale = Vector2(1.5877825, 1.8836904)
 color = Color(1, 0, 0, 1)
 polygon = PackedVector2Array(512, 224, 512, 384, 608, 384, 608, 256, 736, 256, 736, 352, 936, 352, 936, 224)
@@ -27,7 +27,7 @@ script = ExtResource("2_1bvp3")
 blend_operation = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer2" unique_id=1281909296]
-position = Vector2(-561.88586, 51.110016)
+position = Vector2(-465.88586, 139.11002)
 scale = Vector2(1.6299111, 1.736116)
 color = Color(0.5166664, 0, 1, 1)
 polygon = PackedVector2Array(384, 352, 776, 352, 776, 224, 928, 224, 928, 448, 384, 448)
