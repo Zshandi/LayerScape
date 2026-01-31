@@ -9,10 +9,19 @@ var polygon_layer: PolygonLayer = PolygonLayer.new()
 var default_modulate := Color.WHITE
 var selected_modulate := Color(0.7, 0.7, 0.7, 1.0)
 
+var player_to_track: Node2D
+var layer_tracker: LayerMovementTracker
+
 var locked: bool = true:
 	set(value):
 		locked = value
 		update_color()
+		if locked and layer_tracker != null:
+			layer_tracker.queue_free()
+			layer_tracker = null
+		if not locked and player_to_track != null and layer_tracker == null:
+			layer_tracker = LayerMovementTracker.new(self , player_to_track)
+			add_child(layer_tracker)
 
 var selected: bool = false:
 	set(value):
@@ -29,10 +38,6 @@ func update_color():
 
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
-	polygon_layer.blend_operation = blend_operation
-	for child in get_children():
-		if child is Polygon2D:
-			polygon_layer.shapes.push_back(_global_polygon(child))
 
 func _global_polygon(polygon: Polygon2D) -> PackedVector2Array:
 	var points: PackedVector2Array = []
@@ -41,6 +46,13 @@ func _global_polygon(polygon: Polygon2D) -> PackedVector2Array:
 		points.push_back(polygon.to_global(point))
 	
 	return points
+
+func _physics_process(_delta: float) -> void:
+	polygon_layer.blend_operation = blend_operation
+	polygon_layer.shapes.clear()
+	for child in get_children():
+		if child is Polygon2D:
+			polygon_layer.shapes.push_back(_global_polygon(child))
 
 func _on_visibility_changed() -> void:
 	pass

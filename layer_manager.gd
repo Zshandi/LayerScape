@@ -1,6 +1,9 @@
 extends Node2D
 class_name LayerManager
 
+@export
+var player_to_track: Node2D
+
 var layers: Array[Layer]
 
 var result_colliders: Array[CollisionPolygon2D]
@@ -34,6 +37,7 @@ func _ready() -> void:
 	for child in get_children():
 		if child is Layer:
 			layers.push_back(child)
+			child.player_to_track = player_to_track
 	
 	if len(layers) <= 0:
 		layers.push_back(Layer.new())
@@ -50,7 +54,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			return
 		selected_layer_index = key_index
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("lock_toggle"):
 		selected_layer.locked = not selected_layer.locked
 	
@@ -80,5 +84,8 @@ func update_result() -> void:
 	
 	var idx = 0
 	for point_array in polygons:
-		%LayerResult.get_child(idx).polygon = point_array
+		result_colliders[idx].polygon = point_array
+		idx += 1
+	while idx < len(result_colliders):
+		result_colliders[idx].polygon = []
 		idx += 1

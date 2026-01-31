@@ -9,8 +9,9 @@
 [node name="Level" type="Node2D" unique_id=1458390218]
 script = ExtResource("1_1bvp3")
 
-[node name="LayerManager" type="Node2D" parent="." unique_id=875414052]
+[node name="LayerManager" type="Node2D" parent="." unique_id=875414052 node_paths=PackedStringArray("player_to_track")]
 script = ExtResource("2_lquwl")
+player_to_track = NodePath("../Character")
 
 [node name="Layer1" type="Node2D" parent="LayerManager" unique_id=996024005]
 script = ExtResource("2_1bvp3")
