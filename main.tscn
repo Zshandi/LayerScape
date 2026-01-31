@@ -3,37 +3,46 @@
 [ext_resource type="PackedScene" uid="uid://dil4t5quwxmy7" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dc8yp4lolv753" path="res://test_layers.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer.gd" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layer_manager.gd" id="2_lquwl"]
 [ext_resource type="Script" uid="uid://b6lkky6ocw7he" path="res://collision_shape_render.gd" id="4_1bvp3"]
 
-[node name="Node2D" type="Node2D" unique_id=1458390218]
+[node name="Level" type="Node2D" unique_id=1458390218]
 script = ExtResource("1_1bvp3")
 
-[node name="Layer1" type="Node2D" parent="." unique_id=1716356604]
+[node name="LayerManager" type="Node2D" parent="." unique_id=875414052]
+script = ExtResource("2_lquwl")
+
+[node name="Layer1" type="Node2D" parent="LayerManager" unique_id=996024005]
 script = ExtResource("2_1bvp3")
 blend_operation = 2
 
-[node name="Polygon2D" type="Polygon2D" parent="Layer1" unique_id=1281909296]
-position = Vector2(-561.88586, 51.110016)
-scale = Vector2(1.6299111, 1.736116)
-polygon = PackedVector2Array(384, 352, 776, 352, 776, 224, 928, 224, 928, 448, 384, 448)
-
-[node name="Layer2" type="Node2D" parent="." unique_id=996024005]
-script = ExtResource("2_1bvp3")
-
-[node name="Polygon2D" type="Polygon2D" parent="Layer2" unique_id=2123577011]
+[node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer1" unique_id=2123577011]
 position = Vector2(-625.88586, 99.110016)
 scale = Vector2(1.5877825, 1.8836904)
+color = Color(1, 0, 0, 1)
 polygon = PackedVector2Array(512, 224, 512, 384, 608, 384, 608, 256, 736, 256, 736, 352, 936, 352, 936, 224)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=641006756]
+[node name="Layer2" type="Node2D" parent="LayerManager" unique_id=1716356604]
+script = ExtResource("2_1bvp3")
+blend_operation = 2
 
-[node name="OriginalShape" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1217824312]
+[node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer2" unique_id=1281909296]
+position = Vector2(-561.88586, 51.110016)
+scale = Vector2(1.6299111, 1.736116)
+color = Color(0.5166664, 0, 1, 1)
+polygon = PackedVector2Array(384, 352, 776, 352, 776, 224, 928, 224, 928, 448, 384, 448)
+
+[node name="LayerResult" type="StaticBody2D" parent="LayerManager" unique_id=641006756]
+unique_name_in_owner = true
+
+[node name="LayerResultSourceShape" type="CollisionPolygon2D" parent="LayerManager/LayerResult" unique_id=1217824312]
+unique_name_in_owner = true
 polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 script = ExtResource("4_1bvp3")
 metadata/_custom_type_script = "uid://b6lkky6ocw7he"
 
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/OriginalShape" unique_id=926241781]
-color = Color(0, 0, 0, 1)
+[node name="Polygon2D" type="Polygon2D" parent="LayerManager/LayerResult/LayerResultSourceShape" unique_id=926241781]
+color = Color(0, 0, 0, 0.84313726)
 polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 
 [node name="Character" parent="." unique_id=749957054 instance=ExtResource("1_0xm2m")]

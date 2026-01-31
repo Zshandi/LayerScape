@@ -1,14 +1,34 @@
-@tool
 extends Node2D
 class_name Layer
 
 @export
 var blend_operation: Geometry2D.PolyBooleanOperation
 
-var polygon_layer: PolygonLayer
+var polygon_layer: PolygonLayer = PolygonLayer.new()
+
+var default_modulate := Color.WHITE
+var selected_modulate := Color(0.7, 0.7, 0.7, 1.0)
+
+var locked: bool = true:
+	set(value):
+		locked = value
+		update_color()
+
+var selected: bool = false:
+	set(value):
+		selected = value
+		update_color()
+
+func update_color():
+	if selected:
+		modulate = selected_modulate
+	else:
+		modulate = default_modulate
+	if locked:
+		modulate.a = 0.5
 
 func _ready() -> void:
-	polygon_layer = PolygonLayer.new()
+	visibility_changed.connect(_on_visibility_changed)
 	polygon_layer.blend_operation = blend_operation
 	for child in get_children():
 		if child is Polygon2D:
@@ -21,3 +41,6 @@ func _global_polygon(polygon: Polygon2D) -> PackedVector2Array:
 		points.push_back(polygon.to_global(point))
 	
 	return points
+
+func _on_visibility_changed() -> void:
+	pass

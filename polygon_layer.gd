@@ -3,15 +3,21 @@ class_name PolygonLayer
 
 var blend_operation: Geometry2D.PolyBooleanOperation
 
-var shapes: Array[PackedVector2Array]
+var shapes: Array[PackedVector2Array] = []
 
-func apply_to(other: PolygonLayer) -> Array[PackedVector2Array]:
+func apply_to(other: PolygonLayer) -> PolygonLayer:
+	var result := PolygonLayer.new()
+	result.blend_operation = other.blend_operation
+	
 	match blend_operation:
 		Geometry2D.OPERATION_INTERSECTION:
-			return apply_intersection(other)
+			result.shapes = apply_intersection(other)
 		Geometry2D.OPERATION_UNION:
-			return apply_union(other)
-	return apply_union(other)
+			result.shapes = apply_union(other)
+		_:
+			result.shapes = apply_union(other)
+	
+	return result
 
 func apply_intersection(other: PolygonLayer) -> Array[PackedVector2Array]:
 	var result: Array[PackedVector2Array] = []

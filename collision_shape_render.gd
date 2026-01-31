@@ -13,5 +13,5 @@ func _ready() -> void:
 		render_shape = Polygon2D.new()
 		add_child(render_shape)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	render_shape.polygon = polygon
