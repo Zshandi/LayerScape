@@ -3,12 +3,38 @@
 [ext_resource type="PackedScene" uid="uid://dil4t5quwxmy7" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dc8yp4lolv753" path="res://levels/level.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer.gd" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://46esyxg1oqrw" path="res://levels/level_bounds.gd" id="2_jd1fy"]
 [ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layer_manager.gd" id="2_lquwl"]
 [ext_resource type="Script" uid="uid://b6lkky6ocw7he" path="res://collision_shape_render.gd" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://goal.tscn" id="6_7mycd"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnvg6"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3adb"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jd1fy"]
+size = Vector2(50, 50)
+
 [node name="Level" type="Node2D" unique_id=1458390218]
 script = ExtResource("1_1bvp3")
+
+[node name="LevelBounds" type="StaticBody2D" parent="." unique_id=318932198]
+visible = false
+script = ExtResource("2_jd1fy")
+
+[node name="LeftWall" type="CollisionShape2D" parent="LevelBounds" unique_id=1204886384]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_cnvg6")
+
+[node name="RightWall" type="CollisionShape2D" parent="LevelBounds" unique_id=889230969]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_p3adb")
+
+[node name="TopWall" type="CollisionShape2D" parent="LevelBounds" unique_id=302676057]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_jd1fy")
 
 [node name="LayerManager" type="Node2D" parent="." unique_id=875414052 node_paths=PackedStringArray("player_to_track")]
 script = ExtResource("2_lquwl")

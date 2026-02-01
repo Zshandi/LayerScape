@@ -11,7 +11,7 @@ var scale_nodes: Array[Node2D]
 var shape_rect: Rect2:
 	get:
 		var rect: Rect2 = %Shape.shape.get_rect()
-		rect.position = global_position
+		rect.position = %Shape.global_position
 		return rect
 
 const required_goal_time: float = 0.2
@@ -41,6 +41,14 @@ func move_toward_center_goal(delta: float) -> bool:
 
 func _physics_process(delta: float) -> void:
 	applied_gravity = get_gravity()
+
+	# Check for falling off
+	if global_position.y > get_viewport_rect().size.y+50:
+		get_tree().paused = true
+		await get_tree().create_timer(0.3).timeout
+		# TODO: Maybe play animation / sound
+		get_tree().paused = false
+		LevelManager.reload_level()
 
 	# Check win condition
 	if can_win():
