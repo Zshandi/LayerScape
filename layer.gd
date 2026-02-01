@@ -17,11 +17,9 @@ var locked: bool = true:
 		locked = value
 		update_color()
 		if locked and layer_tracker != null:
-			layer_tracker.queue_free()
 			layer_tracker = null
 		if not locked and player_to_track != null and layer_tracker == null:
 			layer_tracker = LayerMovementTracker.new(self , player_to_track)
-			add_child(layer_tracker)
 
 var selected: bool = false:
 	set(value):
@@ -47,12 +45,16 @@ func _global_polygon(polygon: Polygon2D) -> PackedVector2Array:
 	
 	return points
 
-func _physics_process(_delta: float) -> void:
+func update_shapes() -> void:
+	if layer_tracker != null:
+		layer_tracker.move_to_target()
+
 	polygon_layer.blend_operation = blend_operation
 	polygon_layer.shapes.clear()
 	for child in get_children():
 		if child is Polygon2D:
 			polygon_layer.shapes.push_back(_global_polygon(child))
+
 
 func _on_visibility_changed() -> void:
 	pass

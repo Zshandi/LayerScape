@@ -43,6 +43,8 @@ func _ready() -> void:
 		layers.push_back(Layer.new())
 	layers[selected_layer_index].selected = true
 
+	update_result()
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		# 1 to 9 are in sequence, these select the layers
@@ -69,6 +71,9 @@ func _physics_process(_delta: float) -> void:
 	update_result()
 
 func update_result() -> void:
+	for layer in layers:
+		layer.update_shapes()
+
 	var running_result := layers[0].polygon_layer
 	for idx in range(1, len(layers)):
 		var layer := layers[idx]

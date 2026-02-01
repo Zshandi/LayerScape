@@ -1,4 +1,4 @@
-extends Node
+extends RefCounted
 class_name LayerMovementTracker
 
 var layer_to_move: Layer
@@ -12,5 +12,5 @@ func _init(layer: Layer, track_to: Node2D) -> void:
 
 	global_layer_offset = layer_to_move.global_position - track_to_object.global_position
 
-func _physics_process(_delta: float) -> void:
+func move_to_target() -> void:
 	layer_to_move.global_position = track_to_object.global_position + global_layer_offset
