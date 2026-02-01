@@ -1,7 +1,7 @@
 extends RefCounted
 class_name PolygonLayer
 
-var blend_operation: Geometry2D.PolyBooleanOperation
+var blend_operation := Geometry2D.OPERATION_UNION
 
 var shapes: Array[PackedVector2Array] = []
 

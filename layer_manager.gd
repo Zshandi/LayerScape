@@ -78,12 +78,13 @@ func update_result() -> void:
 
 	# Calculate result polygons by combining layers
 	var running_result := PolygonLayer.new()
-	running_result.blend_operation = Geometry2D.PolyBooleanOperation.OPERATION_UNION
 	var idx = 0
 	for layer in layers:
 		if (not layer.locked) and layer.blend_operation == Geometry2D.PolyBooleanOperation.OPERATION_UNION:
 			DebugValues.debug("layer[" + str(idx) + "]", "skipped")
 			# TODO: Make this better
+			if running_result.blend_operation != Geometry2D.PolyBooleanOperation.OPERATION_UNION:
+				running_result = PolygonLayer.new()
 			continue
 		DebugValues.debug("layer[" + str(idx) + "]", "included")
 		running_result = running_result.apply_to(layer.polygon_layer)
