@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer.gd" id="2_1bvp3"]
 [ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layer_manager.gd" id="2_lquwl"]
 [ext_resource type="Script" uid="uid://b6lkky6ocw7he" path="res://collision_shape_render.gd" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://goal.tscn" id="6_7mycd"]
 
 [node name="Level" type="Node2D" unique_id=1458390218]
 script = ExtResource("1_1bvp3")
@@ -18,20 +19,13 @@ script = ExtResource("2_1bvp3")
 blend_operation = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer1" unique_id=2123577011]
-position = Vector2(-529.88586, 187.11002)
+position = Vector2(0, -8)
 scale = Vector2(1.5877825, 1.8836904)
 color = Color(1, 0, 0, 1)
-polygon = PackedVector2Array(512, 224, 512, 384, 608, 384, 608, 256, 736, 256, 736, 352, 936, 352, 936, 224)
+polygon = PackedVector2Array(0, 407.71033, 483.69348, 407.71033, 483.69348, 293.04178, 725.5402, 293.04178, 725.5402, 407.71033, 1209.2336, 407.71033, 1209.2336, 577.5896, 0, 577.5896)
 
-[node name="Layer2" type="Node2D" parent="LayerManager" unique_id=1716356604]
-script = ExtResource("2_1bvp3")
-blend_operation = 2
-
-[node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer2" unique_id=1281909296]
-position = Vector2(-465.88586, 139.11002)
-scale = Vector2(1.6299111, 1.736116)
-color = Color(0.5166664, 0, 1, 1)
-polygon = PackedVector2Array(384, 352, 776, 352, 776, 224, 928, 224, 928, 448, 384, 448)
+[node name="Goal" parent="LayerManager/Layer1" unique_id=770949225 instance=ExtResource("6_7mycd")]
+position = Vector2(1792, 680)
 
 [node name="LayerResult" type="StaticBody2D" parent="LayerManager" unique_id=641006756]
 unique_name_in_owner = true
@@ -46,5 +40,6 @@ metadata/_custom_type_script = "uid://b6lkky6ocw7he"
 color = Color(0, 0, 0, 0.84313726)
 polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 
-[node name="Character" parent="." unique_id=749957054 instance=ExtResource("1_0xm2m")]
+[node name="Character" parent="." unique_id=749957054 node_paths=PackedStringArray("goal_node") instance=ExtResource("1_0xm2m")]
 position = Vector2(284, 260)
+goal_node = NodePath("../LayerManager/Layer1/Goal")

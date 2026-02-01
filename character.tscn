@@ -8,7 +8,8 @@ size = Vector2(60, 100)
 [node name="Character" type="CharacterBody2D" unique_id=749957054]
 script = ExtResource("1_glpr6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=691711112]
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=691711112]
+unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=687991357]
