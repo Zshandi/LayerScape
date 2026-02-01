@@ -5,6 +5,8 @@ signal reached_goal
 
 @export
 var goal_node: Goal
+@export
+var scale_nodes: Array[Node2D]
 
 var shape_rect: Rect2:
 	get:
@@ -29,25 +31,50 @@ func _ready() -> void:
 	goal_node.body_entered.connect(_on_goal_body_entered)
 	goal_node.body_exited.connect(_on_goal_body_exited)
 
+func can_win() -> bool:
+	return is_on_floor() and is_touching_goal
+
+func move_toward_center_goal(delta: float) -> bool:
+	var target := goal_node.global_position.x
+	global_position.x = move_toward(global_position.x, target, move_speed * 0.5 * delta)
+	return is_equal_approx(global_position.x, target)
+
 func _physics_process(delta: float) -> void:
+	applied_gravity = get_gravity()
+
 	# Check win condition
-	if is_on_floor() and is_touching_goal and is_within_goal():
-		goal_timer -= delta
-		if goal_timer <= 0:
-			reached_goal.emit()
+	if can_win():
+		if move_toward_center_goal(delta):
+			# Count down once in center
+			goal_timer -= delta
+			if goal_timer <= 0:
+				move_toward_center_goal(delta)
+				process_mode = Node.PROCESS_MODE_DISABLED
+				# Play animation
+				var modulate_transparent := modulate
+				modulate_transparent.a = 0
+				var tween := get_tree().create_tween()
+				tween.set_parallel(true)
+				tween.tween_property(self , "scale", Vector2(0.2, 0.2), 0.5)
+				tween.tween_property(self , "modulate", modulate_transparent, 0.5)
+				await tween.finished
+				reached_goal.emit()
+		
+		# Only apply gravity
+		velocity.x = 0
+		velocity += applied_gravity * delta
+		move_and_slide()
+		return
 	else:
 		goal_timer = required_goal_time
 	
 	# Check inputs
 	var move_dir := 0.0
-	if not (is_on_floor() and is_touching_goal and is_within_goal()):
-		# Stop moving once in goal
-		if Input.is_action_pressed("move_right"):
-			move_dir += 1
-		if Input.is_action_pressed("move_left"):
-			move_dir -= 1
-	
-	applied_gravity = get_gravity()
+	if Input.is_action_pressed("move_right"):
+		move_dir += 1
+	if Input.is_action_pressed("move_left"):
+		move_dir -= 1
+	velocity.x = move_dir * move_speed
 
 	# Apply jump mechanics
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
@@ -65,9 +92,7 @@ func _physics_process(delta: float) -> void:
 			applied_gravity = get_gravity() * variable_jump_down_multiplier
 	
 	# Apply movement and gravity
-	velocity.x = move_dir * move_speed
 	velocity += applied_gravity * delta
-	
 	move_and_slide()
 
 func _on_goal_body_entered(body: Node2D) -> void:
@@ -78,12 +103,14 @@ func _on_goal_body_exited(body: Node2D) -> void:
 	if body != self: return
 	is_touching_goal = false
 
+const goal_tolerance := 5
 func is_shape_a_within_b(a: Rect2, b: Rect2) -> bool:
-	var horizontal_within := a.position.x > b.position.x and \
-		a.position.x + a.size.x < b.position.x + b.size.x
-	var vertical_within := a.position.y > b.position.y and \
-		a.position.y + a.size.y < b.position.y + b.size.y
+	var horizontal_within := a.position.x + goal_tolerance >= b.position.x and \
+		a.position.x + a.size.x <= b.position.x + b.size.x + goal_tolerance
+	var vertical_within := a.position.y + goal_tolerance >= b.position.y and \
+		a.position.y + a.size.y <= b.position.y + b.size.y + goal_tolerance
 	return horizontal_within and vertical_within
 
 func is_within_goal() -> bool:
+	# TODO: Fix this!
 	return is_shape_a_within_b(shape_rect, goal_node.shape_rect)

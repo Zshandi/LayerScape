@@ -31,7 +31,7 @@ func update_color():
 		modulate = selected_modulate
 	else:
 		modulate = default_modulate
-	if locked:
+	if not locked:
 		modulate.a = 0.5
 
 func _ready() -> void:

@@ -40,7 +40,7 @@ func apply_union(other: PolygonLayer) -> Array[PackedVector2Array]:
 					new_result.push_back(shape)
 			else:
 				# They did overlap, update to new shape
-				shape = combined
+				shape = combined[0]
 				if other_shape == result[-1]:
 					new_result.push_back(shape)
 		result = new_result
