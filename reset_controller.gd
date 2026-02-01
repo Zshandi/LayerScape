@@ -1,7 +1,7 @@
 extends Node
 
-func _input(event: InputEvent) -> void:
-	if event.is_action("reset_level"):
-		get_tree().reload_current_scene()
-	if event.is_action("pause"):
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("reset_level"):
+		LevelManager.reload_level()
+	if Input.is_action_just_pressed("pause"):
 		get_tree().quit()

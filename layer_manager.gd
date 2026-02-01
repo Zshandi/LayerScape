@@ -72,14 +72,24 @@ func _physics_process(_delta: float) -> void:
 	update_result()
 
 func update_result() -> void:
+	# Update the layer polygons
 	for layer in layers:
 		layer.update_shapes()
 
-	var running_result := layers[0].polygon_layer
-	for idx in range(1, len(layers)):
-		var layer := layers[idx]
+	# Calculate result polygons by combining layers
+	var running_result := PolygonLayer.new()
+	running_result.blend_operation = Geometry2D.PolyBooleanOperation.OPERATION_UNION
+	var idx = 0
+	for layer in layers:
+		if (not layer.locked) and layer.blend_operation == Geometry2D.PolyBooleanOperation.OPERATION_UNION:
+			DebugValues.debug("layer[" + str(idx) + "]", "skipped")
+			# TODO: Make this better
+			continue
+		DebugValues.debug("layer[" + str(idx) + "]", "included")
 		running_result = running_result.apply_to(layer.polygon_layer)
+		idx += 1
 	
+	# Construct final polygons
 	var polygons := running_result.shapes
 
 	while len(result_colliders) < len(polygons):
@@ -88,7 +98,7 @@ func update_result() -> void:
 		result_colliders.push_back(new_shape)
 		%LayerResult.add_child(new_shape)
 	
-	var idx = 0
+	idx = 0
 	for point_array in polygons:
 		result_colliders[idx].polygon = point_array
 		idx += 1

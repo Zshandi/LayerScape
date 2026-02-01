@@ -29,7 +29,6 @@ polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 
 [node name="Layer1" type="Node2D" parent="LayerManager" unique_id=996024005]
 script = ExtResource("2_1bvp3")
-blend_operation = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer1" unique_id=2123577011]
 position = Vector2(0, -8)
