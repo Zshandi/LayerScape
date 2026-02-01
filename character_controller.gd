@@ -27,6 +27,11 @@ var is_touching_goal: bool = false
 
 var goal_timer: float = required_goal_time
 
+var move_dir := 0.0
+
+@onready
+var sprite_scale: Vector2 = %Sprite.scale
+
 func _ready() -> void:
 	goal_node.body_entered.connect(_on_goal_body_entered)
 	goal_node.body_exited.connect(_on_goal_body_exited)
@@ -37,13 +42,17 @@ func can_win() -> bool:
 func move_toward_center_goal(delta: float) -> bool:
 	var target := goal_node.global_position.x
 	global_position.x = move_toward(global_position.x, target, move_speed * 0.5 * delta)
-	return is_equal_approx(global_position.x, target)
+	if is_equal_approx(global_position.x, target):
+		return true
+	else:
+		move_dir = sign(target - global_position.x)
+		return false
 
 func _physics_process(delta: float) -> void:
 	applied_gravity = get_gravity()
 
 	# Check for falling off
-	if global_position.y > get_viewport_rect().size.y+50:
+	if global_position.y > get_viewport_rect().size.y + 50:
 		get_tree().paused = true
 		await get_tree().create_timer(0.3).timeout
 		# TODO: Maybe play animation / sound
@@ -57,6 +66,7 @@ func _physics_process(delta: float) -> void:
 			goal_timer -= delta
 			if goal_timer <= 0:
 				move_toward_center_goal(delta)
+				%Sprite.process_mode = Node.PROCESS_MODE_ALWAYS
 				process_mode = Node.PROCESS_MODE_DISABLED
 				# Play animation
 				var modulate_transparent := modulate
@@ -77,7 +87,7 @@ func _physics_process(delta: float) -> void:
 		goal_timer = required_goal_time
 	
 	# Check inputs
-	var move_dir := 0.0
+	move_dir = 0
 	if Input.is_action_pressed("move_right"):
 		move_dir += 1
 	if Input.is_action_pressed("move_left"):
@@ -122,3 +132,18 @@ func is_shape_a_within_b(a: Rect2, b: Rect2) -> bool:
 func is_within_goal() -> bool:
 	# TODO: Fix this!
 	return is_shape_a_within_b(shape_rect, goal_node.shape_rect)
+
+func _process(_delta: float) -> void:
+	if move_dir != 0:
+		$Sprite.scale.x = sign(move_dir) * sprite_scale.x
+	
+	if is_on_floor():
+		if move_dir == 0:
+			$Sprite.play("idle")
+		else:
+			$Sprite.play("run")
+	else:
+		if velocity.y < 0:
+			$Sprite.play("jump_up")
+		else:
+			$Sprite.play("fall_down")
