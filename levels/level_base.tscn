@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://dil4t5quwxmy7" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dc8yp4lolv753" path="res://levels/level.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://46esyxg1oqrw" path="res://levels/level_bounds.gd" id="2_jd1fy"]
-[ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layers/layer_manager.gd" id="2_lquwl"]
+[ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layer/layer_manager.gd" id="2_lquwl"]
 [ext_resource type="Script" uid="uid://b6lkky6ocw7he" path="res://collision_shape_render.gd" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://goal.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://cnvxb2w6imgup" path="res://layers/layer_hud.tscn" id="7_cnvg6"]
+[ext_resource type="PackedScene" uid="uid://cnvxb2w6imgup" path="res://layer/layer_hud.tscn" id="7_cnvg6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnvg6"]
 size = Vector2(50, 50)
@@ -48,13 +48,13 @@ var selected: bool = false:
 		update_color()
 		queue_redraw()
 
-func set_shapes_modulate(color:Color) -> void:
+func set_shapes_modulate(color: Color) -> void:
 	for child in get_children():
 		if child is Polygon2D:
 			child.modulate = color
 
 func update_color():
-	var modulate_to_set:Color
+	var modulate_to_set: Color
 	if selected:
 		modulate_to_set = selected_modulate
 	else:
@@ -100,11 +100,10 @@ func _draw() -> void:
 		line_width += 3.0
 	for polygon_points in polygon_layer.shapes:
 		polygon_points.push_back(polygon_points[0])
-		var new_polygon:PackedVector2Array = []
+		var new_polygon: PackedVector2Array = []
 		for point in polygon_points:
 			new_polygon.push_back(point - global_position)
-		draw_polyline(new_polygon, line_color, line_width, true)
-"
+		draw_polyline(new_polygon, line_color, line_width, true)"
 
 [node name="Level" type="Node2D" unique_id=1458390218]
 script = ExtResource("1_1bvp3")
@@ -144,7 +143,6 @@ polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 
 [node name="Layer1" type="Node2D" parent="LayerManager" unique_id=996024005]
 script = SubResource("GDScript_jd1fy")
-blend_operation = null
 
 [node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer1" unique_id=2123577011]
 position = Vector2(0, -8)

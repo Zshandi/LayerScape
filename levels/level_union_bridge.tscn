@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhxe36faty571"]
 
 [ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://levels/level_base.tscn" id="1_5lhhv"]
-[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layers/layer.gd" id="2_6p7xh"]
+[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="2_6p7xh"]
 
 [node name="Level" unique_id=1458390218 instance=ExtResource("1_5lhhv")]
 

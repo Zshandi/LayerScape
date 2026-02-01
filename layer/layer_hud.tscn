@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cnvxb2w6imgup"]
 
-[ext_resource type="Script" uid="uid://dohmm4aaescyq" path="res://layers/layer_hud.gd" id="1_mplht"]
+[ext_resource type="Script" uid="uid://dohmm4aaescyq" path="res://layer/layer_hud.gd" id="1_mplht"]
 [ext_resource type="Texture2D" uid="uid://dssxt36ralm0h" path="res://assets/graphics/ui/blen_mode_union.png" id="2_2gp6b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gp6b"]
