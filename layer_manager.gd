@@ -41,6 +41,7 @@ func _ready() -> void:
 	
 	if len(layers) <= 0:
 		layers.push_back(Layer.new())
+	layers.reverse()
 	layers[selected_layer_index].selected = true
 
 	update_result()
