@@ -4,7 +4,11 @@
 [ext_resource type="Script" uid="uid://v4u56k6e2q1e" path="res://levels/level_data.gd" id="2_ce4gc"]
 [ext_resource type="PackedScene" uid="uid://pjye4s0icy75" path="res://levels/level_basic_jump.tscn" id="3_6qk6f"]
 [ext_resource type="PackedScene" uid="uid://dkk6lfrbobyv7" path="res://levels/level_basic_pit.tscn" id="4_fa8ul"]
+[ext_resource type="PackedScene" uid="uid://c0jy2u4600pax" path="res://levels/level_union_wall.tscn" id="5_3uyut"]
 [ext_resource type="PackedScene" uid="uid://bhxe36faty571" path="res://levels/level_union_bridge.tscn" id="5_6qk6f"]
+[ext_resource type="PackedScene" uid="uid://cosu3ledsxk8r" path="res://levels/level_union_bridge_short.tscn" id="7_l3tyk"]
+[ext_resource type="PackedScene" uid="uid://bnp0u0r2dj04h" path="res://levels/level_intersect_jump.tscn" id="8_yrpma"]
+[ext_resource type="PackedScene" uid="uid://d1rxramfphfob" path="res://levels/level_intersect_wall.tscn" id="9_plt5s"]
 
 [sub_resource type="Resource" id="Resource_3uyut"]
 script = ExtResource("2_ce4gc")
@@ -16,11 +20,31 @@ script = ExtResource("2_ce4gc")
 scene = ExtResource("4_fa8ul")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
+[sub_resource type="Resource" id="Resource_yrpma"]
+script = ExtResource("2_ce4gc")
+scene = ExtResource("5_3uyut")
+metadata/_custom_type_script = "uid://v4u56k6e2q1e"
+
 [sub_resource type="Resource" id="Resource_fa8ul"]
 script = ExtResource("2_ce4gc")
 scene = ExtResource("5_6qk6f")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
+[sub_resource type="Resource" id="Resource_plt5s"]
+script = ExtResource("2_ce4gc")
+scene = ExtResource("7_l3tyk")
+metadata/_custom_type_script = "uid://v4u56k6e2q1e"
+
+[sub_resource type="Resource" id="Resource_4a1ml"]
+script = ExtResource("2_ce4gc")
+scene = ExtResource("8_yrpma")
+metadata/_custom_type_script = "uid://v4u56k6e2q1e"
+
+[sub_resource type="Resource" id="Resource_t8q1s"]
+script = ExtResource("2_ce4gc")
+scene = ExtResource("9_plt5s")
+metadata/_custom_type_script = "uid://v4u56k6e2q1e"
+
 [node name="LevelManager" type="Node" unique_id=1334001506]
 script = ExtResource("1_hvuti")
-levels = Array[ExtResource("2_ce4gc")]([SubResource("Resource_3uyut"), SubResource("Resource_l3tyk"), SubResource("Resource_fa8ul")])
+levels = Array[ExtResource("2_ce4gc")]([SubResource("Resource_3uyut"), SubResource("Resource_l3tyk"), SubResource("Resource_yrpma"), SubResource("Resource_fa8ul"), SubResource("Resource_plt5s"), SubResource("Resource_4a1ml"), SubResource("Resource_t8q1s")])

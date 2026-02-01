@@ -4,14 +4,14 @@
 
 [node name="Level" unique_id=1458390218 instance=ExtResource("1_y2ghr")]
 
-[node name="Layer1" parent="LayerManager" parent_id_path=PackedInt32Array(875414052) index="1" unique_id=996024005]
-blend_operation = 0
-
-[node name="Polygon2D" parent="LayerManager/Layer1" index="0" unique_id=2123577011]
+[node name="Polygon2D" parent="LayerManager/Layer1" parent_id_path=PackedInt32Array(996024005) index="0" unique_id=2123577011]
 polygon = PackedVector2Array(0, 407.71033, 483.69348, 407.71033, 483.69348, 577.58966, 0, 577.5896)
 
-[node name="Polygon2D2" type="Polygon2D" parent="LayerManager/Layer1" index="1" unique_id=2103958324]
+[node name="Polygon2D2" type="Polygon2D" parent="LayerManager/Layer1" parent_id_path=PackedInt32Array(996024005) index="1" unique_id=2103958324]
 position = Vector2(0, -8)
 scale = Vector2(1.5877825, 1.8836904)
 color = Color(1, 0, 0, 0.5019608)
 polygon = PackedVector2Array(725.5402, 577.58966, 725.5402, 407.71033, 1209.2336, 407.71033, 1209.2336, 577.5896)
+
+[node name="Character" parent="." index="1" unique_id=749957054]
+position = Vector2(96, 760)

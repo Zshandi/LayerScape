@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d1rxramfphfob"]
+
+[ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://levels/level_base.tscn" id="1_r3a08"]
+[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer.gd" id="2_vjmjy"]
+
+[node name="Level" unique_id=1458390218 instance=ExtResource("1_r3a08")]
+
+[node name="Polygon2D" parent="LayerManager/Layer1" parent_id_path=PackedInt32Array(996024005) index="0" unique_id=2123577011]
+polygon = PackedVector2Array(0, 407.71033, 403.07788, 407.71033, 403.07788, 288.7948, 483.69348, 288.7948, 478.655, 4.2469826, 725.5402, 4.2469826, 725.5402, 407.71033, 1209.2336, 407.71033, 1209.2336, 577.5896, 0, 577.5896)
+
+[node name="Layer2" type="Node2D" parent="LayerManager" parent_id_path=PackedInt32Array(875414052) index="2" unique_id=1098088129]
+script = ExtResource("2_vjmjy")
+blend_operation = 2
+metadata/_custom_type_script = "uid://b6phwi725oyki"
+
+[node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer2" index="0" unique_id=1354886294]
+color = Color(0, 0.6509804, 1, 0.5019608)
+polygon = PackedVector2Array(-8, 88, -8, 880, 1928, 880, 1928, 88)
+
+[node name="Character" parent="." index="1" unique_id=749957054]
+position = Vector2(96, 760)

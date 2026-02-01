@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://bhxe36faty571"]
+[gd_scene format=3 uid="uid://cosu3ledsxk8r"]
 
-[ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://levels/level_base.tscn" id="1_5lhhv"]
-[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer.gd" id="2_6p7xh"]
+[ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://levels/level_base.tscn" id="1_8i5ot"]
+[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer.gd" id="2_016s6"]
 
-[node name="Level" unique_id=1458390218 instance=ExtResource("1_5lhhv")]
+[node name="Level" unique_id=1458390218 instance=ExtResource("1_8i5ot")]
 
 [node name="Polygon2D" parent="LayerManager/Layer1" parent_id_path=PackedInt32Array(996024005) index="0" unique_id=2123577011]
-polygon = PackedVector2Array(0, 407.71033, 609.65533, 407.71033, 609.65533, 577.58966, 0, 577.5896)
+polygon = PackedVector2Array(0, 407.71033, 362.7701, 407.71033, 362.7701, 577.58966, 0, 577.5896)
 
 [node name="Polygon2D2" type="Polygon2D" parent="LayerManager/Layer1" parent_id_path=PackedInt32Array(996024005) index="1" unique_id=2103958324]
 position = Vector2(0, -8)
@@ -15,13 +15,13 @@ color = Color(1, 0, 0, 0.5019608)
 polygon = PackedVector2Array(1088.3103, 577.58966, 1088.3103, 407.71033, 1209.2336, 407.71033, 1209.2336, 577.5896)
 
 [node name="Layer2" type="Node2D" parent="LayerManager" parent_id_path=PackedInt32Array(875414052) index="2" unique_id=364083146]
-script = ExtResource("2_6p7xh")
+script = ExtResource("2_016s6")
 metadata/_custom_type_script = "uid://b6phwi725oyki"
 
 [node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer2" index="0" unique_id=1233922874]
-position = Vector2(-632, 0)
+position = Vector2(-808, 0)
 color = Color(0, 0.6500001, 1, 0.5019608)
-polygon = PackedVector2Array(824, 760, 1600, 760, 1600, 872, 824, 872)
+polygon = PackedVector2Array(824, 760, 1216, 760, 1216, 872, 824, 872)
 
 [node name="Character" parent="." index="1" unique_id=749957054]
 position = Vector2(96, 760)
