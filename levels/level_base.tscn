@@ -65,8 +65,21 @@ polygon = PackedVector2Array(0, 407.71033, 483.69348, 407.71033, 483.69348, 293.
 [node name="Goal" parent="LayerManager/Layer1" unique_id=770949225 instance=ExtResource("6_7mycd")]
 position = Vector2(1792, 680)
 
+[node name="LayerHudCanvasLayer" type="CanvasLayer" parent="LayerManager" unique_id=1788506422]
+
+[node name="MarginContainer" type="MarginContainer" parent="LayerManager/LayerHudCanvasLayer" unique_id=1932450524]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
 [node name="Character" parent="." unique_id=749957054 node_paths=PackedStringArray("goal_node") instance=ExtResource("1_0xm2m")]
-position = Vector2(284, 260)
+position = Vector2(160, 760)
 goal_node = NodePath("../LayerManager/Layer1/Goal")
 
 [connection signal="reached_goal" from="Character" to="." method="_on_character_reached_goal"]
