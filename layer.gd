@@ -20,19 +20,28 @@ var locked: bool = true:
 			layer_tracker = null
 		if not locked and player_to_track != null and layer_tracker == null:
 			layer_tracker = LayerMovementTracker.new(self , player_to_track)
+		queue_redraw()
 
 var selected: bool = false:
 	set(value):
 		selected = value
 		update_color()
+		queue_redraw()
+
+func set_shapes_modulate(color:Color) -> void:
+	for child in get_children():
+		if child is Polygon2D:
+			child.modulate = color
 
 func update_color():
+	var modulate_to_set:Color
 	if selected:
-		modulate = selected_modulate
+		modulate_to_set = selected_modulate
 	else:
-		modulate = default_modulate
+		modulate_to_set = default_modulate
 	if not locked:
-		modulate.a = 0.5
+		modulate_to_set.a = 0.5
+	set_shapes_modulate(modulate_to_set)
 
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
@@ -58,3 +67,20 @@ func update_shapes() -> void:
 
 func _on_visibility_changed() -> void:
 	pass
+
+func _draw() -> void:
+	var line_color := Color.WHITE
+	line_color.a = 0.7
+	var line_width = 1.0
+
+	if selected:
+		line_width += 4.0
+	if not locked:
+		line_color.a = 1.0
+		line_width += 3.0
+	for polygon_points in polygon_layer.shapes:
+		polygon_points.push_back(polygon_points[0])
+		var new_polygon:PackedVector2Array = []
+		for point in polygon_points:
+			new_polygon.push_back(point - global_position)
+		draw_polyline(new_polygon, line_color, line_width, true)
