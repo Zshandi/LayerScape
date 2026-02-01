@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://db0byybk3dy4k"
+path="res://.godot/imported/UIClick_Book Tap UI Confirm_RogueWaves_KawaiiUI.wav-3f9ce9c9d579a64d2fa14ed23fd5a338.sample"
+
+[deps]
+
+source_file="res://assets/sfx/UIClick_Book Tap UI Confirm_RogueWaves_KawaiiUI.wav"
+dest_files=["res://.godot/imported/UIClick_Book Tap UI Confirm_RogueWaves_KawaiiUI.wav-3f9ce9c9d579a64d2fa14ed23fd5a338.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
