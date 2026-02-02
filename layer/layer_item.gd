@@ -1,6 +1,9 @@
 extends MarginContainer
 class_name LayerItem
 
+static func instantiate() -> LayerItem:
+	return preload("./layer_item.tscn").instantiate()
+
 func update_to_match(layer: Layer):
 	if not is_node_ready(): return
 	if layer.visible:
