@@ -28,13 +28,13 @@ var selected: bool = false:
 		update_color()
 		queue_redraw()
 
-func set_shapes_modulate(color:Color) -> void:
+func set_shapes_modulate(color: Color) -> void:
 	for child in get_children():
 		if child is Polygon2D:
 			child.modulate = color
 
 func update_color():
-	var modulate_to_set:Color
+	var modulate_to_set: Color
 	if selected:
 		modulate_to_set = selected_modulate
 	else:
@@ -80,7 +80,7 @@ func _draw() -> void:
 		line_width += 3.0
 	for polygon_points in polygon_layer.shapes:
 		polygon_points.push_back(polygon_points[0])
-		var new_polygon:PackedVector2Array = []
+		var new_polygon: PackedVector2Array = []
 		for point in polygon_points:
 			new_polygon.push_back(point - global_position)
 		draw_polyline(new_polygon, line_color, line_width, true)

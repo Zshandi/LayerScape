@@ -113,3 +113,6 @@ func update_result() -> void:
 	while idx < len(result_colliders):
 		result_colliders[idx].polygon = []
 		idx += 1
+
+func _process(_delta: float) -> void:
+	%LayerHud.update_for_layers(layers)

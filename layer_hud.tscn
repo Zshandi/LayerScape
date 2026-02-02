@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cnvxb2w6imgup"]
+
+[ext_resource type="Script" uid="uid://dohmm4aaescyq" path="res://layer_hud.gd" id="1_mplht"]
+[ext_resource type="PackedScene" uid="uid://ccx6lesjl47un" path="res://layer_item.tscn" id="2_u4syq"]
+
+[node name="LayerHud" type="CanvasLayer" unique_id=2117405684]
+script = ExtResource("1_mplht")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1164260946]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=262040358]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer" unique_id=1518025996]
+layout_mode = 2
+color = Color(0.5251013, 0.5251013, 0.5251013, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer" unique_id=918064647]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="LayersAndControlIndication" type="VBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer" unique_id=563044174]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Layers" type="Label" parent="MarginContainer/MarginContainer/MarginContainer/LayersAndControlIndication" unique_id=471945992]
+layout_mode = 2
+text = "Layers"
+horizontal_alignment = 1
+
+[node name="LayerItems" type="HBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer/LayersAndControlIndication" unique_id=718370039]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="LayerItem" parent="MarginContainer/MarginContainer/MarginContainer/LayersAndControlIndication/LayerItems" unique_id=128742631 instance=ExtResource("2_u4syq")]
+layout_mode = 2
+
+[node name="LayerItem2" parent="MarginContainer/MarginContainer/MarginContainer/LayersAndControlIndication/LayerItems" unique_id=242803618 instance=ExtResource("2_u4syq")]
+layout_mode = 2

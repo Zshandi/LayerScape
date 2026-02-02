@@ -17,5 +17,5 @@ metadata/_custom_type_script = "uid://b6phwi725oyki"
 color = Color(0, 0.6509804, 1, 0.5019608)
 polygon = PackedVector2Array(-8, 88, -8, 880, 1928, 880, 1928, 88)
 
-[node name="Character" parent="." index="1" unique_id=749957054]
+[node name="Character" parent="." index="2" unique_id=749957054]
 position = Vector2(96, 760)

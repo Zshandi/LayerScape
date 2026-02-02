@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="GGJ2026"
-config/version="0.0.1"
+config/name="LayerScape"
+config/version="1.0.1"
 run/main_scene="uid://ce31q7guxsgew"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
