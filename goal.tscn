@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bnwwcft5fkixw"]
 
 [ext_resource type="Script" uid="uid://byrnaq4gbbfig" path="res://goal.gd" id="1_6k3qi"]
+[ext_resource type="AudioStream" uid="uid://ctc68rw70mk4a" path="res://assets/sfx/success.wav" id="2_0qle8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7sh37"]
 size = Vector2(100, 160)
@@ -18,3 +19,9 @@ offset_top = -80.0
 offset_right = 50.0
 offset_bottom = 80.0
 color = Color(0, 0, 0, 1)
+
+[node name="ReachedGoal" type="AudioStreamPlayer2D" parent="." unique_id=1938343012]
+stream = ExtResource("2_0qle8")
+volume_db = 7.29
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
