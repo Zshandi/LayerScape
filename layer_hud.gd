@@ -6,7 +6,7 @@ func update_for_layers(layers: Array[Layer]):
 		child.queue_free()
 	
 	for layer_to_update in layers:
-		var new_item: LayerItem = preload("res://layer/layer_item.tscn").instantiate()
+		var new_item: LayerItem = preload("res://layer_item.tscn").instantiate()
 		%LayerItems.add_child(new_item)
 		new_item.update_to_match(layer_to_update)
 

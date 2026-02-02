@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cnvxb2w6imgup"]
 
-[ext_resource type="Script" uid="uid://dohmm4aaescyq" path="res://layer/layer_hud.gd" id="1_mplht"]
-[ext_resource type="PackedScene" uid="uid://ccx6lesjl47un" path="res://layer/layer_item.tscn" id="2_u4syq"]
+[ext_resource type="Script" uid="uid://dohmm4aaescyq" path="res://layer_hud.gd" id="1_mplht"]
+[ext_resource type="PackedScene" uid="uid://ccx6lesjl47un" path="res://layer_item.tscn" id="2_u4syq"]
 
 [node name="LayerHud" type="CanvasLayer" unique_id=2117405684]
 script = ExtResource("1_mplht")

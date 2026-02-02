@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhxe36faty571"]
 
 [ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://levels/level_base.tscn" id="1_5lhhv"]
-[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="2_6p7xh"]
+[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer.gd" id="2_6p7xh"]
 
 [node name="Level" unique_id=1458390218 instance=ExtResource("1_5lhhv")]
 
@@ -23,5 +23,5 @@ position = Vector2(-632, 0)
 color = Color(0, 0.6500001, 1, 0.5019608)
 polygon = PackedVector2Array(824, 760, 1600, 760, 1600, 872, 824, 872)
 
-[node name="Character" parent="." index="1" unique_id=749957054]
+[node name="Character" parent="." index="3" unique_id=749957054]
 position = Vector2(96, 760)
