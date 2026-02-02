@@ -1,5 +1,7 @@
 extends Node
 
+const level_complete_sfx = preload("res://assets/sfx/success.wav")
+
 @export
 var levels: Array[LevelData]
 
