@@ -17,5 +17,5 @@ position = Vector2(-8, -752)
 color = Color(0, 0.6500001, 1, 0.5019608)
 polygon = PackedVector2Array(824, 744, 1216, 744, 1216, 1832, 824, 1832)
 
-[node name="Character" parent="." index="1" unique_id=749957054]
+[node name="Character" parent="." index="3" unique_id=749957054]
 position = Vector2(96, 760)

@@ -19,7 +19,6 @@ func _ready() -> void:
 	# When we load, just load the first level
 	# TODO: Move this to the main menu button
 	if current_level == -1:
-		current_level = 0
 		if not (get_tree().current_scene is Level):
 			load_level(0)
 		else:
@@ -44,4 +43,7 @@ func reload_level() -> void:
 
 func _on_level_complete() -> void:
 	# TODO: Show win screen with option to go to next level
-	load_level(current_level + 1)
+	if current_level == -1:
+		reload_level()
+	else:
+		load_level(current_level + 1)

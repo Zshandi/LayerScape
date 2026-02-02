@@ -14,7 +14,7 @@ var shape_rect: Rect2:
 		rect.position = %Shape.global_position
 		return rect
 
-const required_goal_time: float = 0.2
+const required_goal_time: float = 0.01
 
 var move_speed := 600
 var jump_speed := 1000
@@ -49,25 +49,17 @@ func move_toward_center_goal(delta: float) -> bool:
 		return false
 
 func _physics_process(delta: float) -> void:
-	applied_gravity = get_gravity()
-
-	# Check for falling off
-	if global_position.y > get_viewport_rect().size.y + 50:
-		get_tree().paused = true
-		await get_tree().create_timer(0.3).timeout
-		# TODO: Maybe play animation / sound
-		get_tree().paused = false
-		LevelManager.reload_level()
-
 	# Check win condition
 	if can_win():
 		if move_toward_center_goal(delta):
 			# Count down once in center
 			goal_timer -= delta
 			if goal_timer <= 0:
-				move_toward_center_goal(delta)
 				%Sprite.process_mode = Node.PROCESS_MODE_ALWAYS
+				# Don't process anymore, since we've won
 				process_mode = Node.PROCESS_MODE_DISABLED
+				# Play sound
+				%ReachedGoal.play()
 				# Play animation
 				var modulate_transparent := modulate
 				modulate_transparent.a = 0
@@ -78,13 +70,23 @@ func _physics_process(delta: float) -> void:
 				await tween.finished
 				reached_goal.emit()
 		
-		# Only apply gravity
+		# Only apply gravity if touching goal
 		velocity.x = 0
 		velocity += applied_gravity * delta
 		move_and_slide()
 		return
 	else:
 		goal_timer = required_goal_time
+	
+	applied_gravity = get_gravity()
+
+	# Check for falling off
+	if global_position.y > get_viewport_rect().size.y + 50:
+		get_tree().paused = true
+		await get_tree().create_timer(0.3).timeout
+		# TODO: Maybe play animation / sound
+		get_tree().paused = false
+		LevelManager.reload_level()
 	
 	# Check inputs
 	move_dir = 0

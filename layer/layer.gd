@@ -64,6 +64,12 @@ func update_shapes() -> void:
 		if child is Polygon2D:
 			polygon_layer.shapes.push_back(_global_polygon(child))
 
+func get_game_objects() -> Array[GameObject]:
+	var result: Array[GameObject] = []
+	for child in get_children():
+		if child is GameObject:
+			result.push_back(child)
+	return result
 
 func _on_visibility_changed() -> void:
 	pass

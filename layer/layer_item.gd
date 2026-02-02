@@ -31,6 +31,10 @@ func update_to_match(layer: Layer):
 	
 	for polygon_array in layer.polygon_layer.shapes:
 		add_polygon(polygon_array)
+	for obj in layer.get_game_objects():
+		var shape := obj.get_preview_shape()
+		%LayerShapeContainer.add_child(shape)
+	
 	%LayerShapeContainer.position = layer.global_position * 0.001
 
 
