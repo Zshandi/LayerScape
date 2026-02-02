@@ -31,7 +31,7 @@ func update_to_match(layer: Layer):
 	
 	for polygon_array in layer.polygon_layer.shapes:
 		add_polygon(polygon_array)
-	%LayerShapeContainer.position = layer.global_position * 0.1
+	%LayerShapeContainer.position = layer.global_position * 0.001
 
 
 func add_polygon(shape: PackedVector2Array):
