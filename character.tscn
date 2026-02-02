@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dil4t5quwxmy7"]
 
 [ext_resource type="Script" uid="uid://bh42o0rmlm681" path="res://character_controller.gd" id="1_glpr6"]
-[ext_resource type="Script" uid="uid://dye3bmsjjkrbn" path="res://debug_values.gd" id="2_pjt0s"]
+[ext_resource type="Script" uid="uid://dye3bmsjjkrbn" path="res://tools/debug_values.gd" id="2_pjt0s"]
 [ext_resource type="Texture2D" uid="uid://dugi45mgj12sw" path="res://assets/graphics/running_guy.png" id="2_wa5vi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]

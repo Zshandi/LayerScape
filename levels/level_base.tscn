@@ -6,9 +6,9 @@
 [ext_resource type="Script" uid="uid://46esyxg1oqrw" path="res://levels/level_bounds.gd" id="2_jd1fy"]
 [ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layer/layer_manager.gd" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://cyfjpsd7oq1su" path="res://assets/graphics/backdrops.png" id="2_p3adb"]
-[ext_resource type="Script" uid="uid://b6lkky6ocw7he" path="res://collision_shape_render.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://b6lkky6ocw7he" path="res://tools/collision_shape_render.gd" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="5_cnvg6"]
-[ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://goal.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://objects/goal.tscn" id="6_7mycd"]
 [ext_resource type="AudioStream" uid="uid://db0byybk3dy4k" path="res://assets/sfx/UIClick_Book Tap UI Confirm_RogueWaves_KawaiiUI.wav" id="7_cnvg6"]
 [ext_resource type="PackedScene" uid="uid://cnvxb2w6imgup" path="res://layer/layer_hud.tscn" id="10_twsyw"]
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bnwwcft5fkixw"]
 
-[ext_resource type="Script" uid="uid://byrnaq4gbbfig" path="res://goal.gd" id="1_6k3qi"]
+[ext_resource type="Script" uid="uid://byrnaq4gbbfig" path="res://objects/goal.gd" id="1_6k3qi"]
 [ext_resource type="AudioStream" uid="uid://ctc68rw70mk4a" path="res://assets/sfx/success.wav" id="2_0qle8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7sh37"]
