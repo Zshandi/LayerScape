@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://46esyxg1oqrw" path="res://levels/level_bounds.gd" id="2_jd1fy"]
 [ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layer/layer_manager.gd" id="2_lquwl"]
 [ext_resource type="Script" uid="uid://b6lkky6ocw7he" path="res://collision_shape_render.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="5_cnvg6"]
 [ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://goal.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cnvxb2w6imgup" path="res://layer/layer_hud.tscn" id="7_cnvg6"]
 
@@ -16,94 +17,6 @@ size = Vector2(50, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jd1fy"]
 size = Vector2(50, 50)
-
-[sub_resource type="GDScript" id="GDScript_jd1fy"]
-script/source = "extends Node2D
-class_name Layer
-
-@export
-var blend_operation: Geometry2D.PolyBooleanOperation
-
-var polygon_layer: PolygonLayer = PolygonLayer.new()
-
-var default_modulate := Color.WHITE
-var selected_modulate := Color(0.7, 0.7, 0.7, 1.0)
-
-var player_to_track: Node2D
-var layer_tracker: LayerMovementTracker
-
-var locked: bool = true:
-	set(value):
-		locked = value
-		update_color()
-		if locked and layer_tracker != null:
-			layer_tracker = null
-		if not locked and player_to_track != null and layer_tracker == null:
-			layer_tracker = LayerMovementTracker.new(self , player_to_track)
-		queue_redraw()
-
-var selected: bool = false:
-	set(value):
-		selected = value
-		update_color()
-		queue_redraw()
-
-func set_shapes_modulate(color: Color) -> void:
-	for child in get_children():
-		if child is Polygon2D:
-			child.modulate = color
-
-func update_color():
-	var modulate_to_set: Color
-	if selected:
-		modulate_to_set = selected_modulate
-	else:
-		modulate_to_set = default_modulate
-	if not locked:
-		modulate_to_set.a = 0.5
-	set_shapes_modulate(modulate_to_set)
-
-func _ready() -> void:
-	visibility_changed.connect(_on_visibility_changed)
-
-func _global_polygon(polygon: Polygon2D) -> PackedVector2Array:
-	var points: PackedVector2Array = []
-	
-	for point in polygon.polygon:
-		points.push_back(polygon.to_global(point))
-	
-	return points
-
-func update_shapes() -> void:
-	if layer_tracker != null:
-		layer_tracker.move_to_target()
-
-	polygon_layer.blend_operation = blend_operation
-	polygon_layer.shapes.clear()
-	for child in get_children():
-		if child is Polygon2D:
-			polygon_layer.shapes.push_back(_global_polygon(child))
-
-
-func _on_visibility_changed() -> void:
-	pass
-
-func _draw() -> void:
-	var line_color := Color.WHITE
-	line_color.a = 0.7
-	var line_width = 1.0
-
-	if selected:
-		line_width += 4.0
-	if not locked:
-		line_color.a = 1.0
-		line_width += 3.0
-	for polygon_points in polygon_layer.shapes:
-		polygon_points.push_back(polygon_points[0])
-		var new_polygon: PackedVector2Array = []
-		for point in polygon_points:
-			new_polygon.push_back(point - global_position)
-		draw_polyline(new_polygon, line_color, line_width, true)"
 
 [node name="Level" type="Node2D" unique_id=1458390218]
 script = ExtResource("1_1bvp3")
@@ -142,7 +55,7 @@ color = Color(0, 0, 0, 0.84313726)
 polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 
 [node name="Layer1" type="Node2D" parent="LayerManager" unique_id=996024005]
-script = SubResource("GDScript_jd1fy")
+script = ExtResource("5_cnvg6")
 
 [node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer1" unique_id=2123577011]
 position = Vector2(0, -8)
@@ -154,6 +67,7 @@ polygon = PackedVector2Array(0, 407.71033, 483.69348, 407.71033, 483.69348, 293.
 position = Vector2(1792, 680)
 
 [node name="LayerHud" parent="LayerManager" unique_id=2117405684 instance=ExtResource("7_cnvg6")]
+unique_name_in_owner = true
 
 [node name="Character" parent="." unique_id=749957054 node_paths=PackedStringArray("goal_node") instance=ExtResource("1_0xm2m")]
 position = Vector2(160, 760)

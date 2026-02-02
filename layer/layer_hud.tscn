@@ -1,24 +1,7 @@
 [gd_scene format=3 uid="uid://cnvxb2w6imgup"]
 
 [ext_resource type="Script" uid="uid://dohmm4aaescyq" path="res://layer/layer_hud.gd" id="1_mplht"]
-[ext_resource type="Texture2D" uid="uid://dssxt36ralm0h" path="res://assets/graphics/ui/blen_mode_union.png" id="2_2gp6b"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gp6b"]
-bg_color = Color(1, 1, 1, 1)
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlg3m"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
+[ext_resource type="PackedScene" uid="uid://ccx6lesjl47un" path="res://layer/layer_item.tscn" id="2_u4syq"]
 
 [node name="LayerHud" type="CanvasLayer" unique_id=2117405684]
 script = ExtResource("1_mplht")
@@ -30,56 +13,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 50
 
-[node name="LayersAndControlIndication" type="VBoxContainer" parent="MarginContainer" unique_id=563044174]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=262040358]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="LayerItems" type="HBoxContainer" parent="MarginContainer/LayersAndControlIndication" unique_id=718370039]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer" unique_id=1518025996]
+layout_mode = 2
+color = Color(0.5251013, 0.5251013, 0.5251013, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer" unique_id=918064647]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="LayersAndControlIndication" type="VBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer" unique_id=563044174]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Layers" type="Label" parent="MarginContainer/MarginContainer/MarginContainer/LayersAndControlIndication" unique_id=471945992]
+layout_mode = 2
+text = "Layers"
+horizontal_alignment = 1
+
+[node name="LayerItems" type="HBoxContainer" parent="MarginContainer/MarginContainer/MarginContainer/LayersAndControlIndication" unique_id=718370039]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 70
 
-[node name="LayerItem" type="MarginContainer" parent="MarginContainer/LayersAndControlIndication/LayerItems" unique_id=1200075662]
+[node name="LayerItem" parent="MarginContainer/MarginContainer/MarginContainer/LayersAndControlIndication/LayerItems" unique_id=128742631 instance=ExtResource("2_u4syq")]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/LayersAndControlIndication/LayerItems/LayerItem" unique_id=1452386516]
+[node name="LayerItem2" parent="MarginContainer/MarginContainer/MarginContainer/LayersAndControlIndication/LayerItems" unique_id=242803618 instance=ExtResource("2_u4syq")]
 layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Icons" type="MarginContainer" parent="MarginContainer/LayersAndControlIndication/LayerItems/LayerItem/VBoxContainer" unique_id=686224810]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="MarginContainer/LayersAndControlIndication/LayerItems/LayerItem/VBoxContainer/Icons" unique_id=73302377]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_2gp6b")
-
-[node name="BlendMode" type="Sprite2D" parent="MarginContainer/LayersAndControlIndication/LayerItems/LayerItem/VBoxContainer/Icons" unique_id=809130651]
-position = Vector2(20.000008, 12)
-scale = Vector2(0.19917722, 0.19917722)
-texture = ExtResource("2_2gp6b")
-
-[node name="LayerPreviewContainer" type="MarginContainer" parent="MarginContainer/LayersAndControlIndication/LayerItems/LayerItem/VBoxContainer" unique_id=927601398]
-clip_contents = true
-custom_minimum_size = Vector2(96, 54)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/LayersAndControlIndication/LayerItems/LayerItem/VBoxContainer/LayerPreviewContainer" unique_id=1602905835]
-layout_mode = 2
-
-[node name="LayerShapeContainer" type="Node2D" parent="MarginContainer/LayersAndControlIndication/LayerItems/LayerItem/VBoxContainer/LayerPreviewContainer" unique_id=688808097]
-unique_name_in_owner = true
-
-[node name="LayerShape" type="Polygon2D" parent="MarginContainer/LayersAndControlIndication/LayerItems/LayerItem/VBoxContainer/LayerPreviewContainer/LayerShapeContainer" unique_id=1389322686]
-scale = Vector2(0.09, 0.09)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(0, 407.71033, 483.69348, 407.71033, 483.69348, 293.04178, 725.5402, 293.04178, 725.5402, 407.71033, 1209.2336, 407.71033, 1209.2336, 577.5896, 0, 577.5896)
-
-[node name="LayeSelectBorder" type="Panel" parent="MarginContainer/LayersAndControlIndication/LayerItems/LayerItem" unique_id=694806366]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_dlg3m")
