@@ -1,6 +1,8 @@
 extends Node2D
 class_name Layer
 
+const player_velocity_tolerance: float = 3
+
 @export
 var blend_operation: Geometry2D.PolyBooleanOperation
 
@@ -9,7 +11,7 @@ var polygon_layer: PolygonLayer = PolygonLayer.new()
 var default_modulate := Color.WHITE
 var selected_modulate := Color(0.7, 0.7, 0.7, 1.0)
 
-var player_to_track: Node2D
+var player_to_track: Character
 var layer_tracker: LayerMovementTracker
 
 var locked: bool = true:
@@ -27,6 +29,12 @@ var selected: bool = false:
 		selected = value
 		update_color()
 		queue_redraw()
+
+func get_polygon_layer_velocity_shifted(delta: float) -> PolygonLayer:
+	if locked:
+		return polygon_layer
+	else:
+		return polygon_layer.shifted(player_to_track.next_velocity * delta * player_velocity_tolerance)
 
 func set_shapes_modulate(color: Color) -> void:
 	for child in get_children():

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name CharacterController
+class_name Character
 
 signal reached_goal
 
@@ -28,6 +28,8 @@ var is_touching_goal: bool = false
 var goal_timer: float = required_goal_time
 
 var move_dir := 0.0
+
+var next_velocity := Vector2.ZERO
 
 @onready
 var sprite_scale: Vector2 = %Sprite.scale
@@ -114,6 +116,45 @@ func _physics_process(delta: float) -> void:
 	# Apply movement and gravity
 	velocity += applied_gravity * delta
 	move_and_slide()
+
+func get_next_velocity(delta: float) -> Vector2:
+	next_velocity = velocity
+
+	applied_gravity = get_gravity()
+
+	# Check for falling off
+	if global_position.y > get_viewport_rect().size.y + 50:
+		get_tree().paused = true
+		await get_tree().create_timer(0.3).timeout
+		# TODO: Maybe play animation / sound
+		get_tree().paused = false
+		LevelManager.reload_level()
+	
+	# Check inputs
+	move_dir = 0
+	if Input.is_action_pressed("move_right"):
+		move_dir += 1
+	if Input.is_action_pressed("move_left"):
+		move_dir -= 1
+	next_velocity.x = move_dir * move_speed
+
+	# Apply jump mechanics
+	if is_on_floor() and Input.is_action_just_pressed("jump"):
+		next_velocity.y -= jump_speed
+		is_jumping = true
+		applied_gravity = get_gravity()
+	elif is_jumping:
+		if is_on_floor():
+			is_jumping = false
+			applied_gravity = get_gravity()
+		elif not Input.is_action_pressed("jump"):
+			# Variable jump height
+			if next_velocity.y < 0:
+				next_velocity.y = 0
+			applied_gravity = get_gravity() * variable_jump_down_multiplier
+	
+	next_velocity += applied_gravity * delta
+	return next_velocity
 
 func _on_goal_body_entered(body: Node2D) -> void:
 	if body != self: return

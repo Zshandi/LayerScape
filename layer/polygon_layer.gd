@@ -5,6 +5,16 @@ var blend_operation := Geometry2D.OPERATION_UNION
 
 var shapes: Array[PackedVector2Array] = []
 
+func _init(_shapes: Array[PackedVector2Array]=[], _blend_operation:=Geometry2D.OPERATION_UNION):
+	shapes = _shapes
+	blend_operation = _blend_operation
+
+func duplicate() -> PolygonLayer:
+	return PolygonLayer.new(shapes, blend_operation)
+
+func shifted(amount: Vector2) -> PolygonLayer:
+	return PolygonLayer.new(PolygonUtil.shift_polygons(shapes, amount), blend_operation)
+
 func apply_to(other: PolygonLayer) -> PolygonLayer:
 	var result := PolygonLayer.new()
 	result.blend_operation = other.blend_operation
@@ -16,7 +26,7 @@ func apply_to(other: PolygonLayer) -> PolygonLayer:
 			result.shapes = apply_union(other)
 		_:
 			result.shapes = apply_union(other)
-	
+
 	return result
 
 func apply_intersection(other: PolygonLayer) -> Array[PackedVector2Array]:

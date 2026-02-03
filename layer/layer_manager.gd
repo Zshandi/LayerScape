@@ -1,11 +1,13 @@
 extends Node2D
 class_name LayerManager
 
-@onready var lock_layer: AudioStreamPlayer2D = $AudioSoundFX/LockLayer
-@onready var unlock_layer: AudioStreamPlayer2D = $AudioSoundFX/UnlockLayer
+@onready var lock_layer: AudioStreamPlayer2D = %LockLayerSound
+@onready var unlock_layer: AudioStreamPlayer2D = %UnlockLayerSound
+
+@onready var result_source_render: Polygon2D = %LayerResultSourceRender.duplicate()
 
 @export
-var player_to_track: Node2D
+var player_to_track: Character
 
 var layers: Array[Layer]
 
@@ -34,9 +36,6 @@ var selected_layer_index: int = 0:
 
 
 func _ready() -> void:
-	source_collider = %LayerResultSourceShape
-	source_collider.polygon = []
-
 	for child in get_children():
 		if child is Layer:
 			layers.push_back(child)
@@ -47,7 +46,7 @@ func _ready() -> void:
 	layers.reverse()
 	layers[selected_layer_index].selected = true
 
-	update_result()
+	#update_result(get_physics_process_delta_time())
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -60,7 +59,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			return
 		selected_layer_index = key_index
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("lock_toggle"):
 		selected_layer.locked = not selected_layer.locked
 		if selected_layer.locked:
@@ -76,43 +75,31 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("layer_prev"):
 		selected_layer_index -= 1
 	
-	update_result()
+	update_result(delta)
 
-func update_result() -> void:
+func update_result(delta: float) -> void:
+	player_to_track.get_next_velocity(delta)
+
 	# Update the layer polygons
 	for layer in layers:
 		layer.update_shapes()
 
 	# Calculate result polygons by combining layers
-	var running_result := PolygonLayer.new()
-	var idx = 0
+	var render_result := PolygonLayer.new()
 	for layer in layers:
-		if (not layer.locked) and layer.blend_operation == Geometry2D.PolyBooleanOperation.OPERATION_UNION:
-			DebugValues.debug("layer[" + str(idx) + "]", "skipped")
-			# TODO: Make this better
-			if running_result.blend_operation != Geometry2D.PolyBooleanOperation.OPERATION_UNION:
-				running_result = PolygonLayer.new()
-			continue
-		DebugValues.debug("layer[" + str(idx) + "]", "included")
-		running_result = running_result.apply_to(layer.polygon_layer)
-		idx += 1
-	
-	# Construct final polygons
-	var polygons := running_result.shapes
+		render_result = render_result.apply_to(layer.polygon_layer)
 
-	while len(result_colliders) < len(polygons):
-		var new_shape: CollisionPolygon2D = source_collider.duplicate()
-		new_shape.polygon = []
-		result_colliders.push_back(new_shape)
-		%LayerResult.add_child(new_shape)
+	# Do the same again but offset to account for player velocity when unlocked
+	var collision_result := PolygonLayer.new()
+	for layer in layers:
+		collision_result = collision_result.apply_to(layer.get_polygon_layer_velocity_shifted(delta))
 	
-	idx = 0
-	for point_array in polygons:
-		result_colliders[idx].polygon = point_array
-		idx += 1
-	while idx < len(result_colliders):
-		result_colliders[idx].polygon = []
-		idx += 1
+	# Construct final collision
+	PolygonUtil.replace_polygon_nodes(%LayerResult, collision_result.shapes, CollisionPolygon2D.new(), true)
+
+	# Construct final render (Polygon2Ds)
+	PolygonUtil.replace_polygon_nodes(%LayerResultRenders, render_result.shapes, result_source_render)
+	
 
 func _process(_delta: float) -> void:
 	%LayerHud.update_for_layers(layers)

@@ -83,8 +83,11 @@ static func generate_polygon_nodes(polygons: Array[PackedVector2Array], node_or_
 	if node_or_scene == null:
 		base_node = Polygon2D.new()
 		should_free_base_node = true
+	else:
+		base_node = node_or_scene
 	
-	assert(base_node is Node2D and "polygon" in base_node)
+	assert(base_node is Node2D)
+	assert("polygon" in base_node)
 
 	for polygon in polygons:
 		var new_node = base_node.duplicate()
@@ -97,15 +100,15 @@ static func generate_polygon_nodes(polygons: Array[PackedVector2Array], node_or_
 	return result
 
 # Assumes that the parent will have a global position of zero to match the polygons exactly
-static func add_polygon_nodes(parent: Node, polygons: Array[PackedVector2Array], node_or_scene: Variant = null) -> void:
-	var generated_nodes := generate_polygon_nodes(polygons, node_or_scene)
+static func add_polygon_nodes(parent: Node, polygons: Array[PackedVector2Array], node_or_scene: Variant = null, should_free_base_node: bool = false) -> void:
+	var generated_nodes := generate_polygon_nodes(polygons, node_or_scene, should_free_base_node)
 	for node in generated_nodes:
 		parent.add_child(node)
 
 # Like add, but first removes child polygons
 # Assumes that the parent will have a global position of zero to match the polygons exactly
-static func replace_polygon_nodes(parent: Node, polygons: Array[PackedVector2Array], node_or_scene: Variant = null) -> void:
-	var generated_nodes := generate_polygon_nodes(polygons, node_or_scene)
+static func replace_polygon_nodes(parent: Node, polygons: Array[PackedVector2Array], node_or_scene: Variant = null, should_free_base_node: bool = false) -> void:
+	var generated_nodes := generate_polygon_nodes(polygons, node_or_scene, should_free_base_node)
 	for child in parent.get_children():
 		if "polygon" in child:
 			child.queue_free()

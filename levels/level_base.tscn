@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://46esyxg1oqrw" path="res://levels/level_bounds.gd" id="2_jd1fy"]
 [ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layer/layer_manager.gd" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://bi7ay7s5subcv" path="res://assets/graphics/background-mountains-colors1.png" id="3_twsyw"]
-[ext_resource type="Script" uid="uid://b6lkky6ocw7he" path="res://tools/collision_shape_render.gd" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="5_cnvg6"]
 [ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://game_objects/goal.tscn" id="6_7mycd"]
 [ext_resource type="AudioStream" uid="uid://db0byybk3dy4k" path="res://assets/sfx/UIClick_Book Tap UI Confirm_RogueWaves_KawaiiUI.wav" id="7_cnvg6"]
@@ -88,13 +87,15 @@ player_to_track = NodePath("../Character")
 [node name="LayerResult" type="StaticBody2D" parent="LayerManager" unique_id=641006756]
 unique_name_in_owner = true
 
-[node name="LayerResultSourceShape" type="CollisionPolygon2D" parent="LayerManager/LayerResult" unique_id=1217824312]
-unique_name_in_owner = true
+[node name="LayerResultSourceCollision" type="CollisionPolygon2D" parent="LayerManager/LayerResult" unique_id=1217824312]
 polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
-script = ExtResource("4_1bvp3")
 metadata/_custom_type_script = "uid://b6lkky6ocw7he"
 
-[node name="Polygon2D" type="Polygon2D" parent="LayerManager/LayerResult/LayerResultSourceShape" unique_id=926241781]
+[node name="LayerResultRenders" type="Node2D" parent="LayerManager/LayerResult" unique_id=696114997]
+unique_name_in_owner = true
+
+[node name="LayerResultSourceRender" type="Polygon2D" parent="LayerManager/LayerResult/LayerResultRenders" unique_id=926241781]
+unique_name_in_owner = true
 color = Color(0, 0, 0, 0.84313726)
 polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 
@@ -108,13 +109,13 @@ position = Vector2(1792, 680)
 
 [node name="AudioSoundFX" type="Node2D" parent="LayerManager" unique_id=528759317]
 
-[node name="LockLayer" type="AudioStreamPlayer2D" parent="LayerManager/AudioSoundFX" unique_id=1718414670]
+[node name="LockLayerSound" type="AudioStreamPlayer2D" parent="LayerManager/AudioSoundFX" unique_id=1718414670]
 unique_name_in_owner = true
 stream = ExtResource("7_cnvg6")
 volume_db = 12.0
 pitch_scale = 0.53
 
-[node name="UnlockLayer" type="AudioStreamPlayer2D" parent="LayerManager/AudioSoundFX" unique_id=331780950]
+[node name="UnlockLayerSound" type="AudioStreamPlayer2D" parent="LayerManager/AudioSoundFX" unique_id=331780950]
 unique_name_in_owner = true
 stream = ExtResource("7_cnvg6")
 volume_db = 12.0
