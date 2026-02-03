@@ -18,3 +18,4 @@ mono_crash.*.json
 # My ignores
 /exports
 *.tmp
+assets/background-mountains.xcf

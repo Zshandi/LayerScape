@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cljmuk6kqgj3h"]
+
+[ext_resource type="Texture2D" uid="uid://pxoa1dgfnsk8" path="res://assets/graphics/stripe_down_right.svg" id="1_g72p5"]
+
+[node name="Polygon2D" type="Polygon2D" unique_id=2046395115]
+texture_repeat = 2
+color = Color(1, 0.626, 0.56, 0.47058824)
+texture = ExtResource("1_g72p5")
+texture_offset = Vector2(0, -20)
+texture_scale = Vector2(3, 3)
+polygon = PackedVector2Array(-8, 760, 640, 760, 640, 520, 1024, 520, 1024, 760, 1928, 760, 1928, 1088, -8, 1088)

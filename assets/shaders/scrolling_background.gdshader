@@ -2,6 +2,8 @@ shader_type canvas_item;
 
 uniform vec2 scroll_speed = vec2(0.1, 0.0);
 
+uniform float sample_scale = 1.0;
+
 void fragment() {
     vec2 effective_scroll;
     
@@ -11,5 +13,5 @@ void fragment() {
     
     vec2 scrolled_uv = UV + offset;
     
-    COLOR = texture(TEXTURE, scrolled_uv);
+    COLOR = texture(TEXTURE, scrolled_uv * sample_scale);
 }

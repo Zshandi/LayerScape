@@ -2,26 +2,23 @@
 
 [ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://levels/level_base.tscn" id="1_5lhhv"]
 [ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="2_6p7xh"]
+[ext_resource type="PackedScene" uid="uid://cljmuk6kqgj3h" path="res://levels/shapes/basic_union_shape.tscn" id="2_87xyj"]
 
 [node name="Level" unique_id=1458390218 instance=ExtResource("1_5lhhv")]
 
-[node name="Polygon2D" parent="LayerManager/Layer1" parent_id_path=PackedInt32Array(996024005) index="0" unique_id=2123577011]
-polygon = PackedVector2Array(0, 407.71033, 609.65533, 407.71033, 609.65533, 577.58966, 0, 577.5896)
+[node name="Polygon2D" parent="LayerManager/Layer1" parent_id_path=PackedInt32Array(996024005) index="0" unique_id=2046395115]
+polygon = PackedVector2Array(-8, 760, 976, 760, 984, 1088, -8, 1088)
 
-[node name="Polygon2D2" type="Polygon2D" parent="LayerManager/Layer1" parent_id_path=PackedInt32Array(996024005) index="1" unique_id=2103958324]
-position = Vector2(0, -8)
-scale = Vector2(1.5877825, 1.8836904)
-color = Color(1, 0, 0, 0.5019608)
-polygon = PackedVector2Array(1088.3103, 577.58966, 1088.3103, 407.71033, 1209.2336, 407.71033, 1209.2336, 577.5896)
+[node name="Polygon2D3" parent="LayerManager/Layer1" parent_id_path=PackedInt32Array(996024005) index="1" unique_id=1036079507 instance=ExtResource("2_87xyj")]
+polygon = PackedVector2Array(1728, 760, 1928, 760, 1928, 1088, 1728, 1088)
 
 [node name="Layer2" type="Node2D" parent="LayerManager" parent_id_path=PackedInt32Array(875414052) index="2" unique_id=364083146]
 script = ExtResource("2_6p7xh")
 metadata/_custom_type_script = "uid://b6phwi725oyki"
 
-[node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer2" index="0" unique_id=1233922874]
-position = Vector2(-632, 0)
-color = Color(0, 0.6500001, 1, 0.5019608)
-polygon = PackedVector2Array(824, 760, 1600, 760, 1600, 872, 824, 872)
+[node name="Polygon2D2" parent="LayerManager/Layer2" index="0" unique_id=2120029276 instance=ExtResource("2_87xyj")]
+color = Color(0.56, 1, 0.7873333, 0.47058824)
+polygon = PackedVector2Array(232, 760, 1032, 760, 1032, 872, 232, 872)
 
-[node name="Character" parent="." index="3" unique_id=749957054]
+[node name="Character" parent="." index="5" unique_id=749957054]
 position = Vector2(96, 760)

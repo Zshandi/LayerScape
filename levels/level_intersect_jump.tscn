@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://levels/level_base.tscn" id="1_joldh"]
 [ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="2_1sonj"]
+[ext_resource type="PackedScene" uid="uid://cljmuk6kqgj3h" path="res://levels/shapes/basic_union_shape.tscn" id="3_05fwx"]
+[ext_resource type="Texture2D" uid="uid://bpqpklsyoinql" path="res://assets/graphics/stripe_down_left.svg" id="4_dxybx"]
 
 [node name="Level" unique_id=1458390218 instance=ExtResource("1_joldh")]
 
@@ -10,19 +12,20 @@ script = ExtResource("2_1sonj")
 blend_operation = 2
 metadata/_custom_type_script = "uid://b6phwi725oyki"
 
-[node name="Polygon2D" type="Polygon2D" parent="LayerManager/Layer2" index="0" unique_id=1354886294]
-color = Color(0, 0.6509804, 1, 0.5019608)
-polygon = PackedVector2Array(56, 552, 56, 880, 384, 880, 384, 552)
+[node name="Polygon2D5" parent="LayerManager/Layer2" index="0" unique_id=2046395115 instance=ExtResource("3_05fwx")]
+color = Color(0.56078434, 1, 0.7882353, 0.47058824)
+texture = ExtResource("4_dxybx")
+polygon = PackedVector2Array(56, 552, 384, 552, 384, 880, 56, 880)
 
-[node name="Polygon2D2" type="Polygon2D" parent="LayerManager/Layer2" index="1" unique_id=194960001]
-position = Vector2(584, -72)
-color = Color(0, 0.6509804, 1, 0.5019608)
-polygon = PackedVector2Array(56, 552, 56, 880, 384, 880, 384, 552)
+[node name="Polygon2D6" parent="LayerManager/Layer2" index="1" unique_id=1136120301 instance=ExtResource("3_05fwx")]
+color = Color(0.56078434, 1, 0.7882353, 0.47058824)
+texture = ExtResource("4_dxybx")
+polygon = PackedVector2Array(640, 480, 968, 480, 968, 808, 640, 808)
 
-[node name="Polygon2D3" type="Polygon2D" parent="LayerManager/Layer2" index="2" unique_id=2045822907]
-position = Vector2(1208, 0)
-color = Color(0, 0.6509804, 1, 0.5019608)
-polygon = PackedVector2Array(56, 552, 56, 880, 384, 880, 384, 552)
+[node name="Polygon2D7" parent="LayerManager/Layer2" index="2" unique_id=1035767649 instance=ExtResource("3_05fwx")]
+color = Color(0.56078434, 1, 0.7882353, 0.47058824)
+texture = ExtResource("4_dxybx")
+polygon = PackedVector2Array(1264, 552, 1592, 552, 1592, 880, 1264, 880)
 
-[node name="Character" parent="." index="1" unique_id=749957054]
+[node name="Character" parent="." index="5" unique_id=749957054]
 position = Vector2(96, 760)

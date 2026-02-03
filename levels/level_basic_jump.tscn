@@ -1,16 +1,8 @@
 [gd_scene format=3 uid="uid://pjye4s0icy75"]
 
 [ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://levels/level_base.tscn" id="1_hbdj3"]
-[ext_resource type="Texture2D" uid="uid://b7ad46212n37g" path="res://assets/graphics/stripe_big.png" id="2_use1a"]
 
 [node name="Level" unique_id=1458390218 instance=ExtResource("1_hbdj3")]
 
-[node name="Polygon2D" parent="LayerManager/Layer1" parent_id_path=PackedInt32Array(996024005) index="0" unique_id=2123577011]
-position = Vector2(24, -48)
-texture = ExtResource("2_use1a")
-texture_offset = Vector2(85.435, 0)
-texture_scale = Vector2(3.665, 3.665)
-polygon = PackedVector2Array(-13.402127, 430.79337, 470.29135, 430.79337, 470.29135, 316.1248, 712.1381, 316.1248, 712.1381, 430.79337, 1195.8314, 430.79337, 1195.8314, 600.6726, -13.402127, 600.6726)
-
-[node name="Character" parent="." index="3" unique_id=749957054]
+[node name="Character" parent="." index="5" unique_id=749957054]
 position = Vector2(96, 760)
