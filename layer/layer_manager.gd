@@ -93,11 +93,12 @@ func update_result(delta: float) -> void:
 	#  1. For each layer, determine if it adds to or takes away from the final level shape
 	#  2. If it adds to overall shape, reduce the size of its polygons when unlocked
 	#  2. If it takes away from overall shape, increase the size of its polygons when unlocked
-	#  3. Still render the polygons as if the size weren't changed
+	#  3. Shift the polygons in the direction of the players velocity
+	#  4. Still render the polygons as if the size weren't changed
 	# 
 	# This ensures the player will fall as appropriate whether it's due to stand on the thing their unlocking,
 	#  or standing in a subtract that they've just unlocked. It still has the issue of if the player is near
-	#  an edge it can cause them to fall off, but is better than before
+	#  an edge it can cause them to fall off, but this would be too difficult to fix. It's a literal edge case.
 
 	# Update the layer contribution sign
 	# This is for determining whether to shrink or expand the layer polygons

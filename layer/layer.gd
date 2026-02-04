@@ -48,8 +48,12 @@ func get_polygon_layer_velocity_shifted(delta: float) -> PolygonLayer:
 	if locked:
 		return polygon_layer
 	else:
-		var amount_to_offset := player_to_track.next_velocity.length() * delta * player_velocity_tolerance
-		return polygon_layer.offset(amount_to_offset * -overall_contribution_sign, Geometry2D.JOIN_MITER)
+		var velocity_offset := player_to_track.next_velocity * delta * player_velocity_tolerance
+		var size_offset := velocity_offset.length()
+		# Offset half by reducing the size
+		var offset_layer := polygon_layer.offset(size_offset / 2 * -overall_contribution_sign, Geometry2D.JOIN_MITER)
+		# And half by shifting in players direction
+		return offset_layer.shifted(velocity_offset / 2)
 
 func set_shapes_modulate(color: Color) -> void:
 	for child in get_children():
