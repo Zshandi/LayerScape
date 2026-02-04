@@ -15,6 +15,9 @@ func duplicate() -> PolygonLayer:
 func shifted(amount: Vector2) -> PolygonLayer:
 	return PolygonLayer.new(PolygonUtil.shift_polygons(shapes, amount), blend_operation)
 
+func offset(amount: float, join_type:=Geometry2D.JOIN_SQUARE) -> PolygonLayer:
+	return PolygonLayer.new(PolygonUtil.offset_polygons(shapes, amount, join_type), blend_operation)
+
 func apply_to(other: PolygonLayer) -> PolygonLayer:
 	var result := PolygonLayer.new()
 	result.blend_operation = other.blend_operation

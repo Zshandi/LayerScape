@@ -62,6 +62,12 @@ static func shift_polygons(polygons: Array[PackedVector2Array], amount: Vector2)
 		result.push_back(shift_polygon(polygon, amount))
 	return result
 
+static func offset_polygons(polygons: Array[PackedVector2Array], amount: float, join_type:=Geometry2D.JOIN_SQUARE) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array] = []
+	for polygon in polygons:
+		result.append_array(Geometry2D.offset_polygon(polygon, amount, join_type))
+	return result
+
 # Generates nodes to be added to a parent
 # Assumes node_or_scene is one of:
 #  - Polygon2D,

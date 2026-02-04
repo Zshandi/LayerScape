@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bkjjehncddepl"]
+
+[ext_resource type="Script" uid="uid://drybs1k74xigp" path="res://test_polygons.gd" id="1_bskr4"]
+
+[node name="TestPolygons" type="Node2D" unique_id=338402308]
+script = ExtResource("1_bskr4")
+
+[node name="DestPoly" type="Polygon2D" parent="." unique_id=708260806]
+unique_name_in_owner = true
+visible = false
+color = Color(1, 0, 0, 0.44313726)
+polygon = PackedVector2Array(441, 362, 434, 140, 649, 138, 668, 369, 939, 362, 951, 600, 686, 584, 703, 819, 484, 824, 462, 588, 279, 579, 262, 362)
+
+[node name="Source" type="Node2D" parent="." unique_id=1739188275]
+unique_name_in_owner = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Source" unique_id=1006978064]
+position = Vector2(243, 243)
+polygon = PackedVector2Array(156, 225, -47, -116, 638, -85, 604, 229, 394, 402, -134, 812)
+
+[node name="Dest" type="Node2D" parent="." unique_id=176030875]
+unique_name_in_owner = true

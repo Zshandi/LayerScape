@@ -4,7 +4,21 @@ class_name Layer
 const player_velocity_tolerance: float = 3
 
 @export
-var blend_operation: Geometry2D.PolyBooleanOperation
+var blend_operation: Geometry2D.PolyBooleanOperation = Geometry2D.OPERATION_UNION
+
+# This is whether the shape adds to takes away from
+#  the layer it blends with when expanded in size
+func get_contribution_sign() -> int:
+	match blend_operation:
+		Geometry2D.OPERATION_UNION:
+			return 1
+		Geometry2D.OPERATION_INTERSECTION:
+			return 1
+		Geometry2D.OPERATION_DIFFERENCE:
+			return -1
+	return 1
+
+var overall_contribution_sign: int = get_contribution_sign()
 
 var polygon_layer: PolygonLayer = PolygonLayer.new()
 
@@ -34,7 +48,8 @@ func get_polygon_layer_velocity_shifted(delta: float) -> PolygonLayer:
 	if locked:
 		return polygon_layer
 	else:
-		return polygon_layer.shifted(player_to_track.next_velocity * delta * player_velocity_tolerance)
+		var amount_to_offset := player_to_track.next_velocity.length() * delta * player_velocity_tolerance
+		return polygon_layer.offset(amount_to_offset * -overall_contribution_sign, Geometry2D.JOIN_MITER)
 
 func set_shapes_modulate(color: Color) -> void:
 	for child in get_children():

@@ -89,6 +89,25 @@ func update_result(delta: float) -> void:
 	for layer in layers:
 		render_result = render_result.apply_to(layer.polygon_layer)
 
+	# Strategy for ensuring the player appropriately passes through layers when unlocked:
+	#  1. For each layer, determine if it adds to or takes away from the final level shape
+	#  2. If it adds to overall shape, reduce the size of its polygons when unlocked
+	#  2. If it takes away from overall shape, increase the size of its polygons when unlocked
+	#  3. Still render the polygons as if the size weren't changed
+	# 
+	# This ensures the player will fall as appropriate whether it's due to stand on the thing their unlocking,
+	#  or standing in a subtract that they've just unlocked. It still has the issue of if the player is near
+	#  an edge it can cause them to fall off, but is better than before
+
+	# Update the layer contribution sign
+	# This is for determining whether to shrink or expand the layer polygons
+	var total_contribution_sign := 1
+	# Need to traverse from the last layer for the contribution to be known
+	for idx in range(len(layers) - 1, -1):
+		var layer := layers[idx]
+		total_contribution_sign *= layer.get_contribution_sign()
+		layer.overall_contribution_sign = total_contribution_sign
+
 	# Do the same again but offset to account for player velocity when unlocked
 	var collision_result := PolygonLayer.new()
 	for layer in layers:

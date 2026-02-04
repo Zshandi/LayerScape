@@ -23,6 +23,12 @@ func _ready() -> void:
 			load_level(0)
 		else:
 			level_node = get_tree().current_scene
+			var level_scene_path := get_tree().current_scene.scene_file_path
+			var idx = 0
+			for level_data in levels:
+				if level_data.scene.resource_path == level_scene_path:
+					current_level = idx
+				idx += 1
 
 func load_level(idx: int) -> void:
 	current_level = idx
