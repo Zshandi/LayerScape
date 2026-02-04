@@ -104,7 +104,7 @@ func update_result(delta: float) -> void:
 	# This is for determining whether to shrink or expand the layer polygons
 	var total_contribution_sign := 1
 	# Need to traverse from the last layer for the contribution to be known
-	for idx in range(len(layers) - 1, -1):
+	for idx in range(len(layers) - 1, -1, -1):
 		var layer := layers[idx]
 		total_contribution_sign *= layer.get_contribution_sign()
 		layer.overall_contribution_sign = total_contribution_sign

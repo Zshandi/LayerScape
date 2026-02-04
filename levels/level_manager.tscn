@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cosu3ledsxk8r" path="res://levels/level_union_bridge_short.tscn" id="7_l3tyk"]
 [ext_resource type="PackedScene" uid="uid://bnp0u0r2dj04h" path="res://levels/level_intersect_jump.tscn" id="8_yrpma"]
 [ext_resource type="PackedScene" uid="uid://d1rxramfphfob" path="res://levels/level_intersect_wall.tscn" id="9_plt5s"]
+[ext_resource type="PackedScene" uid="uid://bsm6yovfpkfp3" path="res://levels/level_difference_wall.tscn" id="10_plt5s"]
 
 [sub_resource type="Resource" id="Resource_3uyut"]
 script = ExtResource("2_ce4gc")
@@ -45,6 +46,11 @@ script = ExtResource("2_ce4gc")
 scene = ExtResource("9_plt5s")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
+[sub_resource type="Resource" id="Resource_ugugx"]
+script = ExtResource("2_ce4gc")
+scene = ExtResource("10_plt5s")
+metadata/_custom_type_script = "uid://v4u56k6e2q1e"
+
 [node name="LevelManager" type="Node" unique_id=1334001506]
 script = ExtResource("1_hvuti")
-levels = Array[ExtResource("2_ce4gc")]([SubResource("Resource_3uyut"), SubResource("Resource_l3tyk"), SubResource("Resource_yrpma"), SubResource("Resource_fa8ul"), SubResource("Resource_plt5s"), SubResource("Resource_4a1ml"), SubResource("Resource_t8q1s")])
+levels = Array[ExtResource("2_ce4gc")]([SubResource("Resource_3uyut"), SubResource("Resource_l3tyk"), SubResource("Resource_yrpma"), SubResource("Resource_fa8ul"), SubResource("Resource_plt5s"), SubResource("Resource_4a1ml"), SubResource("Resource_t8q1s"), SubResource("Resource_ugugx")])

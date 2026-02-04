@@ -25,11 +25,22 @@ func apply_to(other: PolygonLayer) -> PolygonLayer:
 	match blend_operation:
 		Geometry2D.OPERATION_INTERSECTION:
 			result.shapes = apply_intersection(other)
+		Geometry2D.OPERATION_DIFFERENCE:
+			result.shapes = apply_difference(other)
 		Geometry2D.OPERATION_UNION:
 			result.shapes = apply_union(other)
 		_:
 			result.shapes = apply_union(other)
 
+	return result
+
+
+func apply_difference(other: PolygonLayer) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array] = []
+	for shape in shapes:
+		for other_shape in other.shapes:
+			var difference := Geometry2D.clip_polygons(other_shape, shape)
+			result.append_array(difference)
 	return result
 
 func apply_intersection(other: PolygonLayer) -> Array[PackedVector2Array]:
