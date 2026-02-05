@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dye3bmsjjkrbn" path="res://tools/debug_values.gd" id="2_pjt0s"]
 [ext_resource type="Texture2D" uid="uid://dugi45mgj12sw" path="res://assets/graphics/running_guy.png" id="2_wa5vi"]
 [ext_resource type="AudioStream" uid="uid://ctc68rw70mk4a" path="res://assets/sfx/success.wav" id="3_wfnr8"]
+[ext_resource type="AudioStream" uid="uid://4wwjw5gkf3p8" path="res://assets/sfx/retro_jump_collect_bonus_03 - speed up.wav" id="4_px5sl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(50, 100)
@@ -120,6 +121,11 @@ unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("3_wfnr8")
 volume_db = 7.29
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="." unique_id=1296659221]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("4_px5sl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=599733489]
 

@@ -106,6 +106,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= jump_speed
 		is_jumping = true
 		applied_gravity = get_gravity()
+		%Jump.pitch_scale = randf_range(0.9, 1.1)
+		%Jump.play()
 	elif is_jumping:
 		if is_on_floor():
 			is_jumping = false
