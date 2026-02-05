@@ -113,8 +113,7 @@ shape = SubResource("RectangleShape2D_0xm2m")
 unique_name_in_owner = true
 position = Vector2(-4.2915344e-06, -58)
 sprite_frames = SubResource("SpriteFrames_x1sy7")
-animation = &"fall_down"
-frame_progress = 0.9872222
+animation = &"idle"
 
 [node name="ReachedGoal" type="AudioStreamPlayer2D" parent="." unique_id=978895680]
 unique_name_in_owner = true
