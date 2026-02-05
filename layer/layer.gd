@@ -65,17 +65,15 @@ func set_shapes_modulate(color: Color) -> void:
 			child.modulate = color
 
 func update_color():
-	var modulate_to_set: Color
-	if selected:
-		modulate_to_set = selected_modulate
-	else:
-		modulate_to_set = default_modulate
+	var modulate_to_set: Color = default_modulate
 	if not locked:
 		modulate_to_set.a = 0.5
 	set_shapes_modulate(modulate_to_set)
 
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
+	update_color()
+	queue_redraw()
 
 func _global_polygon(polygon: Polygon2D) -> PackedVector2Array:
 	var points: PackedVector2Array = []
@@ -105,16 +103,16 @@ func get_game_objects() -> Array[GameObject]:
 func _on_visibility_changed() -> void:
 	pass
 
+func _process(_delta: float) -> void:
+	queue_redraw()
+
 func _draw() -> void:
 	var line_color := Color.WHITE
-	line_color.a = 0.7
 	var line_width = 1.0
 
 	if selected:
-		line_width += 4.0
-	if not locked:
-		line_color.a = 1.0
-		line_width += 3.0
+		line_width = 5.0
+	
 	for polygon_points in polygon_layer.shapes:
 		polygon_points.push_back(polygon_points[0])
 		var new_polygon: PackedVector2Array = []
