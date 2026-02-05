@@ -1,8 +1,9 @@
 extends Node2D
 class_name LayerManager
 
-@onready var lock_layer: AudioStreamPlayer2D = %LockLayerSound
-@onready var unlock_layer: AudioStreamPlayer2D = %UnlockLayerSound
+@onready var lock_layer: AudioStreamPlayer = %LockLayerSound
+@onready var unlock_layer: AudioStreamPlayer = %UnlockLayerSound
+@onready var cant_unlock_layer: AudioStreamPlayer = %CantUnlockSound
 
 @onready var result_source_render: Polygon2D = %LayerResultSourceRender.duplicate()
 
@@ -61,11 +62,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("lock_toggle"):
-		selected_layer.locked = not selected_layer.locked
-		if selected_layer.locked:
-			lock_layer.play()
+		if not selected_layer.permanent_lock:
+			selected_layer.locked = not selected_layer.locked
+			if selected_layer.locked:
+				lock_layer.play()
+			else:
+				unlock_layer.play()
 		else:
-			unlock_layer.play()
+			cant_unlock_layer.play()
 	
 	if Input.is_action_just_pressed("visible_toggle"):
 		selected_layer.visible = not selected_layer.visible

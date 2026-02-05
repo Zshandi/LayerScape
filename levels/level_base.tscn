@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://game_objects/goal.tscn" id="6_7mycd"]
 [ext_resource type="AudioStream" uid="uid://db0byybk3dy4k" path="res://assets/sfx/UIClick_Book Tap UI Confirm_RogueWaves_KawaiiUI.wav" id="7_cnvg6"]
 [ext_resource type="PackedScene" uid="uid://cljmuk6kqgj3h" path="res://levels/shapes/basic_union_shape.tscn" id="9_kuw7y"]
+[ext_resource type="AudioStream" uid="uid://b0uoxen5r4tjn" path="res://assets/sfx/freesound_community-wrong-47985.mp3" id="10_gei2l"]
 [ext_resource type="PackedScene" uid="uid://cnvxb2w6imgup" path="res://layer/layer_hud.tscn" id="10_twsyw"]
 [ext_resource type="Script" uid="uid://c6bf8q07m81ss" path="res://tools/debug_polygons.gd" id="12_kuw7y"]
 
@@ -110,16 +111,18 @@ position = Vector2(1792, 760)
 
 [node name="AudioSoundFX" type="Node2D" parent="LayerManager" unique_id=528759317]
 
-[node name="LockLayerSound" type="AudioStreamPlayer2D" parent="LayerManager/AudioSoundFX" unique_id=1718414670]
+[node name="CantUnlockSound" type="AudioStreamPlayer" parent="LayerManager/AudioSoundFX" unique_id=1987773227]
+unique_name_in_owner = true
+stream = ExtResource("10_gei2l")
+
+[node name="LockLayerSound" type="AudioStreamPlayer" parent="LayerManager/AudioSoundFX" unique_id=1305219643]
 unique_name_in_owner = true
 stream = ExtResource("7_cnvg6")
-volume_db = 12.0
 pitch_scale = 0.53
 
-[node name="UnlockLayerSound" type="AudioStreamPlayer2D" parent="LayerManager/AudioSoundFX" unique_id=331780950]
+[node name="UnlockLayerSound" type="AudioStreamPlayer" parent="LayerManager/AudioSoundFX" unique_id=2055826831]
 unique_name_in_owner = true
 stream = ExtResource("7_cnvg6")
-volume_db = 12.0
 
 [node name="LayerHud" parent="LayerManager" unique_id=2117405684 instance=ExtResource("10_twsyw")]
 unique_name_in_owner = true

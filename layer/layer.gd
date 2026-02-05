@@ -6,6 +6,9 @@ const player_velocity_tolerance: float = 3
 @export
 var blend_operation: Geometry2D.PolyBooleanOperation = Geometry2D.OPERATION_UNION
 
+@export
+var permanent_lock: bool = false
+
 # This is whether the shape adds to takes away from
 #  the layer it blends with when expanded in size
 func get_contribution_sign() -> int:

@@ -11,7 +11,9 @@ func update_to_match(layer: Layer):
 	else:
 		%Visibility.texture = preload("res://assets/graphics/ui/visibility-off-svgrepo-com.png")
 	
-	if layer.locked:
+	if layer.permanent_lock:
+		%Lock.texture = preload("res://assets/graphics/ui/lock-closed-svgrepo-com - golden.png")
+	elif layer.locked:
 		%Lock.texture = preload("res://assets/graphics/ui/lock-closed-svgrepo-com.png")
 	else:
 		%Lock.texture = preload("res://assets/graphics/ui/lock-open-svgrepo-com.png")
