@@ -50,7 +50,8 @@ static func merge_polygons_together(polygons: Array[PackedVector2Array]) -> Arra
 static func subtract_polygon(subtract_from_polygons: Array[PackedVector2Array], subtract: PackedVector2Array) -> Array[PackedVector2Array]:
 	var result: Array[PackedVector2Array] = []
 	for polygon in subtract_from_polygons:
-		result.append_array(Geometry2D.clip_polygons(polygon, subtract))
+		var current_result := Geometry2D.clip_polygons(polygon, subtract)
+		result.append_array(current_result)
 	return result
 
 static func subtract_polygons(subtract_from: Array[PackedVector2Array], subtract: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
@@ -140,3 +141,47 @@ static func replace_polygon_nodes(parent: Node, polygons: Array[PackedVector2Arr
 			child.queue_free()
 	for node in generated_nodes:
 		parent.add_child(node)
+
+# TODO: Finish adapting this
+
+# Adapted from: https://github.com/godotengine/godot-proposals/issues/9127#issuecomment-3765408573
+## Triangulates a polygon with holes.
+## [param outer] is the outline of the polygon, no holes, counterclockwise.
+## [param holes] are the hole polygons, clockwise.
+static func triangulate_with_holes(
+	outer: PackedVector2Array,
+	holes: Array[PackedVector2Array],
+) -> Array[PackedVector2Array]:
+	# Ensure winding (Earcut can cope, but keeping it consistent avoids edge cases) [This is something I don't fully understand but ChatGPT says it might prevent errors]
+	if Geometry2D.is_polygon_clockwise(outer):
+		outer.reverse()
+
+	for h in holes:
+		if not Geometry2D.is_polygon_clockwise(h):
+			h.reverse()
+
+	# Build combined vertex list + flat coordinate buffer
+	var verts2: PackedVector2Array = PackedVector2Array()
+	var data: PackedFloat32Array = PackedFloat32Array()
+
+	for p in outer:
+		verts2.append(p)
+		data.append(p.x)
+		data.append(p.y)
+
+	var hole_indices: PackedInt32Array = PackedInt32Array()
+	var base := outer.size()
+
+	for h in holes:
+		hole_indices.append(base) # vertex index where this hole starts
+		for p in h:
+			verts2.append(p)
+			data.append(p.x); data.append(p.y)
+		base += h.size()
+
+	# Earcut returns triangle indices into the *vertex list* (0..verts2.size-1)
+	var tri: Array[int] = Earcut.earcut(data, hole_indices, 2)
+
+	# My adaptation to convert to an Array[PackedVector2Array]
+	#return [verts2, PackedInt32Array(tri)]
+	return []
