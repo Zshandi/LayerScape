@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://db0byybk3dy4k" path="res://assets/sfx/UIClick_Book Tap UI Confirm_RogueWaves_KawaiiUI.wav" id="7_cnvg6"]
 [ext_resource type="PackedScene" uid="uid://cljmuk6kqgj3h" path="res://levels/shapes/basic_union_shape.tscn" id="9_kuw7y"]
 [ext_resource type="PackedScene" uid="uid://cnvxb2w6imgup" path="res://layer/layer_hud.tscn" id="10_twsyw"]
+[ext_resource type="Script" uid="uid://c6bf8q07m81ss" path="res://tools/debug_polygons.gd" id="12_kuw7y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_twsyw"]
 shader = ExtResource("2_5f4n4")
@@ -122,6 +123,10 @@ volume_db = 12.0
 
 [node name="LayerHud" parent="LayerManager" unique_id=2117405684 instance=ExtResource("10_twsyw")]
 unique_name_in_owner = true
+
+[node name="DebugPolygons" type="Node2D" parent="LayerManager" unique_id=1939418161]
+script = ExtResource("12_kuw7y")
+metadata/_custom_type_script = "uid://c6bf8q07m81ss"
 
 [node name="Character" parent="." unique_id=749957054 node_paths=PackedStringArray("goal_node") instance=ExtResource("1_0xm2m")]
 position = Vector2(160, 760)
