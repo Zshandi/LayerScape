@@ -23,7 +23,7 @@ static func get_child_node_polygons(parent: Node) -> Array[PackedVector2Array]:
 # Pre-condition: `polygons` is an array of non-overlapping polygons
 # Results in an array of non-overlapping polygons which is the union of `polygons` with `other`
 static func merge_polygons_with_other(polygons: Array[PackedVector2Array], other: PackedVector2Array) -> Array[PackedVector2Array]:
-	var result = []
+	var result: Array[PackedVector2Array] = []
 	for polygon in polygons:
 		var merge := Geometry2D.merge_polygons(polygon, other)
 		# TODO: For now assume there's no holes in the resulting shape,
@@ -41,10 +41,22 @@ static func merge_polygons_with_other(polygons: Array[PackedVector2Array], other
 
 # Results in an array of non-overlapping polygons which is the union of all polygons in `polygons`
 static func merge_polygons_together(polygons: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
-	var result = []
+	var result: Array[PackedVector2Array] = []
 	for polygon in polygons:
 		result = merge_polygons_with_other(result, polygon)
 	
+	return result
+
+static func subtract_polygon(subtract_from_polygons: Array[PackedVector2Array], subtract: PackedVector2Array) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array] = []
+	for polygon in subtract_from_polygons:
+		result.append_array(Geometry2D.clip_polygons(polygon, subtract))
+	return result
+
+static func subtract_polygons(subtract_from: Array[PackedVector2Array], subtract: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	var result := subtract_from
+	for subtract_item in subtract:
+		result = subtract_polygon(result, subtract_item)
 	return result
 
 static func intersect_polygons(poly1: Array[PackedVector2Array], poly2: Array[PackedVector2Array]) -> Array[PackedVector2Array]:

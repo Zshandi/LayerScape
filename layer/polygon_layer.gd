@@ -36,31 +36,13 @@ func apply_to(other: PolygonLayer) -> PolygonLayer:
 
 
 func apply_difference(other: PolygonLayer) -> Array[PackedVector2Array]:
-	var result: Array[PackedVector2Array] = []
-	for shape in shapes:
-		for other_shape in other.shapes:
-			var difference := Geometry2D.clip_polygons(other_shape, shape)
-			result.append_array(difference)
-	return result
+	return PolygonUtil.subtract_polygons(other.shapes, shapes)
 
 func apply_intersection(other: PolygonLayer) -> Array[PackedVector2Array]:
 	return PolygonUtil.intersect_polygons(shapes, other.shapes)
 
 func apply_union(other: PolygonLayer) -> Array[PackedVector2Array]:
-	var result := other.shapes
-	for shape in shapes:
-		var new_result: Array[PackedVector2Array] = []
-		for other_shape in result:
-			var combined := Geometry2D.merge_polygons(shape, other_shape)
-			if len(combined) == 2:
-				# They didn't overlap, just add the other shape
-				new_result.push_back(other_shape)
-				if other_shape == result[-1]:
-					new_result.push_back(shape)
-			else:
-				# They did overlap, update to new shape
-				shape = combined[0]
-				if other_shape == result[-1]:
-					new_result.push_back(shape)
-		result = new_result
+	var result := shapes.duplicate()
+	result.append_array(other.shapes)
+	result = PolygonUtil.merge_polygons_together(result)
 	return result
