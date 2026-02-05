@@ -12,17 +12,12 @@ script = ExtResource("2_1sonj")
 blend_operation = 2
 metadata/_custom_type_script = "uid://b6phwi725oyki"
 
-[node name="Polygon2D5" parent="LayerManager/Layer2" index="0" unique_id=2046395115 instance=ExtResource("3_05fwx")]
+[node name="Polygon2D6" parent="LayerManager/Layer2" index="0" unique_id=1136120301 instance=ExtResource("3_05fwx")]
 color = Color(0.56078434, 1, 0.7882353, 0.47058824)
 texture = ExtResource("4_dxybx")
-polygon = PackedVector2Array(56, 552, 384, 552, 384, 880, 56, 880)
+polygon = PackedVector2Array(-8, 480, 800, 480, 800, 808, -8, 808)
 
-[node name="Polygon2D6" parent="LayerManager/Layer2" index="1" unique_id=1136120301 instance=ExtResource("3_05fwx")]
-color = Color(0.56078434, 1, 0.7882353, 0.47058824)
-texture = ExtResource("4_dxybx")
-polygon = PackedVector2Array(640, 480, 968, 480, 968, 808, 640, 808)
-
-[node name="Polygon2D7" parent="LayerManager/Layer2" index="2" unique_id=1035767649 instance=ExtResource("3_05fwx")]
+[node name="Polygon2D7" parent="LayerManager/Layer2" index="1" unique_id=1035767649 instance=ExtResource("3_05fwx")]
 color = Color(0.56078434, 1, 0.7882353, 0.47058824)
 texture = ExtResource("4_dxybx")
 polygon = PackedVector2Array(1264, 552, 1592, 552, 1592, 880, 1264, 880)
