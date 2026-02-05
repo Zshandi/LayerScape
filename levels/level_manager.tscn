@@ -11,52 +11,75 @@
 [ext_resource type="PackedScene" uid="uid://c1bo2e2hsl723" path="res://levels/level_intersect_cover.tscn" id="9_4a1ml"]
 [ext_resource type="PackedScene" uid="uid://d1rxramfphfob" path="res://levels/level_intersect_wall.tscn" id="9_plt5s"]
 [ext_resource type="PackedScene" uid="uid://bsm6yovfpkfp3" path="res://levels/level_difference_wall.tscn" id="10_plt5s"]
+[ext_resource type="PackedScene" uid="uid://r045a25eco2j" path="res://levels/level_union_stairs.tscn" id="12_t8q1s"]
+[ext_resource type="PackedScene" uid="uid://b16gme56nlqjo" path="res://levels/level_difference_stairs.tscn" id="13_ugugx"]
 
 [sub_resource type="Resource" id="Resource_3uyut"]
+resource_name = "level_basic_jump"
 script = ExtResource("2_ce4gc")
 scene = ExtResource("3_6qk6f")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
 [sub_resource type="Resource" id="Resource_l3tyk"]
+resource_name = "level_basic_pit"
 script = ExtResource("2_ce4gc")
 scene = ExtResource("4_fa8ul")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
 [sub_resource type="Resource" id="Resource_yrpma"]
+resource_name = "level_union_wall"
 script = ExtResource("2_ce4gc")
 scene = ExtResource("5_3uyut")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
 [sub_resource type="Resource" id="Resource_fa8ul"]
+resource_name = "level_union_bridge"
 script = ExtResource("2_ce4gc")
 scene = ExtResource("5_6qk6f")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
 [sub_resource type="Resource" id="Resource_plt5s"]
+resource_name = "level_union_bridge_short"
 script = ExtResource("2_ce4gc")
 scene = ExtResource("7_l3tyk")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
+[sub_resource type="Resource" id="Resource_lhux2"]
+resource_name = "level_union_stairs"
+script = ExtResource("2_ce4gc")
+scene = ExtResource("12_t8q1s")
+metadata/_custom_type_script = "uid://v4u56k6e2q1e"
+
 [sub_resource type="Resource" id="Resource_4a1ml"]
+resource_name = "level_intersect_jump"
 script = ExtResource("2_ce4gc")
 scene = ExtResource("8_yrpma")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
 [sub_resource type="Resource" id="Resource_5hiki"]
+resource_name = "level_intersect_cover"
 script = ExtResource("2_ce4gc")
 scene = ExtResource("9_4a1ml")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
 [sub_resource type="Resource" id="Resource_t8q1s"]
+resource_name = "level_intersect_wall"
 script = ExtResource("2_ce4gc")
 scene = ExtResource("9_plt5s")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
 [sub_resource type="Resource" id="Resource_ugugx"]
+resource_name = "level_difference_wall"
 script = ExtResource("2_ce4gc")
 scene = ExtResource("10_plt5s")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
+[sub_resource type="Resource" id="Resource_layxw"]
+resource_name = "level_difference_stairs"
+script = ExtResource("2_ce4gc")
+scene = ExtResource("13_ugugx")
+metadata/_custom_type_script = "uid://v4u56k6e2q1e"
+
 [node name="LevelManager" type="Node" unique_id=1334001506]
 script = ExtResource("1_hvuti")
-levels = Array[ExtResource("2_ce4gc")]([SubResource("Resource_3uyut"), SubResource("Resource_l3tyk"), SubResource("Resource_yrpma"), SubResource("Resource_fa8ul"), SubResource("Resource_plt5s"), SubResource("Resource_4a1ml"), SubResource("Resource_5hiki"), SubResource("Resource_t8q1s"), SubResource("Resource_ugugx")])
+levels = Array[ExtResource("2_ce4gc")]([SubResource("Resource_3uyut"), SubResource("Resource_l3tyk"), SubResource("Resource_yrpma"), SubResource("Resource_fa8ul"), SubResource("Resource_plt5s"), SubResource("Resource_lhux2"), SubResource("Resource_4a1ml"), SubResource("Resource_5hiki"), SubResource("Resource_t8q1s"), SubResource("Resource_ugugx"), SubResource("Resource_layxw")])
