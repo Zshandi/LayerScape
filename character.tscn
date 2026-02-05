@@ -10,43 +10,43 @@ size = Vector2(50, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfnr8"]
 atlas = ExtResource("2_wa5vi")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(580, 0, 116, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_px5sl"]
 atlas = ExtResource("2_wa5vi")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 116, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qfo5"]
 atlas = ExtResource("2_wa5vi")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(116, 0, 116, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxww1"]
 atlas = ExtResource("2_wa5vi")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(232, 0, 116, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wdpcj"]
 atlas = ExtResource("2_wa5vi")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(348, 0, 116, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qi5as"]
 atlas = ExtResource("2_wa5vi")
-region = Rect2(128, 0, 32, 32)
+region = Rect2(464, 0, 116, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jb3kq"]
 atlas = ExtResource("2_wa5vi")
-region = Rect2(192, 0, 32, 32)
+region = Rect2(696, 0, 116, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1b4b"]
 atlas = ExtResource("2_wa5vi")
-region = Rect2(224, 0, 32, 32)
+region = Rect2(812, 0, 116, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7tnxx"]
 atlas = ExtResource("2_wa5vi")
-region = Rect2(256, 0, 32, 32)
+region = Rect2(928, 0, 116, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwfjh"]
 atlas = ExtResource("2_wa5vi")
-region = Rect2(288, 0, 32, 32)
+region = Rect2(1044, 0, 116, 116)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x1sy7"]
 animations = [{
@@ -112,9 +112,9 @@ shape = SubResource("RectangleShape2D_0xm2m")
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2073880937]
 unique_name_in_owner = true
 position = Vector2(-4.2915344e-06, -58)
-scale = Vector2(3.625, 3.625)
 sprite_frames = SubResource("SpriteFrames_x1sy7")
-animation = &"idle"
+animation = &"fall_down"
+frame_progress = 0.9872222
 
 [node name="ReachedGoal" type="AudioStreamPlayer2D" parent="." unique_id=978895680]
 unique_name_in_owner = true
