@@ -30,10 +30,17 @@ func _ready() -> void:
 					current_level = idx
 				idx += 1
 
+func _unhandled_key_input(_event: InputEvent) -> void:
+	if %EndScreenLayer.visible:
+		%EndScreenLayer.hide()
+		load_level(0)
+	
+
 func load_level(idx: int) -> void:
 	current_level = idx
 	if current_level >= len(levels):
 		# TODO: Go to end menu
+		%EndScreenLayer.show()
 		level_node = null
 		return
 		

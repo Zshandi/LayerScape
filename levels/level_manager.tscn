@@ -87,6 +87,60 @@ script = ExtResource("2_ce4gc")
 scene = ExtResource("14_5hiki")
 metadata/_custom_type_script = "uid://v4u56k6e2q1e"
 
+[sub_resource type="LabelSettings" id="LabelSettings_5hiki"]
+font_size = 150
+
+[sub_resource type="LabelSettings" id="LabelSettings_lhux2"]
+font_size = 30
+
 [node name="LevelManager" type="Node" unique_id=1334001506]
 script = ExtResource("1_hvuti")
 levels = Array[ExtResource("2_ce4gc")]([SubResource("Resource_3uyut"), SubResource("Resource_l3tyk"), SubResource("Resource_yrpma"), SubResource("Resource_fa8ul"), SubResource("Resource_plt5s"), SubResource("Resource_lhux2"), SubResource("Resource_4a1ml"), SubResource("Resource_5hiki"), SubResource("Resource_t8q1s"), SubResource("Resource_ugugx"), SubResource("Resource_layxw"), SubResource("Resource_6rlki")])
+
+[node name="EndScreenLayer" type="CanvasLayer" parent="." unique_id=1292064529]
+unique_name_in_owner = true
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="EndScreenLayer" unique_id=1893825035]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="EndScreenLayer/MarginContainer" unique_id=1631825371]
+layout_mode = 2
+color = Color(0, 0, 0, 0.22745098)
+
+[node name="CenterContainer" type="CenterContainer" parent="EndScreenLayer" unique_id=972341272]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndScreenLayer/CenterContainer" unique_id=1270905167]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="EndScreenLayer/CenterContainer/VBoxContainer" unique_id=319637464]
+layout_mode = 2
+text = "You Win!!!"
+label_settings = SubResource("LabelSettings_5hiki")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="EndScreenLayer/CenterContainer/VBoxContainer" unique_id=1452696459]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+text = "Thanks for playing, that's the last level for now. We will be making further updates, so be sure to check back later and follow on itch for updates."
+label_settings = SubResource("LabelSettings_lhux2")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="EndScreenLayer/CenterContainer/VBoxContainer" unique_id=822335273]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+text = "(Press any key to play again)"
+label_settings = SubResource("LabelSettings_lhux2")
+horizontal_alignment = 1
+autowrap_mode = 3
