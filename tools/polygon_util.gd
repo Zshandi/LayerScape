@@ -47,6 +47,14 @@ static func merge_polygons_together(polygons: Array[PackedVector2Array]) -> Arra
 	
 	return result
 
+static func intersect_polygons(poly1: Array[PackedVector2Array], poly2: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array] = []
+	for polygon in poly1:
+		for other_polygon in poly2:
+			var intersection := Geometry2D.intersect_polygons(polygon, other_polygon)
+			result.append_array(intersection)
+	return result
+
 static func get_child_node_polygons_merged(parent: Node) -> Array[PackedVector2Array]:
 	return merge_polygons_together(get_child_node_polygons(parent))
 

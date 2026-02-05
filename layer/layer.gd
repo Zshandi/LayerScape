@@ -21,6 +21,7 @@ func get_contribution_sign() -> int:
 var overall_contribution_sign: int = get_contribution_sign()
 
 var polygon_layer: PolygonLayer = PolygonLayer.new()
+var polygon_layer_result: PolygonLayer = PolygonLayer.new()
 
 var default_modulate := Color.WHITE
 var selected_modulate := Color(0.7, 0.7, 0.7, 1.0)

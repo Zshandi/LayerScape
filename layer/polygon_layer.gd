@@ -44,12 +44,7 @@ func apply_difference(other: PolygonLayer) -> Array[PackedVector2Array]:
 	return result
 
 func apply_intersection(other: PolygonLayer) -> Array[PackedVector2Array]:
-	var result: Array[PackedVector2Array] = []
-	for shape in shapes:
-		for other_shape in other.shapes:
-			var intersection := Geometry2D.intersect_polygons(shape, other_shape)
-			result.append_array(intersection)
-	return result
+	return PolygonUtil.intersect_polygons(shapes, other.shapes)
 
 func apply_union(other: PolygonLayer) -> Array[PackedVector2Array]:
 	var result := other.shapes

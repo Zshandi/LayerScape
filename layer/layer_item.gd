@@ -26,23 +26,27 @@ func update_to_match(layer: Layer):
 
 	%LayerSelectBorder.visible = layer.selected
 
-	for child in %LayerShapeContainer.get_children():
-		child.queue_free()
-	
-	for polygon_array in layer.polygon_layer.shapes:
-		add_polygon(polygon_array)
+	var original := layer.polygon_layer.shapes
+	var result := layer.polygon_layer_result.shapes
+	var intersection := PolygonUtil.intersect_polygons(original, result)
+
+	var polygon_node := Polygon2D.new()
+
+	polygon_node.color = Color(0.7, 0.7, 0.7)
+	PolygonUtil.replace_polygon_nodes(%LayerShapeContainer, original, polygon_node)
+
+	polygon_node.color = Color(0.3, 0.3, 0.3)
+	PolygonUtil.add_polygon_nodes(%LayerShapeContainer, result, polygon_node)
+
+	polygon_node.color = Color.BLACK
+	PolygonUtil.add_polygon_nodes(%LayerShapeContainer, intersection, polygon_node)
+
 	for obj in layer.get_game_objects():
 		var shape := obj.get_preview_shape()
 		%LayerShapeContainer.add_child(shape)
 	
+	
 	%LayerShapeContainer.position = layer.global_position * 0.001
-
-
-func add_polygon(shape: PackedVector2Array):
-	var polygon := Polygon2D.new()
-	polygon.color = Color.BLACK
-	polygon.polygon = shape
-	%LayerShapeContainer.add_child(polygon)
 
 func show_arrow(_visible: bool) -> void:
 	%RightArrow.visible = _visible

@@ -88,6 +88,7 @@ func update_result(delta: float) -> void:
 	var render_result := PolygonLayer.new()
 	for layer in layers:
 		render_result = render_result.apply_to(layer.polygon_layer)
+		layer.polygon_layer_result = render_result.duplicate()
 
 	# Strategy for ensuring the player appropriately passes through layers when unlocked:
 	#  1. For each layer, determine if it adds to or takes away from the final level shape
