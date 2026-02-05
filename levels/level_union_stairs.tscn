@@ -40,6 +40,3 @@ polygon = PackedVector2Array(320, 616, 480, 616, 488, 816, 328, 816)
 
 [node name="LayerHud" parent="LayerManager" parent_id_path=PackedInt32Array(875414052) index="6" unique_id=2117405684]
 container_position = 2
-
-[node name="Character" parent="." index="5" unique_id=749957054]
-position = Vector2(96, 760)

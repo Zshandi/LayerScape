@@ -19,6 +19,3 @@ metadata/_custom_type_script = "uid://b6phwi725oyki"
 color = Color(0.56078434, 1, 0.7882353, 0.47058824)
 texture = ExtResource("4_bp31a")
 polygon = PackedVector2Array(-16, 88, 1944, 88, 1944, 880, -16, 880)
-
-[node name="Character" parent="." index="5" unique_id=749957054]
-position = Vector2(96, 760)

@@ -21,6 +21,3 @@ polygon = PackedVector2Array(-8, 480, 800, 480, 800, 808, -8, 808)
 color = Color(0.56078434, 1, 0.7882353, 0.47058824)
 texture = ExtResource("4_dxybx")
 polygon = PackedVector2Array(1264, 552, 1592, 552, 1592, 880, 1264, 880)
-
-[node name="Character" parent="." index="5" unique_id=749957054]
-position = Vector2(96, 760)

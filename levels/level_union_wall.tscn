@@ -16,6 +16,3 @@ metadata/_custom_type_script = "uid://b6phwi725oyki"
 [node name="Polygon2D2" parent="LayerManager/Layer2" index="0" unique_id=1018239408 instance=ExtResource("3_mg1sk")]
 color = Color(0.56078434, 1, 0.7882353, 0.47058824)
 polygon = PackedVector2Array(824, -8, 1208, -8, 1208, 1088, 816, 1088)
-
-[node name="Character" parent="." index="5" unique_id=749957054]
-position = Vector2(96, 760)

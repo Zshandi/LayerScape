@@ -129,7 +129,7 @@ script = ExtResource("12_kuw7y")
 metadata/_custom_type_script = "uid://c6bf8q07m81ss"
 
 [node name="Character" parent="." unique_id=749957054 node_paths=PackedStringArray("goal_node") instance=ExtResource("1_0xm2m")]
-position = Vector2(160, 760)
+position = Vector2(160, 752)
 goal_node = NodePath("../LayerManager/Layer1/Goal")
 
 [connection signal="reached_goal" from="Character" to="." method="_on_character_reached_goal"]

@@ -10,6 +10,3 @@ polygon = PackedVector2Array(-8, 760, 640, 760, 640, 1088, -8, 1088)
 
 [node name="Polygon2D3" parent="LayerManager/Layer1" parent_id_path=PackedInt32Array(996024005) index="1" unique_id=1614592448 instance=ExtResource("2_hhv68")]
 polygon = PackedVector2Array(1024, 1088, 1024, 760, 1928, 760, 1928, 1088)
-
-[node name="Character" parent="." index="5" unique_id=749957054]
-position = Vector2(96, 760)

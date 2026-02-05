@@ -38,4 +38,4 @@ container_position = 2
 visible = false
 
 [node name="Character" parent="." index="5" unique_id=749957054]
-position = Vector2(96, 560)
+position = Vector2(96, 552)
