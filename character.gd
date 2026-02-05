@@ -3,6 +3,13 @@ class_name Character
 
 signal reached_goal
 
+const goal_y_tolerance: float = 20
+const required_goal_time: float = 0.01
+
+var move_speed := 600
+var jump_speed := 1000
+var variable_jump_down_multiplier := 1.8
+
 @export
 var goal_node: Goal
 @export
@@ -14,17 +21,10 @@ var shape_rect: Rect2:
 		rect.position = %Shape.global_position
 		return rect
 
-const required_goal_time: float = 0.01
-
-var move_speed := 600
-var jump_speed := 1000
-var variable_jump_down_multiplier := 1.8
-
 var is_jumping := false
 var applied_gravity: Vector2
 
 var is_touching_goal: bool = false
-
 var goal_timer: float = required_goal_time
 
 var move_dir := 0.0
@@ -39,7 +39,10 @@ func _ready() -> void:
 	goal_node.body_exited.connect(_on_goal_body_exited)
 
 func can_win() -> bool:
-	return is_on_floor() and is_touching_goal
+	return is_on_floor() and is_touching_goal and \
+		# Ensure the goal is near the floor as well
+		global_position.y >= goal_node.global_position.y - goal_y_tolerance and \
+		global_position.y <= goal_node.global_position.y + goal_y_tolerance
 
 func move_toward_center_goal(delta: float) -> bool:
 	var target := goal_node.global_position.x

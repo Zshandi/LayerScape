@@ -105,7 +105,7 @@ script = ExtResource("5_cnvg6")
 [node name="Polygon2D" parent="LayerManager/Layer1" unique_id=2046395115 instance=ExtResource("9_kuw7y")]
 
 [node name="Goal" parent="LayerManager/Layer1" unique_id=770949225 instance=ExtResource("6_7mycd")]
-position = Vector2(1792, 680)
+position = Vector2(1792, 760)
 
 [node name="AudioSoundFX" type="Node2D" parent="LayerManager" unique_id=528759317]
 
