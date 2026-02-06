@@ -51,6 +51,7 @@ static func subtract_polygon(subtract_from_polygons: Array[PackedVector2Array], 
 	var result: Array[PackedVector2Array] = []
 	for polygon in subtract_from_polygons:
 		var current_result := Geometry2D.clip_polygons(polygon, subtract)
+		current_result = triangulate_if_necessary(current_result)
 		result.append_array(current_result)
 	return result
 
@@ -142,7 +143,31 @@ static func replace_polygon_nodes(parent: Node, polygons: Array[PackedVector2Arr
 	for node in generated_nodes:
 		parent.add_child(node)
 
-# TODO: Finish adapting this
+static func has_holes(polygons: Array[PackedVector2Array]) -> bool:
+	for polygon in polygons:
+		if Geometry2D.is_polygon_clockwise(polygon):
+			return true
+	
+	return false
+
+static func triangulate_if_necessary(polygons: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	if not has_holes(polygons):
+		return polygons
+	else:
+		var primary_shape := polygons[0]
+		var holes: Array[PackedVector2Array] = []
+		var result: Array[PackedVector2Array] = []
+
+		# Get holes and non-holes based on winding order
+		for idx in range(1, len(polygons)):
+			var poly = polygons[idx]
+			if Geometry2D.is_polygon_clockwise(poly):
+				holes.push_back(poly)
+			else:
+				result.push_back(poly)
+		var triangulation := triangulate_with_holes(primary_shape, holes)
+		result.append_array(triangulation)
+		return result
 
 # Adapted from: https://github.com/godotengine/godot-proposals/issues/9127#issuecomment-3765408573
 ## Triangulates a polygon with holes.
@@ -182,6 +207,24 @@ static func triangulate_with_holes(
 	# Earcut returns triangle indices into the *vertex list* (0..verts2.size-1)
 	var tri: Array[int] = Earcut.earcut(data, hole_indices, 2)
 
-	# My adaptation to convert to an Array[PackedVector2Array]
 	#return [verts2, PackedInt32Array(tri)]
-	return []
+
+	# My adaptation to convert to an Array[PackedVector2Array]
+	# The triangle indices (tri) refer to indices of the vectors in verts2,
+	#  every 3 triangle indices forms a triangle for the output
+	var result: Array[PackedVector2Array] = []
+	var current_triangle: PackedVector2Array = []
+	for point_idx in tri:
+		# Add the point to the current triangle
+		var point := verts2[point_idx]
+		current_triangle.push_back(point)
+
+		if len(current_triangle) >= 3:
+			# Completed a triangle, add it to the result & start next one
+			result.push_back(current_triangle)
+			current_triangle = []
+
+	# If this isn't 0 it means something went wrong because there was an incomplete triangle
+	assert(len(current_triangle) == 0)
+
+	return result
