@@ -34,15 +34,41 @@ var next_velocity := Vector2.ZERO
 @onready
 var sprite_scale: Vector2 = %Sprite.scale
 
+var goal_check_collision := Area2D.new()
+var goal_check_collision_y := Area2D.new()
+
 func _ready() -> void:
 	goal_node.body_entered.connect(_on_goal_body_entered)
 	goal_node.body_exited.connect(_on_goal_body_exited)
+
+	goal_check_collision.add_child(%Shape.duplicate())
+	goal_check_collision_y.add_child(%Shape.duplicate())
+	add_child(goal_check_collision)
+	add_child(goal_check_collision_y)
 
 func can_win() -> bool:
 	return is_on_floor() and is_touching_goal and \
 		# Ensure the goal is near the floor as well
 		global_position.y >= goal_node.global_position.y - goal_y_tolerance and \
-		global_position.y <= goal_node.global_position.y + goal_y_tolerance
+		global_position.y <= goal_node.global_position.y + goal_y_tolerance and \
+
+		can_move_toward_center_goal()
+
+func can_move_toward_center_goal() -> bool:
+	# Check for colliding with wall
+	goal_check_collision.global_position = global_position
+	goal_check_collision.global_position.x = goal_node.global_position.x
+	for body in goal_check_collision.get_overlapping_bodies():
+		if body != self: return false
+	
+	# Check for falling off edge
+	goal_check_collision_y.global_position = goal_node.global_position
+	goal_check_collision_y.global_position.y += goal_y_tolerance * 1.5
+	print_debug(goal_check_collision_y.get_overlapping_bodies())
+	for body in goal_check_collision_y.get_overlapping_bodies():
+		if body != self: return true
+
+	return false
 
 func move_toward_center_goal(delta: float) -> bool:
 	var target := goal_node.global_position.x
