@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://b6phwi725oyki"
 
 [node name="Polygon2D4" parent="LayerManager/Layer2" index="0" unique_id=2057127984 instance=ExtResource("3_kpxy1")]
 color = Color(0.56078434, 1, 0.7882353, 0.47058824)
-polygon = PackedVector2Array(184, 912, 184, 1104, 328, 1104, 328, 912)
+polygon = PackedVector2Array(184, 904, 184, 1104, 328, 1104, 328, 904)
 
 [node name="LayerHud" parent="LayerManager" parent_id_path=PackedInt32Array(875414052) index="4" unique_id=2117405684]
 container_position = 1
