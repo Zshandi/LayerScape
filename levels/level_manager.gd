@@ -16,17 +16,19 @@ var level_node: Level:
 var current_level: int = -1
 
 func _ready() -> void:
+	var current_scene_path := get_tree().current_scene.scene_file_path
+	var current_scene_file := current_scene_path.get_file()
 	# When we load, just load the first level
 	# TODO: Move this to the main menu button
 	if current_level == -1:
 		if not (get_tree().current_scene is Level):
-			load_level(0)
+			if current_scene_file == "main.tscn":
+				load_level(0)
 		else:
 			level_node = get_tree().current_scene
-			var level_scene_path := get_tree().current_scene.scene_file_path
 			var idx = 0
 			for level_data in levels:
-				if level_data.scene.resource_path == level_scene_path:
+				if level_data.scene.resource_path == current_scene_path:
 					current_level = idx
 				idx += 1
 
