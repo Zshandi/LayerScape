@@ -1,40 +1,55 @@
 [gd_scene format=3 uid="uid://dhs2i2pq87spn"]
 
-[ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://level/level_base.tscn" id="1_osrti"]
+[ext_resource type="Script" uid="uid://dc8yp4lolv753" path="res://level/level.gd" id="1_ao2nl"]
 [ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="2_ijhsq"]
+[ext_resource type="PackedScene" uid="uid://b4gm67kbyhige" path="res://level/level_background.tscn" id="2_xojs3"]
 [ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://game_objects/goal.tscn" id="3_2uh77"]
 [ext_resource type="PackedScene" uid="uid://cljmuk6kqgj3h" path="res://level/shapes/basic_union_shape.tscn" id="3_kpxy1"]
+[ext_resource type="PackedScene" uid="uid://dyjrx4y85a2e4" path="res://level/level_base_contents.tscn" id="3_v28ii"]
+[ext_resource type="PackedScene" uid="uid://bxni6wkiygvww" path="res://level/layer_manager.tscn" id="4_u5uw1"]
+[ext_resource type="PackedScene" uid="uid://dil4t5quwxmy7" path="res://character.tscn" id="8_1xsve"]
+[ext_resource type="PackedScene" uid="uid://caxt42aaowf3m" path="res://level/level_foreground.tscn" id="9_vliov"]
+[ext_resource type="PackedScene" uid="uid://mmyiy4leygo5" path="res://level/level_main_hud.tscn" id="10_l135k"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2ykmr"]
-viewport_path = NodePath("LayerManager/LayerResult/SubViewport")
+[node name="Level" type="Node2D" unique_id=1458390218]
+script = ExtResource("1_ao2nl")
 
-[node name="Level" unique_id=1458390218 instance=ExtResource("1_osrti")]
+[node name="LevelBackground" parent="." unique_id=574090939 instance=ExtResource("2_xojs3")]
 
-[node name="TextureRect" parent="LayerManager/LayerResult" parent_id_path=PackedInt32Array(641006756) index="1" unique_id=976295764]
-texture = SubResource("ViewportTexture_2ykmr")
+[node name="LevelBaseContents" parent="." unique_id=2145887947 instance=ExtResource("3_v28ii")]
 
-[node name="LayerHud" parent="LayerManager" parent_id_path=PackedInt32Array(1293670295) index="2" unique_id=2117405684]
-container_position = 1
+[node name="LevelLayers" parent="." unique_id=52178726 node_paths=PackedStringArray("player_to_track", "main_hud") instance=ExtResource("4_u5uw1")]
+player_to_track = NodePath("../LevelContents/Character")
+main_hud = NodePath("../LevelMainHud")
 
-[node name="Character" parent="LevelContents" parent_id_path=PackedInt32Array(1118523342) index="0" unique_id=749957054 node_paths=PackedStringArray("goal_node")]
-position = Vector2(112, 904)
-goal_node = NodePath("../../Layer1/LayerManager_Layer1#Goal")
-
-[node name="Layer1" parent="." index="5" unique_id=996024005]
+[node name="Layer1" type="Node2D" parent="LevelLayers" unique_id=996024005]
+script = ExtResource("2_ijhsq")
 permanent_lock = true
 
-[node name="LayerManager_Layer1#Polygon2D" parent="Layer1" index="0" unique_id=2046395115 instance=ExtResource("3_kpxy1")]
-color = Color(1, 0.627451, 0.56078434, 0.47058824)
+[node name="Polygon2D" parent="LevelLayers/Layer1" unique_id=30387169 instance=ExtResource("3_kpxy1")]
 polygon = PackedVector2Array(-8, 912, 328, 912, 327.22723, 759.99994, 544.33746, 760, 544, 600, 776, 600, 776, 432, 1000, 432, 1000, 264, 1928, 264, 1920, 672, 1280, 680, 1280, 920, 1928, 920, 1928, 1088, -8, 1088)
 
-[node name="LayerManager_Layer1#Goal" parent="Layer1" index="1" unique_id=770949225 instance=ExtResource("3_2uh77")]
-position = Vector2(1744, 920)
+[node name="Goal" parent="LevelLayers/Layer1" unique_id=1371461512 instance=ExtResource("3_2uh77")]
+position = Vector2(1792, 920)
 
-[node name="Layer2" type="Node2D" parent="." index="6" unique_id=364083146]
+[node name="Layer2" type="Node2D" parent="LevelLayers" unique_id=364083146]
 script = ExtResource("2_ijhsq")
 blend_operation = 1
 metadata/_custom_type_script = "uid://b6phwi725oyki"
 
-[node name="Polygon2D4" parent="Layer2" index="0" unique_id=2057127984 instance=ExtResource("3_kpxy1")]
+[node name="Polygon2D4" parent="LevelLayers/Layer2" unique_id=2057127984 instance=ExtResource("3_kpxy1")]
 color = Color(0.56078434, 1, 0.7882353, 0.47058824)
 polygon = PackedVector2Array(184, 904, 184, 1104, 328, 1104, 328, 904)
+
+[node name="LevelContents" type="CanvasLayer" parent="." unique_id=1118523342]
+
+[node name="Character" parent="LevelContents" unique_id=749957054 node_paths=PackedStringArray("goal_node") instance=ExtResource("8_1xsve")]
+position = Vector2(112, 904)
+goal_node = NodePath("../../LevelLayers/Layer1/Goal")
+
+[node name="LevelForeground" parent="." unique_id=929823706 instance=ExtResource("9_vliov")]
+
+[node name="LevelMainHud" parent="." unique_id=1211863054 instance=ExtResource("10_l135k")]
+layer_hud_position = 1
+
+[connection signal="reached_goal" from="LevelContents/Character" to="." method="_on_character_reached_goal"]
