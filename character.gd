@@ -29,6 +29,7 @@ var goal_timer: float = required_goal_time
 
 var move_dir := 0.0
 
+var current_gravity := Vector2.ZERO
 var next_velocity := Vector2.ZERO
 
 @onready
@@ -80,6 +81,8 @@ func move_toward_center_goal(delta: float) -> bool:
 		return false
 
 func _physics_process(delta: float) -> void:
+	current_gravity = get_gravity()
+
 	# Check win condition
 	if can_win():
 		if move_toward_center_goal(delta):
@@ -151,7 +154,7 @@ func _physics_process(delta: float) -> void:
 func get_next_velocity(delta: float) -> Vector2:
 	next_velocity = velocity
 
-	applied_gravity = get_gravity()
+	applied_gravity = current_gravity
 
 	# Check for falling off
 	if global_position.y > get_viewport_rect().size.y + 50:
@@ -173,16 +176,16 @@ func get_next_velocity(delta: float) -> Vector2:
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		next_velocity.y -= jump_speed
 		is_jumping = true
-		applied_gravity = get_gravity()
+		applied_gravity = current_gravity
 	elif is_jumping:
 		if is_on_floor():
 			is_jumping = false
-			applied_gravity = get_gravity()
+			applied_gravity = current_gravity
 		elif not Input.is_action_pressed("jump"):
 			# Variable jump height
 			if next_velocity.y < 0:
 				next_velocity.y = 0
-			applied_gravity = get_gravity() * variable_jump_down_multiplier
+			applied_gravity = current_gravity * variable_jump_down_multiplier
 	
 	next_velocity += applied_gravity * delta
 	return next_velocity

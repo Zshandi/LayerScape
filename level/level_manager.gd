@@ -48,7 +48,7 @@ func load_level(idx: int) -> void:
 		
 
 	level_node = levels[current_level].scene.instantiate()
-	get_tree().change_scene_to_node(level_node)
+	get_tree().change_scene_to_node.call_deferred(level_node)
 	
 func reload_level() -> void:
 	level_node = null
