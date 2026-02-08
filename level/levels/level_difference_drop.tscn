@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dhs2i2pq87spn"]
+
+[ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://level/level_base.tscn" id="1_osrti"]
+[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="2_ijhsq"]
+[ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://game_objects/goal.tscn" id="3_2uh77"]
+[ext_resource type="PackedScene" uid="uid://cljmuk6kqgj3h" path="res://level/shapes/basic_union_shape.tscn" id="3_kpxy1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2ykmr"]
+viewport_path = NodePath("LayerManager/LayerResult/SubViewport")
+
+[node name="Level" unique_id=1458390218 instance=ExtResource("1_osrti")]
+
+[node name="TextureRect" parent="LayerManager/LayerResult" parent_id_path=PackedInt32Array(641006756) index="1" unique_id=976295764]
+texture = SubResource("ViewportTexture_2ykmr")
+
+[node name="LayerHud" parent="LayerManager" parent_id_path=PackedInt32Array(1293670295) index="2" unique_id=2117405684]
+container_position = 1
+
+[node name="Character" parent="LevelContents" parent_id_path=PackedInt32Array(1118523342) index="0" unique_id=749957054 node_paths=PackedStringArray("goal_node")]
+position = Vector2(112, 904)
+goal_node = NodePath("../../Layer1/LayerManager_Layer1#Goal")
+
+[node name="Layer1" parent="." index="5" unique_id=996024005]
+permanent_lock = true
+
+[node name="LayerManager_Layer1#Polygon2D" parent="Layer1" index="0" unique_id=2046395115 instance=ExtResource("3_kpxy1")]
+color = Color(1, 0.627451, 0.56078434, 0.47058824)
+polygon = PackedVector2Array(-8, 912, 328, 912, 327.22723, 759.99994, 544.33746, 760, 544, 600, 776, 600, 776, 432, 1000, 432, 1000, 264, 1928, 264, 1920, 672, 1280, 680, 1280, 920, 1928, 920, 1928, 1088, -8, 1088)
+
+[node name="LayerManager_Layer1#Goal" parent="Layer1" index="1" unique_id=770949225 instance=ExtResource("3_2uh77")]
+position = Vector2(1744, 920)
+
+[node name="Layer2" type="Node2D" parent="." index="6" unique_id=364083146]
+script = ExtResource("2_ijhsq")
+blend_operation = 1
+metadata/_custom_type_script = "uid://b6phwi725oyki"
+
+[node name="Polygon2D4" parent="Layer2" index="0" unique_id=2057127984 instance=ExtResource("3_kpxy1")]
+color = Color(0.56078434, 1, 0.7882353, 0.47058824)
+polygon = PackedVector2Array(184, 904, 184, 1104, 328, 1104, 328, 904)

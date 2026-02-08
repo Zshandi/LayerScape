@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://d1rxramfphfob"]
+
+[ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://level/level_base.tscn" id="1_r3a08"]
+[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="2_vjmjy"]
+[ext_resource type="PackedScene" uid="uid://cljmuk6kqgj3h" path="res://level/shapes/basic_union_shape.tscn" id="3_7cq1h"]
+[ext_resource type="Texture2D" uid="uid://bpqpklsyoinql" path="res://assets/graphics/stripe_down_left.svg" id="4_bp31a"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yr7js"]
+viewport_path = NodePath("LayerManager/LayerResult/SubViewport")
+
+[node name="Level" unique_id=1458390218 instance=ExtResource("1_r3a08")]
+
+[node name="TextureRect" parent="LayerManager/LayerResult" parent_id_path=PackedInt32Array(641006756) index="1" unique_id=976295764]
+texture = SubResource("ViewportTexture_yr7js")
+
+[node name="Polygon2D" parent="Layer1" parent_id_path=PackedInt32Array(996024005) index="0" unique_id=2046395115]
+polygon = PackedVector2Array(-8, 760, 640, 760, 640, 520, 824, 520, 824, -8, 1216, -8, 1216, 760, 1928, 760, 1928, 1088, -8, 1088)
+
+[node name="Layer2" type="Node2D" parent="." index="6" unique_id=1098088129]
+script = ExtResource("2_vjmjy")
+blend_operation = 2
+metadata/_custom_type_script = "uid://b6phwi725oyki"
+
+[node name="Polygon2D3" parent="Layer2" index="0" unique_id=1141340554 instance=ExtResource("3_7cq1h")]
+color = Color(0.56078434, 1, 0.7882353, 0.47058824)
+texture = ExtResource("4_bp31a")
+polygon = PackedVector2Array(-16, 88, 1944, 88, 1944, 880, -16, 880)

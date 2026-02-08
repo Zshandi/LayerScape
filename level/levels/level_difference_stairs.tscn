@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://b16gme56nlqjo"]
+
+[ext_resource type="PackedScene" uid="uid://blfxxb66ypa2d" path="res://level/level_base.tscn" id="1_7faci"]
+[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="2_8sqd4"]
+[ext_resource type="PackedScene" uid="uid://cljmuk6kqgj3h" path="res://level/shapes/basic_union_shape.tscn" id="3_rnecv"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_comrp"]
+viewport_path = NodePath("LayerManager/LayerResult/SubViewport")
+
+[node name="Level" unique_id=1458390218 instance=ExtResource("1_7faci")]
+
+[node name="TextureRect" parent="LayerManager/LayerResult" parent_id_path=PackedInt32Array(641006756) index="1" unique_id=976295764]
+texture = SubResource("ViewportTexture_comrp")
+
+[node name="LayerHud" parent="LayerManager" parent_id_path=PackedInt32Array(1293670295) index="2" unique_id=2117405684]
+container_position = 2
+
+[node name="DebugPolygons" parent="LayerManager" parent_id_path=PackedInt32Array(1293670295) index="3" unique_id=1939418161]
+visible = false
+
+[node name="Character" parent="LevelContents" parent_id_path=PackedInt32Array(1118523342) index="0" unique_id=749957054]
+position = Vector2(96, 552)
+
+[node name="Polygon2D" parent="Layer1" parent_id_path=PackedInt32Array(996024005) index="0" unique_id=2046395115]
+polygon = PackedVector2Array(-8, 560, 216, 560, 214.23972, 759.99994, 1000, 760, 1000, 264, 1928, 264, 1928, 1088, -8, 1088)
+
+[node name="Goal" parent="Layer1" parent_id_path=PackedInt32Array(996024005) index="1" unique_id=770949225]
+position = Vector2(1792, 264)
+
+[node name="Layer2" type="Node2D" parent="." index="6" unique_id=364083146]
+script = ExtResource("2_8sqd4")
+blend_operation = 1
+metadata/_custom_type_script = "uid://b6phwi725oyki"
+
+[node name="Polygon2D2" parent="Layer2" index="0" unique_id=1018239408 instance=ExtResource("3_rnecv")]
+position = Vector2(320, 208)
+color = Color(0.56078434, 1, 0.7882353, 0.47058824)
+polygon = PackedVector2Array(328, 432, 488, 432, 488, 816, 328, 816)
+
+[node name="Layer3" type="Node2D" parent="." index="7" unique_id=1986302626]
+script = ExtResource("2_8sqd4")
+metadata/_custom_type_script = "uid://b6phwi725oyki"
+
+[node name="Polygon2D2" parent="Layer3" index="0" unique_id=1205932301 instance=ExtResource("3_rnecv")]
+position = Vector2(32, 24)
+color = Color(0.56078434, 1, 0.7882353, 0.47058824)
+polygon = PackedVector2Array(320, 616, 704, 616, 712, 816, 320, 816)
