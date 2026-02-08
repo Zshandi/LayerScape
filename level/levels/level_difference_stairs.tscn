@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="2_8sqd4"]
 [ext_resource type="PackedScene" uid="uid://dyjrx4y85a2e4" path="res://level/level_base_contents.tscn" id="3_ie07i"]
 [ext_resource type="PackedScene" uid="uid://cljmuk6kqgj3h" path="res://level/shapes/basic_union_shape.tscn" id="3_rnecv"]
-[ext_resource type="PackedScene" uid="uid://bxni6wkiygvww" path="res://level/layer_manager.tscn" id="4_bfdge"]
+[ext_resource type="PackedScene" uid="uid://bxni6wkiygvww" path="res://layer/layer_manager.tscn" id="4_bfdge"]
 [ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://game_objects/goal.tscn" id="7_ahrys"]
 [ext_resource type="PackedScene" uid="uid://dil4t5quwxmy7" path="res://character.tscn" id="8_ils2l"]
 [ext_resource type="PackedScene" uid="uid://caxt42aaowf3m" path="res://level/level_foreground.tscn" id="9_lsquc"]

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://game_objects/goal.tscn" id="3_ca0s6"]
 [ext_resource type="PackedScene" uid="uid://b4gm67kbyhige" path="res://level/level_background.tscn" id="4_hp65n"]
 [ext_resource type="PackedScene" uid="uid://dyjrx4y85a2e4" path="res://level/level_base_contents.tscn" id="5_cgb1c"]
-[ext_resource type="PackedScene" uid="uid://bxni6wkiygvww" path="res://level/layer_manager.tscn" id="6_8hwim"]
+[ext_resource type="PackedScene" uid="uid://bxni6wkiygvww" path="res://layer/layer_manager.tscn" id="6_8hwim"]
 [ext_resource type="PackedScene" uid="uid://dil4t5quwxmy7" path="res://character.tscn" id="8_0hiu8"]
 [ext_resource type="PackedScene" uid="uid://caxt42aaowf3m" path="res://level/level_foreground.tscn" id="9_1lrye"]
 [ext_resource type="PackedScene" uid="uid://mmyiy4leygo5" path="res://level/level_main_hud.tscn" id="10_pu70o"]
