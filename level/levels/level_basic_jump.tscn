@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://pjye4s0icy75"]
+
+[ext_resource type="Script" uid="uid://dc8yp4lolv753" path="res://level/level.gd" id="1_5at45"]
+[ext_resource type="PackedScene" uid="uid://b4gm67kbyhige" path="res://level/level_background.tscn" id="2_i64xv"]
+[ext_resource type="PackedScene" uid="uid://dyjrx4y85a2e4" path="res://level/level_base_contents.tscn" id="3_whlo3"]
+[ext_resource type="PackedScene" uid="uid://bxni6wkiygvww" path="res://level/layer_manager.tscn" id="4_f8jsu"]
+[ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="5_nxbu0"]
+[ext_resource type="PackedScene" uid="uid://cljmuk6kqgj3h" path="res://level/shapes/basic_union_shape.tscn" id="6_oc1a8"]
+[ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://game_objects/goal.tscn" id="7_rvv6r"]
+[ext_resource type="PackedScene" uid="uid://dil4t5quwxmy7" path="res://character.tscn" id="8_j1a0a"]
+[ext_resource type="PackedScene" uid="uid://caxt42aaowf3m" path="res://level/level_foreground.tscn" id="9_3htpd"]
+[ext_resource type="PackedScene" uid="uid://mmyiy4leygo5" path="res://level/level_main_hud.tscn" id="10_047je"]
+[ext_resource type="Script" uid="uid://cl7l3i4pcjiud" path="res://level/level_main_hud.gd" id="11_0b7s8"]
+
+[node name="Level" type="Node2D" unique_id=1458390218]
+script = ExtResource("1_5at45")
+
+[node name="LevelBackground" parent="." unique_id=574090939 instance=ExtResource("2_i64xv")]
+
+[node name="LevelBaseContents" parent="." unique_id=2145887947 instance=ExtResource("3_whlo3")]
+
+[node name="LevelLayers" parent="." unique_id=52178726 node_paths=PackedStringArray("player_to_track", "main_hud") instance=ExtResource("4_f8jsu")]
+player_to_track = NodePath("../LevelContents/Character")
+main_hud = NodePath("../LevelMainHud")
+
+[node name="Layer1" type="Node2D" parent="LevelLayers" unique_id=996024005]
+script = ExtResource("5_nxbu0")
+
+[node name="Polygon2D" parent="LevelLayers/Layer1" unique_id=2046395115 instance=ExtResource("6_oc1a8")]
+
+[node name="Goal" parent="LevelLayers/Layer1" unique_id=770949225 instance=ExtResource("7_rvv6r")]
+position = Vector2(1792, 760)
+
+[node name="LevelContents" type="CanvasLayer" parent="." unique_id=1118523342]
+
+[node name="Character" parent="LevelContents" unique_id=749957054 node_paths=PackedStringArray("goal_node") instance=ExtResource("8_j1a0a")]
+position = Vector2(160, 752)
+goal_node = NodePath("../../LevelLayers/Layer1/Goal")
+
+[node name="LevelForeground" parent="." unique_id=929823706 instance=ExtResource("9_3htpd")]
+
+[node name="LevelMainHud" parent="." unique_id=1211863054 instance=ExtResource("10_047je")]
+script = ExtResource("11_0b7s8")
+
+[connection signal="reached_goal" from="LevelContents/Character" to="." method="_on_character_reached_goal"]

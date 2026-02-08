@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b4gm67kbyhige"]
+
+[ext_resource type="Texture2D" uid="uid://cqhkd1gvb8rr" path="res://assets/graphics/background-mountains-clipped.png" id="1_jggfb"]
+[ext_resource type="Shader" uid="uid://b02s1slwqby8l" path="res://assets/shaders/scrolling_background.gdshader" id="2_6gkov"]
+[ext_resource type="Texture2D" uid="uid://bi7ay7s5subcv" path="res://assets/graphics/background-mountains-colors1.png" id="3_ecnno"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_twsyw"]
+shader = ExtResource("2_6gkov")
+shader_parameter/scroll_speed = Vector2(0.005, 0.01)
+shader_parameter/sample_scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6hf62"]
+shader = ExtResource("2_6gkov")
+shader_parameter/scroll_speed = Vector2(-0.015, 0.01)
+shader_parameter/sample_scale = 1.0
+
+[node name="LevelBackground" type="CanvasLayer" unique_id=574090939]
+
+[node name="BackgroundMountains" type="TextureRect" parent="." unique_id=2123494238]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_jggfb")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1503080955]
+material = SubResource("ShaderMaterial_twsyw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3240.0
+offset_bottom = 2160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ecnno")
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=278512823]
+material = SubResource("ShaderMaterial_6hf62")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3240.0
+offset_bottom = 2160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ecnno")
+stretch_mode = 1

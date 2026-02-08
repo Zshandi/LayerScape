@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bxni6wkiygvww"]
+
+[ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layer/layer_manager.gd" id="1_5s5m0"]
+[ext_resource type="Shader" uid="uid://b7ulxml0ho2py" path="res://level/level_output_shape.gdshader" id="2_a8vb6"]
+[ext_resource type="AudioStream" uid="uid://b0uoxen5r4tjn" path="res://assets/sfx/freesound_community-wrong-47985.mp3" id="3_uortr"]
+[ext_resource type="AudioStream" uid="uid://db0byybk3dy4k" path="res://assets/sfx/UIClick_Book Tap UI Confirm_RogueWaves_KawaiiUI.wav" id="4_h3t2q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ls7uu"]
+shader = ExtResource("2_a8vb6")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gei2l"]
+viewport_path = NodePath("LayerResult/SubViewport")
+
+[node name="LayerManager" type="CanvasLayer" unique_id=52178726]
+script = ExtResource("1_5s5m0")
+
+[node name="LayerResult" type="StaticBody2D" parent="." unique_id=974330960]
+unique_name_in_owner = true
+
+[node name="LayerResultSourceCollision" type="CollisionPolygon2D" parent="LayerResult" unique_id=36605264]
+polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
+metadata/_custom_type_script = "uid://b6lkky6ocw7he"
+
+[node name="TextureRect" type="TextureRect" parent="LayerResult" unique_id=2049244994]
+material = SubResource("ShaderMaterial_ls7uu")
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("ViewportTexture_gei2l")
+
+[node name="SubViewport" type="SubViewport" parent="LayerResult" unique_id=621595161]
+size = Vector2i(1920, 1080)
+
+[node name="LayerResultRenders" type="Node2D" parent="LayerResult/SubViewport" unique_id=992336990]
+unique_name_in_owner = true
+
+[node name="LayerResultSourceRender" type="Polygon2D" parent="LayerResult/SubViewport/LayerResultRenders" unique_id=2010441270]
+unique_name_in_owner = true
+polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
+
+[node name="LayerSoundFX" type="Node2D" parent="." unique_id=412603675]
+
+[node name="CantUnlockSound" type="AudioStreamPlayer" parent="LayerSoundFX" unique_id=960084136]
+unique_name_in_owner = true
+stream = ExtResource("3_uortr")
+
+[node name="LockLayerSound" type="AudioStreamPlayer" parent="LayerSoundFX" unique_id=1431579673]
+unique_name_in_owner = true
+stream = ExtResource("4_h3t2q")
+pitch_scale = 0.53
+
+[node name="UnlockLayerSound" type="AudioStreamPlayer" parent="LayerSoundFX" unique_id=2055207871]
+unique_name_in_owner = true
+stream = ExtResource("4_h3t2q")

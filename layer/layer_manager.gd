@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name LayerManager
 
 @onready var lock_layer: AudioStreamPlayer = %LockLayerSound
@@ -9,6 +9,9 @@ class_name LayerManager
 
 @export
 var player_to_track: Character
+
+@export
+var main_hud: LevelMainHud
 
 var layers: Array[Layer]
 
@@ -127,4 +130,4 @@ func update_result(delta: float) -> void:
 	
 
 func _process(_delta: float) -> void:
-	%LayerHud.update_for_layers(layers)
+	main_hud.layer_hud.update_for_layers(layers)
