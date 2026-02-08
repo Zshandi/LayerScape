@@ -3,13 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://dil4t5quwxmy7" path="res://character.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dc8yp4lolv753" path="res://levels/level.gd" id="1_1bvp3"]
 [ext_resource type="Shader" uid="uid://b02s1slwqby8l" path="res://assets/shaders/scrolling_background.gdshader" id="2_5f4n4"]
-[ext_resource type="Texture2D" uid="uid://drvxoh7os81sl" path="res://assets/graphics/background-mountains.png" id="2_6hf62"]
 [ext_resource type="Script" uid="uid://46esyxg1oqrw" path="res://levels/level_bounds.gd" id="2_jd1fy"]
 [ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layer/layer_manager.gd" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://bi7ay7s5subcv" path="res://assets/graphics/background-mountains-colors1.png" id="3_twsyw"]
+[ext_resource type="Texture2D" uid="uid://cqhkd1gvb8rr" path="res://assets/graphics/background-mountains-clipped.png" id="4_gei2l"]
 [ext_resource type="Script" uid="uid://b6phwi725oyki" path="res://layer/layer.gd" id="5_cnvg6"]
 [ext_resource type="PackedScene" uid="uid://bnwwcft5fkixw" path="res://game_objects/goal.tscn" id="6_7mycd"]
 [ext_resource type="AudioStream" uid="uid://db0byybk3dy4k" path="res://assets/sfx/UIClick_Book Tap UI Confirm_RogueWaves_KawaiiUI.wav" id="7_cnvg6"]
+[ext_resource type="Shader" uid="uid://b7ulxml0ho2py" path="res://levels/level_output_shape.gdshader" id="7_vy5pf"]
 [ext_resource type="PackedScene" uid="uid://cljmuk6kqgj3h" path="res://levels/shapes/basic_union_shape.tscn" id="9_kuw7y"]
 [ext_resource type="AudioStream" uid="uid://b0uoxen5r4tjn" path="res://assets/sfx/freesound_community-wrong-47985.mp3" id="10_gei2l"]
 [ext_resource type="PackedScene" uid="uid://cnvxb2w6imgup" path="res://layer/layer_hud.tscn" id="10_twsyw"]
@@ -34,13 +35,19 @@ size = Vector2(50, 50)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jd1fy"]
 size = Vector2(50, 50)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ls7uu"]
+shader = ExtResource("7_vy5pf")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gei2l"]
+viewport_path = NodePath("LayerManager/LayerResult/SubViewport")
+
 [node name="Level" type="Node2D" unique_id=1458390218]
 script = ExtResource("1_1bvp3")
 
-[node name="BackgroundMountains" type="Sprite2D" parent="." unique_id=295091328]
-position = Vector2(961.2011, 458)
-scale = Vector2(0.35471985, 0.35471985)
-texture = ExtResource("2_6hf62")
+[node name="BackgroundMountains" type="TextureRect" parent="." unique_id=796246901]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_gei2l")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1184013000]
 material = SubResource("ShaderMaterial_twsyw")
@@ -93,12 +100,20 @@ unique_name_in_owner = true
 polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 metadata/_custom_type_script = "uid://b6lkky6ocw7he"
 
-[node name="LayerResultRenders" type="Node2D" parent="LayerManager/LayerResult" unique_id=696114997]
+[node name="TextureRect" type="TextureRect" parent="LayerManager/LayerResult" unique_id=976295764]
+material = SubResource("ShaderMaterial_ls7uu")
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("ViewportTexture_gei2l")
+
+[node name="SubViewport" type="SubViewport" parent="LayerManager/LayerResult" unique_id=482061074]
+size = Vector2i(1920, 1080)
+
+[node name="LayerResultRenders" type="Node2D" parent="LayerManager/LayerResult/SubViewport" unique_id=696114997]
 unique_name_in_owner = true
 
-[node name="LayerResultSourceRender" type="Polygon2D" parent="LayerManager/LayerResult/LayerResultRenders" unique_id=926241781]
+[node name="LayerResultSourceRender" type="Polygon2D" parent="LayerManager/LayerResult/SubViewport/LayerResultRenders" unique_id=926241781]
 unique_name_in_owner = true
-color = Color(0, 0, 0, 0.84313726)
 polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 
 [node name="Layer1" type="Node2D" parent="LayerManager" unique_id=996024005]
