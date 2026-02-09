@@ -7,6 +7,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ls7uu"]
 shader = ExtResource("2_a8vb6")
+shader_parameter/width = 0.2
+shader_parameter/height = 0.6
+shader_parameter/frequency = 10.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_gei2l"]
 viewport_path = NodePath("LayerResult/SubViewport")
@@ -29,13 +32,13 @@ texture = SubResource("ViewportTexture_gei2l")
 
 [node name="SubViewport" type="SubViewport" parent="LayerResult" unique_id=621595161]
 size = Vector2i(1920, 1080)
+render_target_update_mode = 4
 
 [node name="LayerResultRenders" type="Node2D" parent="LayerResult/SubViewport" unique_id=992336990]
 unique_name_in_owner = true
 
 [node name="LayerResultSourceRender" type="Polygon2D" parent="LayerResult/SubViewport/LayerResultRenders" unique_id=2010441270]
 unique_name_in_owner = true
-polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 
 [node name="LayerSoundFX" type="Node2D" parent="." unique_id=412603675]
 
