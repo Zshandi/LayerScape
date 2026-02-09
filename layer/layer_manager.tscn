@@ -1,15 +1,9 @@
 [gd_scene format=3 uid="uid://bxni6wkiygvww"]
 
 [ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layer/layer_manager.gd" id="1_5s5m0"]
-[ext_resource type="Shader" uid="uid://b7ulxml0ho2py" path="res://level/level_output_shape.gdshader" id="2_a8vb6"]
+[ext_resource type="Material" path="res://layer/layer_result_texture_mat.tres" id="2_yu3p7"]
 [ext_resource type="AudioStream" uid="uid://b0uoxen5r4tjn" path="res://assets/sfx/freesound_community-wrong-47985.mp3" id="3_uortr"]
 [ext_resource type="AudioStream" uid="uid://db0byybk3dy4k" path="res://assets/sfx/UIClick_Book Tap UI Confirm_RogueWaves_KawaiiUI.wav" id="4_h3t2q"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ls7uu"]
-shader = ExtResource("2_a8vb6")
-shader_parameter/width = 0.2
-shader_parameter/height = 0.6
-shader_parameter/frequency = 10.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_gei2l"]
 viewport_path = NodePath("LayerResult/SubViewport")
@@ -24,8 +18,8 @@ unique_name_in_owner = true
 polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 metadata/_custom_type_script = "uid://b6lkky6ocw7he"
 
-[node name="TextureRect" type="TextureRect" parent="LayerResult" unique_id=2049244994]
-material = SubResource("ShaderMaterial_ls7uu")
+[node name="LayerResultRenderTexture" type="TextureRect" parent="LayerResult" unique_id=2049244994]
+material = ExtResource("2_yu3p7")
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = SubResource("ViewportTexture_gei2l")

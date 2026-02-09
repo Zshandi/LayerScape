@@ -1,14 +1,8 @@
 [gd_scene format=3 uid="uid://baocfaigpiyp5"]
 
 [ext_resource type="Texture2D" uid="uid://cqhkd1gvb8rr" path="res://assets/graphics/background-mountains-clipped.png" id="1_ap10m"]
-[ext_resource type="Shader" uid="uid://b7ulxml0ho2py" path="res://level/level_output_shape.gdshader" id="2_e8ney"]
+[ext_resource type="Material" uid="uid://cwrhb5ax57ywe" path="res://layer/layer_result_texture_mat.tres" id="2_ap10m"]
 [ext_resource type="Texture2D" uid="uid://cif2xngbqkhgx" path="res://assets/graphics/render_result_test_texture.png" id="3_ttmta"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wb862"]
-shader = ExtResource("2_e8ney")
-shader_parameter/width = 0.2
-shader_parameter/height = 0.6
-shader_parameter/frequency = 10.0
 
 [node name="RenderResultTestScene" type="Node2D" unique_id=1156032473]
 
@@ -18,7 +12,7 @@ offset_bottom = 1080.0
 texture = ExtResource("1_ap10m")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1504660347]
-material = SubResource("ShaderMaterial_wb862")
+material = ExtResource("2_ap10m")
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("3_ttmta")
