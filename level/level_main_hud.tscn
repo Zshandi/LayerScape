@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://mmyiy4leygo5"]
+
+[ext_resource type="PackedScene" uid="uid://cnvxb2w6imgup" path="res://layer/layer_hud.tscn" id="1_c3e6f"]
+[ext_resource type="Script" uid="uid://cl7l3i4pcjiud" path="res://level/level_main_hud.gd" id="1_oh7lj"]
+[ext_resource type="Script" uid="uid://c6bf8q07m81ss" path="res://tools/debug_polygons.gd" id="2_oh7lj"]
+
+[node name="LevelMainHud" type="CanvasLayer" unique_id=1211863054]
+script = ExtResource("1_oh7lj")
+
+[node name="LayerHud" parent="." unique_id=2117405684 instance=ExtResource("1_c3e6f")]
+unique_name_in_owner = true
+layer = 50
+
+[node name="DebugPolygons" type="Node2D" parent="." unique_id=982533439]
+script = ExtResource("2_oh7lj")
+metadata/_custom_type_script = "uid://c6bf8q07m81ss"

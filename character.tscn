@@ -102,8 +102,9 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Character" type="CharacterBody2D" unique_id=749957054]
+[node name="Character" type="CharacterBody2D" unique_id=749957054 node_paths=PackedStringArray("scale_nodes")]
 script = ExtResource("1_glpr6")
+scale_nodes = [NodePath("Shape"), NodePath("Sprite")]
 
 [node name="Shape" type="CollisionShape2D" parent="." unique_id=691711112]
 unique_name_in_owner = true
@@ -128,6 +129,7 @@ process_mode = 3
 stream = ExtResource("4_px5sl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=599733489]
+layer = 100
 
 [node name="DebugValues" type="RichTextLabel" parent="CanvasLayer" unique_id=380292545]
 visible = false

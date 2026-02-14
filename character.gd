@@ -29,20 +29,47 @@ var goal_timer: float = required_goal_time
 
 var move_dir := 0.0
 
+var current_gravity := Vector2.ZERO
 var next_velocity := Vector2.ZERO
 
 @onready
 var sprite_scale: Vector2 = %Sprite.scale
 
+var goal_check_collision := Area2D.new()
+var goal_check_collision_y := Area2D.new()
+
 func _ready() -> void:
 	goal_node.body_entered.connect(_on_goal_body_entered)
 	goal_node.body_exited.connect(_on_goal_body_exited)
+
+	goal_check_collision.add_child(%Shape.duplicate())
+	goal_check_collision_y.add_child(%Shape.duplicate())
+	add_child(goal_check_collision)
+	add_child(goal_check_collision_y)
 
 func can_win() -> bool:
 	return is_on_floor() and is_touching_goal and \
 		# Ensure the goal is near the floor as well
 		global_position.y >= goal_node.global_position.y - goal_y_tolerance and \
-		global_position.y <= goal_node.global_position.y + goal_y_tolerance
+		global_position.y <= goal_node.global_position.y + goal_y_tolerance and \
+
+		can_move_toward_center_goal()
+
+func can_move_toward_center_goal() -> bool:
+	# Check for colliding with wall
+	goal_check_collision.global_position = global_position
+	goal_check_collision.global_position.x = goal_node.global_position.x
+	for body in goal_check_collision.get_overlapping_bodies():
+		if body != self: return false
+	
+	# Check for falling off edge
+	goal_check_collision_y.global_position = goal_node.global_position
+	goal_check_collision_y.global_position.y += goal_y_tolerance * 1.5
+	print_debug(goal_check_collision_y.get_overlapping_bodies())
+	for body in goal_check_collision_y.get_overlapping_bodies():
+		if body != self: return true
+
+	return false
 
 func move_toward_center_goal(delta: float) -> bool:
 	var target := goal_node.global_position.x
@@ -54,6 +81,8 @@ func move_toward_center_goal(delta: float) -> bool:
 		return false
 
 func _physics_process(delta: float) -> void:
+	current_gravity = get_gravity()
+
 	# Check win condition
 	if can_win():
 		if move_toward_center_goal(delta):
@@ -125,7 +154,7 @@ func _physics_process(delta: float) -> void:
 func get_next_velocity(delta: float) -> Vector2:
 	next_velocity = velocity
 
-	applied_gravity = get_gravity()
+	applied_gravity = current_gravity
 
 	# Check for falling off
 	if global_position.y > get_viewport_rect().size.y + 50:
@@ -147,16 +176,16 @@ func get_next_velocity(delta: float) -> Vector2:
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		next_velocity.y -= jump_speed
 		is_jumping = true
-		applied_gravity = get_gravity()
+		applied_gravity = current_gravity
 	elif is_jumping:
 		if is_on_floor():
 			is_jumping = false
-			applied_gravity = get_gravity()
+			applied_gravity = current_gravity
 		elif not Input.is_action_pressed("jump"):
 			# Variable jump height
 			if next_velocity.y < 0:
 				next_velocity.y = 0
-			applied_gravity = get_gravity() * variable_jump_down_multiplier
+			applied_gravity = current_gravity * variable_jump_down_multiplier
 	
 	next_velocity += applied_gravity * delta
 	return next_velocity

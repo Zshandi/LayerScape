@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dyjrx4y85a2e4"]
+
+[ext_resource type="Script" uid="uid://46esyxg1oqrw" path="res://level/level_bounds.gd" id="1_2cpgq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnvg6"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3adb"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jd1fy"]
+size = Vector2(50, 50)
+
+[node name="LevelBaseContents" type="CanvasLayer" unique_id=2145887947]
+
+[node name="LevelBounds" type="StaticBody2D" parent="." unique_id=2143808259]
+visible = false
+script = ExtResource("1_2cpgq")
+
+[node name="LeftWall" type="CollisionShape2D" parent="LevelBounds" unique_id=2057113700]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_cnvg6")
+
+[node name="RightWall" type="CollisionShape2D" parent="LevelBounds" unique_id=1795260987]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_p3adb")
+
+[node name="TopWall" type="CollisionShape2D" parent="LevelBounds" unique_id=45251567]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_jd1fy")
