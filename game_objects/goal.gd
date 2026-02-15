@@ -15,6 +15,6 @@ func get_preview_shape() -> Polygon2D:
 		rect.position, rect.position + Vector2(rect.size.x, 0), \
 		rect.position + rect.size, rect.position + Vector2(0, rect.size.y) \
 	]
-	shape.color = Color.HOT_PINK
+	shape.color = modulate
 
 	return shape
