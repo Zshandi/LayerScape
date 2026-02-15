@@ -1,9 +1,20 @@
 [gd_scene format=3 uid="uid://bnwwcft5fkixw"]
 
 [ext_resource type="Script" uid="uid://byrnaq4gbbfig" path="res://game_objects/goal.gd" id="1_6k3qi"]
+[ext_resource type="Shader" uid="uid://7l8krw7e5qji" path="res://game_objects/goal.gdshader" id="2_7epht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7sh37"]
 size = Vector2(100, 160)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ls8a"]
+shader = ExtResource("2_7epht")
+shader_parameter/frequency = 40.0
+shader_parameter/thickness = 10.0
+shader_parameter/spacing = 50.0
+shader_parameter/fade_dist_start = 40.0
+shader_parameter/fade_dist_end = 80.0
+shader_parameter/original_distance = 10.0
+shader_parameter/samples_per_dimension = 4
 
 [node name="Goal" type="Area2D" unique_id=770949225]
 script = ExtResource("1_6k3qi")
@@ -14,10 +25,11 @@ position = Vector2(0, -80)
 shape = SubResource("RectangleShape2D_7sh37")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=245123843]
+material = SubResource("ShaderMaterial_6ls8a")
 offset_left = -50.0
 offset_top = -160.0
 offset_right = 50.0
-color = Color(0, 0, 0, 1)
+color = Color(0.38945705, 0.9999998, 0.40119493, 1)
 metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
