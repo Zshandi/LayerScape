@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bo5wpcd2dm6tj"]
+
+[ext_resource type="Texture2D" uid="uid://cqhkd1gvb8rr" path="res://assets/graphics/background-mountains-clipped.png" id="1_d7qwy"]
+[ext_resource type="Material" uid="uid://cwrhb5ax57ywe" path="res://layer/layer_result_texture_mat.tres" id="2_3jkfn"]
+[ext_resource type="Texture2D" uid="uid://cif2xngbqkhgx" path="res://assets/graphics/render_result_test_texture.png" id="3_5jess"]
+
+[node name="RenderResultTestScene" type="Node2D" unique_id=1156032473]
+
+[node name="ColorRect" type="TextureRect" parent="." unique_id=1278168652]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_d7qwy")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1504660347]
+material = ExtResource("2_3jkfn")
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_5jess")
