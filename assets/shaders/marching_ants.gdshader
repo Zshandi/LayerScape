@@ -7,18 +7,43 @@ uniform float rotation_degrees = 0.0;
 uniform vec2 scroll_speed = vec2(.1, .2);
 uniform float outline_width = 2.0;
 
-bool on_edge(vec4 col, vec2 this_tex_pixel_size)
+float get_alpha_of_pos(vec4 this_pos)
 {
+	if (this_pos == vec4(vec3(0.0), 1.0))
+	{
+		return 0.0;
+	}
+	return this_pos.a;
+}
+
+bool on_edge(sampler2D this_texture, vec2 this_uv, vec2 this_tex_pixel_size)
+{
+	// get the texture data for this pixel
+	vec4 col = texture(this_texture, this_uv);
+	vec2 ps = this_tex_pixel_size;
+
 	// track the min and max alphas of the four neighbouring positions
 	float maxa = col.a;
 	float mina = col.a;
+	float a;
 
 	// -- edge detection logic
 
-	// track the min and max alphas of the four neighbouring positions
-	float a = texture(this_texture, this_uv + vec2(0.0, -outline_width) * ps).a;
-	maxa = max(a, maxa);
-	mina = min(a, mina);
+	vec2 tex_pos[4] = vec2[4](
+		vec2(0.0, -outline_width),
+		vec2(0.0, outline_width),
+		vec2(-outline_width, 0.0),
+		vec2(outline_width, 0.0)
+	);
+
+	for (int i = 0; i < 4; i++) {
+		vec4 this_pos = texture(this_texture, this_uv + tex_pos[i] * a);
+		a = get_alpha_of_pos(this_pos);
+		maxa = max(a, maxa);
+		mina = min(a, mina);
+	}
+
+	return (maxa - mina == 0.0);
 
 }
 
@@ -64,7 +89,7 @@ void fragment()
 		// Black is transparent now
 		COLOR = vec4(0.0);
 	}
-	if (!on_edge(TEXTURE, UV, TEXTURE_PIXEL_SIZE))
+	if (on_edge(TEXTURE, UV, TEXTURE_PIXEL_SIZE))
 	{
 		COLOR = vec4(0.0);
 	}
