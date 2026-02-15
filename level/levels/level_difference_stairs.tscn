@@ -48,7 +48,7 @@ metadata/_custom_type_script = "uid://b6phwi725oyki"
 [node name="Polygon2D2" parent="LevelLayers/Layer3" unique_id=1205932301 instance=ExtResource("3_rnecv")]
 position = Vector2(32, 24)
 color = Color(0.56078434, 1, 0.7882353, 0.47058824)
-polygon = PackedVector2Array(320, 616, 704, 616, 712, 816, 320, 816)
+polygon = PackedVector2Array(320, 616, 712, 616, 712, 816, 320, 816)
 
 [node name="LevelContents" type="CanvasLayer" parent="." unique_id=1118523342]
 
