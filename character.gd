@@ -48,27 +48,42 @@ func _ready() -> void:
 	add_child(goal_check_collision_y)
 
 func can_win() -> bool:
-	return is_on_floor() and is_touching_goal and \
-		# Ensure the goal is near the floor as well
+	var goal_near_floor := \
 		global_position.y >= goal_node.global_position.y - goal_y_tolerance and \
-		global_position.y <= goal_node.global_position.y + goal_y_tolerance and \
+		global_position.y <= goal_node.global_position.y + goal_y_tolerance
+	
+	var can_move_toward_center = can_move_toward_center_goal()
 
-		can_move_toward_center_goal()
+	DebugValues.debug("is_on_floor", is_on_floor())
+	DebugValues.debug("is_touching_goal", is_touching_goal)
+	DebugValues.debug("goal_near_floor", goal_near_floor)
+	DebugValues.debug("can_move_toward_center", can_move_toward_center)
+
+	return is_on_floor() and is_touching_goal and \
+		goal_near_floor and can_move_toward_center
 
 func can_move_toward_center_goal() -> bool:
 	# Check for colliding with wall
 	goal_check_collision.global_position = global_position
 	goal_check_collision.global_position.x = goal_node.global_position.x
+	# This 1 pixel movement is to account for physics collision error tolerences
+	#  which fixed a bug where sometimes when dropping down wouldn't go to goal
+	goal_check_collision.global_position.y -= 1
 	for body in goal_check_collision.get_overlapping_bodies():
-		if body != self: return false
+		if body != self:
+			DebugValues.debug("move_toward_center", "colliding wall")
+			return false
 	
 	# Check for falling off edge
 	goal_check_collision_y.global_position = goal_node.global_position
 	goal_check_collision_y.global_position.y += goal_y_tolerance * 1.5
 	print_debug(goal_check_collision_y.get_overlapping_bodies())
 	for body in goal_check_collision_y.get_overlapping_bodies():
-		if body != self: return true
+		if body != self:
+			DebugValues.debug("move_toward_center", "colliding floor")
+			return true
 
+	DebugValues.debug("move_toward_center", "colliding none")
 	return false
 
 func move_toward_center_goal(delta: float) -> bool:
