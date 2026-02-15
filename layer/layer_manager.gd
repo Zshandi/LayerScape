@@ -50,6 +50,9 @@ func _ready() -> void:
 	layers.reverse()
 	layers[selected_layer_index].selected = true
 
+	# TODO: Allow overriding this...
+	MusicPlayer.play_mysterious_cave()
+
 	#update_result(get_physics_process_delta_time())
 
 func _unhandled_key_input(event: InputEvent) -> void:

@@ -1,0 +1,167 @@
+
+// "Mysterius Cave" @by Zshandi Krahn
+// @version 1.0
+
+let keyInitial = "<C:minor:pentatonic>"
+let keyUp = "<D#:major:pentatonic>"
+
+let bassline = x => x.sound("gm_blown_bottle").adsr(".3:3:.01:2")
+let basslineMain    = bassline(note("<0 -1 2 1 0 -1 4 1    >"))
+let basslineKeyUp   = bassline(note("<0 -1 2 1 0 -1 4 [3 5]>"))
+let basslineKeyDown = bassline(note("<0 -1 2 1 0 -1 4 [0 2]>"))
+
+let percussion = x => x.gain(3.5).sound("fingercymbal")
+let percussionIntro = percussion(note(`
+    <
+    [ - - 0 - - - - - ] [-] [-] [- - 2 - - - - -]
+    [0] [-] [-] [- - 4 - - 1 - -]
+    > 
+    `))
+let percussionFirst = percussion(note(`
+    <
+    [0] [-] [-] [- - 2 - - 3 -  1]
+    [0] [-] [-] [- - 4 - - 1 - -1]
+    >
+    `))
+let percussionProgression = percussion(note(`
+    <
+    [0,2] [- - 2 - - 3 -  1] [1,2] [- - 2 - - 3  1 -]
+    [0,1] [- - 3 - - 1 - -1] [1,4] [- - 3 - - 1 -1 -]
+    >
+    `))
+let percussionSolo = percussion(note(`
+    <
+    [-  [0,2] 3 - - 3 - [2 1 0 -1]] [[3,-1] - 2 - - 3 -  1] [1,2] [- - 2 - - 3  1 -]
+    [0    -1  - - - - - [0 2 4  0]] [-     -1 3 - - 1 - -1] [1,0] [- - 3 - - 1 -1 -]
+    [-  [0,2] 0 - - 3 - [2 1 2  3]] [[3,-1] - 2 - - 3 -  -] [1,2] [- - 2 - - -  1 -]
+    [[-2,2] 3 - - 0 - 1 [3 2 1  0]] [-1     - - 4 3 1 - -1] [1,0] [- - - [1 2 3] - [[4,3] 3 2] [-1,0,1] -]
+    >
+    `))
+let percussionProgression2 = percussion(note(`
+    <
+    [0,2] [- - 2 - - 3 -  [1 0]] [1,2] [- - 2 - - 3  1 -]
+    [0,1] [- - 3 - - 1 - [-1 0]] [1,4] [- - 3 - - 1 -1 -]
+    >
+    `))
+
+let percussion2 = x => x.gain(30).sound("marimba")
+let percussion2Intro = percussion2(note(`
+    <
+    [-]    [-]    [-] [-]
+    [-]    [-]    [-] [-]
+    [-]    [-] [- -6] [-]
+    [-]    [-] [- -6] [-]
+    >
+    `))
+let percussion2Main = percussion2(note(`
+    <
+    [- -6] [-]
+    >
+    `))
+
+let melody = x => x.sound("gm_lead_3_calliope").gain(0.5).adsr(".02:0.5:0.5:1.5")
+let melodyIntro = melody(note(`
+    <
+    [-  - - - ] [-6 - - - - -6 -  -] [-3 - - - -3 - -  -] [-4 - - -  - - -4 -]
+    [-5 - - - ] [-6 - - - - -6 - -4] [-1 - - -  - 1 - -1] [-4 - - - -2 - -4 -]
+    >
+    `))
+let melodyMain = melody(note(`
+    <
+    [-5 - - - ] [-6 - - - - -6 - -4] [-3 - - - -3 - -3 -1] [-4 - - - -2 - -4  -]
+    [-5 - - - ] [-6 - - - - -6 - -4] [-1 - - - -1 1  - -1] [-4 - - - -2 - -4 -6]
+    >
+    `))
+let melodyKeyChangeUp = melody(note(`
+    <
+    [-5 - - - ] [-6 - - - - -6 - -4] [-3 - - - -3 - -3 -1] [-4 - - - -2 - -4  -]
+    [-5 - - - ] [-6 - - - - -6 - -4] [-1 - - - -1 -  0 -1] [0  - - -  2 -  0 -2]
+    >
+    `))
+let melodyKeyChangeDown = melody(note(`
+    <
+    [-5 - -3 - ] [-6 - - - - -6 - [-4 -2]] [-3 - - - -3 - -3 -1] [-4 - - - -2 - [-4 -5] -6]
+    [-5 - -1 - ] [-6 - - - - -6 - [-4 -2]] [-1 - - - [-1 0] 1  - -1] [0 - - - 2 - [0 -1] -2]
+    >
+    `))
+let melodySolo = melody(note(`
+    <
+    [-5 [-2 -4] - [- -2]] [-6 -3 - - - -5 - [-2 -1]] [1 - -5 - -4 - [-3 -2] -1] [-4 - - - -2 - -4 -6]
+    [-5 - [-3 0] - ] [-6  0 - - - [1 3] - 0] [-1 2 - 0 - -5  - -6] [-4 - - - -2 - -4 -6]
+    [-5 - [-7 -1] - ] [-6 -3 - - - -5 - [-2 -1]] [1 - 2 - -4 - [-3 -2] -1] [-4 - - - -2 - -4 -6]
+    [-5 - [-3 0] - ] [-6  0 - - - [3 4] - 0] [-1 2 - 0 - -5  - -6] [-4 - - -2 -1 - -4 -6]
+    >
+    `))
+let melodyProgression = melody(note(`
+    <
+    [-5 - -3 - ] [-6 - - - - -6 - [-4 -2]] [-3 - - - -3 - -3 -1] [-4 - - - -2 - [-4 -5] -6]
+    [-5 - -1 - ] [-6 - - - - -6 - [-4 -2]] [-1 - - - [-1 0] 1  - -1] [-4 - - - -2 - [-4 -5] -6]
+    >
+    `))
+
+let part1_percussionIntro =
+  arrange(
+    [8, stack(basslineMain)],
+    [8, stack(basslineMain, percussionIntro)],
+    [8, stack(basslineMain, percussionFirst)],
+  ).scale(keyInitial)
+
+let part2_melodyIntro =
+  arrange(
+    [8, stack(basslineMain, percussionFirst, melodyIntro)],
+    [8*2, stack(basslineMain, percussionFirst, melodyMain)],
+  ).scale(keyInitial)
+
+let part3_progression = 
+  arrange(
+    [8*4, stack(basslineMain, percussionProgression, melodyMain)],
+  ).scale(keyInitial)
+
+let part4_solo = 
+  arrange(
+    [8*2, stack(basslineMain, percussionSolo, percussion2Intro)],
+    [8*2, stack(basslineMain, percussionProgression, melodyMain)],
+  ).scale(keyInitial)
+
+let part5_keyChangeUp =
+  arrange(
+    [8, stack(basslineMain, percussionProgression, percussion2Main, melodyMain)],
+    [8, stack(basslineKeyUp, percussionProgression, percussion2Main, melodyKeyChangeUp)],
+  ).scale(keyInitial)
+
+let part6_keyUpProgression =
+  arrange(
+    [8*2, stack(basslineMain, percussionProgression, percussion2Main, melodyMain)],
+    [8*2, stack(melodySolo)],
+    [8*2, stack(basslineMain, percussionProgression, percussion2Main, melodyProgression)],
+  ).scale(keyUp)
+
+let part7_keyChangeDown =
+  arrange(
+    [8, stack(basslineMain, percussionProgression, percussion2Main, melodyProgression)],
+    [8, stack(basslineKeyDown, percussionProgression, percussion2Main, melodyKeyChangeDown)],
+  ).scale(keyUp)
+
+let part8_fadeOut =
+  arrange(
+    [8*2, stack(basslineMain, percussionProgression, percussion2Main, melodyProgression)],
+    [8, stack(basslineMain, percussionProgression, percussion2Main, melodyMain)],
+    [8, stack(basslineMain, percussionProgression, percussion2Main, melodyMain.gain(0.25))],
+    [8, stack(basslineMain, percussionProgression, percussion2Main, melodyMain.gain(0.15))],
+    [8, stack(basslineMain.gain(0.3), percussionProgression, percussion2Main.gain(10))],
+    [2, stack(percussionProgression, percussion2Main.gain(2))],
+  ).scale(keyInitial)
+
+arrange(
+  [8*3, part1_percussionIntro],
+  [8*3, part2_melodyIntro],
+  [8*4, part3_progression],
+  [8*4, part4_solo],
+  [8*2, part5_keyChangeUp],
+  [8*6, part6_keyUpProgression],
+  [8*2, part7_keyChangeDown],
+  [8*6+2, part8_fadeOut],
+  
+  [4, silence]
+)
+
