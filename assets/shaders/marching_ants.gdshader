@@ -59,7 +59,7 @@ bool on_edge(sampler2D this_texture, vec2 this_uv, vec2 this_tex_pixel_size, flo
 
 	}
 
-	return (maxa - mina > 0.0);
+	return maxa - mina > 0.0 && sample_a > 0.0;
 
 }
 
