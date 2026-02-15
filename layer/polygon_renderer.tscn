@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://denwxe25gb6hk"]
+
+[ext_resource type="Script" uid="uid://dx4xoedogjuu2" path="res://layer/polygon_renderer.gd" id="1_uws03"]
+[ext_resource type="Material" uid="uid://cwrhb5ax57ywe" path="res://layer/layer_result_texture_mat.tres" id="2_485lm"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_uws03"]
+viewport_path = NodePath("SubViewport")
+
+[node name="PolygonRenderer" type="Node2D" unique_id=839204198]
+script = ExtResource("1_uws03")
+
+[node name="RenderTexture" type="TextureRect" parent="." unique_id=620990433]
+unique_name_in_owner = true
+material = ExtResource("2_485lm")
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("ViewportTexture_uws03")
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1599811322]
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="ColorRect" parent="SubViewport" unique_id=211561656]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="ResultRenders" type="Node2D" parent="SubViewport" unique_id=505857717]
+unique_name_in_owner = true
+
+[node name="ResultSourceRender" type="Polygon2D" parent="SubViewport/ResultRenders" unique_id=6093484]
+unique_name_in_owner = true

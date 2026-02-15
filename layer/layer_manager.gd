@@ -5,8 +5,6 @@ class_name LayerManager
 @onready var unlock_layer: AudioStreamPlayer = %UnlockLayerSound
 @onready var cant_unlock_layer: AudioStreamPlayer = %CantUnlockSound
 
-@onready var result_source_render: Polygon2D = %LayerResultSourceRender.duplicate()
-
 @export
 var player_to_track: Character
 
@@ -129,7 +127,7 @@ func update_result(delta: float) -> void:
 	PolygonUtil.replace_polygon_nodes(%LayerResult, collision_result.shapes, CollisionPolygon2D.new(), true)
 
 	# Construct final render (Polygon2Ds)
-	PolygonUtil.replace_polygon_nodes(%LayerResultRenders, render_result.shapes, result_source_render)
+	%LayerResultRenderer.render_polygons(render_result.shapes)
 	
 
 func _process(_delta: float) -> void:
