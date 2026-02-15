@@ -8,7 +8,8 @@ size = Vector2(100, 160)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ls8a"]
 shader = ExtResource("2_7epht")
-shader_parameter/frequency = 40.0
+shader_parameter/frequency = 0.5
+shader_parameter/frequency_offset = 0.1
 shader_parameter/thickness = 10.0
 shader_parameter/spacing = 50.0
 shader_parameter/fade_dist_start = 40.0

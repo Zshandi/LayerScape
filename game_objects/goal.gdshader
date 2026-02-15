@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
-uniform float frequency = 40.0;
+uniform float frequency = 1.0;
+uniform float frequency_offset = 0.0;
 uniform float thickness = 10.0;
 uniform float spacing = 50.0;
 
@@ -16,17 +17,19 @@ void vertex() {
 }
 
 float sample(vec2 uv) {
+	float total_repeat_distance = thickness + spacing;
+	
 	float relative_height = 1.0 - uv.y;
 	float relative_width = 2.0 * (uv.x > 0.5 ? uv.x - 0.5 : 0.5 - uv.x);
 	float relative_size = max(relative_height, relative_width);
 	
 	float dist = original_distance / relative_size;
 	
-	float dist_time = dist - TIME * frequency;
+	float dist_time = dist - ((TIME + frequency_offset) * frequency * total_repeat_distance);
 
 	float relative_dist = dist_time - original_distance;
 
-	float modulo_dist = mod(relative_dist, thickness + spacing);
+	float modulo_dist = mod(relative_dist, total_repeat_distance);
 
 	if (modulo_dist <= thickness) {
 		float result = modulo_dist / thickness;
