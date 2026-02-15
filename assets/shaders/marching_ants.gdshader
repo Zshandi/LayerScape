@@ -59,8 +59,6 @@ bool on_edge(sampler2D this_texture, vec2 this_uv, vec2 this_tex_pixel_size, flo
 
 void fragment()
 {
-	// !on_edge(TEXTURE, UV, TEXTURE_PIXEL_SIZE, outline_width
-
 	// if this pixel is black or not on the edge of a shape, make it trasnparent
 	if (COLOR == vec4(vec3(0.0), 1.0))
 	{
