@@ -59,33 +59,38 @@ bool on_edge(sampler2D this_texture, vec2 this_uv, vec2 this_tex_pixel_size, flo
 
 void fragment()
 {
+	// !on_edge(TEXTURE, UV, TEXTURE_PIXEL_SIZE, outline_width
+
 	// if this pixel is black or not on the edge of a shape, make it trasnparent
-	if (COLOR == vec4(vec3(0.0), 1.0) || !on_edge(TEXTURE, UV, TEXTURE_PIXEL_SIZE, outline_width))
+	if (COLOR == vec4(vec3(0.0), 1.0))
 	{
 		// Black is transparent now
 		COLOR = vec4(0.0);
 	}
 
-	// // scale the uv
-	// vec2 tiled_uv = UV * scale_multiplier + scroll_speed * TIME;
+	// scale the uv
+	vec2 tiled_uv = UV * scale_multiplier + scroll_speed * TIME;
+	// vec2 world_uv = SCREEN_UV * vec2(textureSize(scrolling_texture, 0)) / scale_multiplier + scroll_speed * TIME;
+	// vec2 tiled_uv = world_uv / scale_multiplier + scroll_speed * TIME;
 
-	// // rotate the UV
-	// float angle = radians(rotation_degrees);
-	// vec2 centered_uv = tiled_uv - 0.5;
-	// float cos_angle = cos(angle);
-	// float sin_angle = sin(angle);
-	// vec2 rotated_uv = vec2(
-	// 	centered_uv.x * cos_angle - centered_uv.y * sin_angle,
-	// 	centered_uv.x * sin_angle + centered_uv.y * cos_angle
-	// ) + 0.5;
+	// rotate the UV
+	float angle = radians(rotation_degrees);
+	vec2 centered_uv = tiled_uv - 0.5;
+	float cos_angle = cos(angle);
+	float sin_angle = sin(angle);
+	vec2 rotated_uv = vec2(
+		centered_uv.x * cos_angle - centered_uv.y * sin_angle,
+		centered_uv.x * sin_angle + centered_uv.y * cos_angle
+	) + 0.5;
 
-	// if (!on_edge(scrolling_texture, rotated_uv, TEXTURE_PIXEL_SIZE))
-	// {
-	// 	COLOR = vec4(0.0);
-	// }
-	// else 
-	// {
-	// 	vec4 tex = texture(scrolling_texture, rotated_uv);
-	// 	COLOR = vec4(modulate.rgb, tex.a * modulate.a);
-	// }
+	if (on_edge(TEXTURE, UV, TEXTURE_PIXEL_SIZE, outline_width))
+	{
+		vec4 tex = texture(scrolling_texture, rotated_uv);
+		COLOR = vec4(modulate.rgb, tex.a * modulate.a);
+	}
+	else
+	{
+		COLOR = vec4(0.0);
+	}
+
 }
