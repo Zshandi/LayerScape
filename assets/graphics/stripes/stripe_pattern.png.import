@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://losfn3yhfrjh"
-path="res://.godot/imported/stripe_raw.svg-5d9d3fb562bfc0489b738834a8b525f0.ctex"
+uid="uid://ce0po3qe1x3ur"
+path="res://.godot/imported/stripe_pattern.png-6c43c39af88e296c721c60185fb3b5c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/stripe_raw.svg"
-dest_files=["res://.godot/imported/stripe_raw.svg-5d9d3fb562bfc0489b738834a8b525f0.ctex"]
+source_file="res://assets/graphics/stripes/stripe_pattern.png"
+dest_files=["res://.godot/imported/stripe_pattern.png-6c43c39af88e296c721c60185fb3b5c3.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
