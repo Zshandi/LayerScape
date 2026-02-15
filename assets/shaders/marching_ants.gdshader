@@ -1,5 +1,11 @@
 shader_type canvas_item;
 
+render_mode world_vertex_coords;  // Defers the model-view transformation until after the vertex shader code runs
+varying vec2 world_position;  // Use vec3 instead for 3d shaders
+void vertex() {
+    world_position = VERTEX;
+}
+
 uniform sampler2D scrolling_texture : repeat_enable;
 uniform vec4 modulate : source_color;
 uniform float scale_multiplier = 4.0;
@@ -67,7 +73,7 @@ void fragment()
 	}
 
 	// scale the uv
-	vec2 tiled_uv = UV * scale_multiplier + scroll_speed * TIME;
+	vec2 tiled_uv = world_position * scale_multiplier + scroll_speed * TIME;
 	// vec2 world_uv = SCREEN_UV * vec2(textureSize(scrolling_texture, 0)) / scale_multiplier + scroll_speed * TIME;
 	// vec2 tiled_uv = world_uv / scale_multiplier + scroll_speed * TIME;
 

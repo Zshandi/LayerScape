@@ -29,7 +29,7 @@ material = SubResource("ShaderMaterial_6ls8a")
 offset_left = -50.0
 offset_top = -160.0
 offset_right = 50.0
-color = Color(0.38945705, 0.9999998, 0.40119493, 1)
+color = Color(0.3882353, 1, 0.4, 1)
 metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

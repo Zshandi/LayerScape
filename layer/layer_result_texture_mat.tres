@@ -7,7 +7,7 @@
 shader = ExtResource("1_x2ftc")
 shader_parameter/scrolling_texture = ExtResource("2_nnu4a")
 shader_parameter/modulate = Color(1, 1, 1, 0.53333336)
-shader_parameter/scale_multiplier = 5.425
+shader_parameter/scale_multiplier = 0.004
 shader_parameter/rotation_degrees = 0.0
 shader_parameter/scroll_speed = Vector2(1, 2)
-shader_parameter/outline_width = 15.09
+shader_parameter/outline_width = 10.0
