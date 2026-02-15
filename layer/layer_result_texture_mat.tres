@@ -4,3 +4,8 @@
 
 [resource]
 shader = ExtResource("1_x2ftc")
+shader_parameter/modulate = Color(0, 0, 0, 1)
+shader_parameter/scale_multiplier = 4.0
+shader_parameter/rotation_degrees = 0.0
+shader_parameter/scroll_speed = Vector2(0.1, 0.2)
+shader_parameter/outline_width = 45.18
