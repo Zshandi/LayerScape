@@ -128,6 +128,7 @@ func update_result(delta: float) -> void:
 
 	# Construct final render (Polygon2Ds)
 	%LayerResultRenderer.render_polygons(render_result.shapes)
+	%LayerResultRenderer2.render_polygons(render_result.shapes)
 	
 
 func _process(_delta: float) -> void:
