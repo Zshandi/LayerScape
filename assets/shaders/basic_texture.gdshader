@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D input_texture : repeat_enable;
 uniform float texture_scale = 1.0;
+uniform vec4 texture_color : source_color = vec4(1.0);
 
 
 render_mode world_vertex_coords;  // Defers the model-view transformation until after the vertex shader code runs
@@ -18,7 +19,7 @@ void fragment() {
 	}
 	else
 	{
-		COLOR = texture(input_texture, world_position/texture_scale);
+		COLOR = texture(input_texture, world_position/texture_scale) * texture_color;
 	}
 }
 

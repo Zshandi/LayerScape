@@ -23,6 +23,8 @@ func get_contribution_sign() -> int:
 
 var overall_contribution_sign: int = get_contribution_sign()
 
+var polygon_renderer: PolygonRenderer
+
 var polygon_layer: PolygonLayer = PolygonLayer.new()
 var polygon_layer_result: PolygonLayer = PolygonLayer.new()
 
@@ -74,6 +76,11 @@ func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
 	update_color()
 	queue_redraw()
+	# Setup alternate rendering
+	polygon_renderer = PolygonRenderer.add_renderer(self )
+	for child in get_children():
+		if child is Polygon2D:
+			child.hide()
 
 func _global_polygon(polygon: Polygon2D) -> PackedVector2Array:
 	var points: PackedVector2Array = []

@@ -11,6 +11,14 @@ var player_to_track: Character
 @export
 var main_hud: LevelMainHud
 
+var layer_materials: Array[Material] = \
+[
+	preload("res://layer/layer_materials/material1.tres"),
+	preload("res://layer/layer_materials/material2.tres"),
+	preload("res://layer/layer_materials/material3.tres"),
+	preload("res://layer/layer_materials/material4.tres"),
+]
+
 var layers: Array[Layer]
 
 var result_colliders: Array[CollisionPolygon2D]
@@ -51,8 +59,6 @@ func _ready() -> void:
 	# TODO: Allow overriding this...
 	MusicPlayer.play_mysterious_cave()
 
-	#update_result(get_physics_process_delta_time())
-
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		# 1 to 9 are in sequence, these select the layers
@@ -89,8 +95,14 @@ func update_result(delta: float) -> void:
 	player_to_track.get_next_velocity(delta)
 
 	# Update the layer polygons
+	var layer_idx = 0
 	for layer in layers:
 		layer.update_shapes()
+		# Setup layer rendering
+		layer.polygon_renderer.render_polygons(layer.polygon_layer.shapes)
+		layer.polygon_renderer.render_material = layer_materials[layer_idx % len(layer_materials)]
+		layer.polygon_renderer.global_position = Vector2.ZERO
+		layer_idx += 1
 
 	# Calculate result polygons by combining layers
 	var render_result := PolygonLayer.new()

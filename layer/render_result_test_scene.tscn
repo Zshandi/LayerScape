@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://baocfaigpiyp5"]
 
 [ext_resource type="Texture2D" uid="uid://cqhkd1gvb8rr" path="res://assets/graphics/background-mountains-clipped.png" id="1_ap10m"]
-[ext_resource type="Material" uid="uid://cwrhb5ax57ywe" path="res://layer/layer_result_texture_mat.tres" id="2_ap10m"]
+[ext_resource type="Material" uid="uid://c5knykadoy16w" path="res://layer/layer_materials/material4.tres" id="2_ap10m"]
 [ext_resource type="Texture2D" uid="uid://cif2xngbqkhgx" path="res://assets/graphics/render_result_test_texture.png" id="3_ttmta"]
 
 [node name="RenderResultTestScene" type="Node2D" unique_id=1156032473]

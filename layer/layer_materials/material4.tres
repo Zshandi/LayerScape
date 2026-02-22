@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c5knykadoy16w"]
+
+[ext_resource type="Shader" uid="uid://dg3iffvb4ul85" path="res://assets/shaders/basic_texture.gdshader" id="1_82d1s"]
+[ext_resource type="Texture2D" uid="uid://ce0po3qe1x3ur" path="res://assets/graphics/stripes/stripe_pattern.png" id="2_fnbp8"]
+
+[resource]
+shader = ExtResource("1_82d1s")
+shader_parameter/input_texture = ExtResource("2_fnbp8")
+shader_parameter/texture_scale = 300.0
+shader_parameter/texture_color = Color(0.9267434, 0.63114315, 1.1551381e-06, 0.4)
