@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dclgdefe8wio5"]
+
+[ext_resource type="Shader" uid="uid://dk0f5cdeep3et" path="res://assets/shaders/marching_ants.gdshader" id="1_7dbpi"]
+[ext_resource type="Texture2D" uid="uid://ce0po3qe1x3ur" path="res://assets/graphics/stripes/stripe_pattern.png" id="2_lj6cg"]
+
+[resource]
+shader = ExtResource("1_7dbpi")
+shader_parameter/scrolling_texture = ExtResource("2_lj6cg")
+shader_parameter/modulate = Color(1, 1, 1, 0.53333336)
+shader_parameter/scale_multiplier = 0.004
+shader_parameter/rotation_degrees = 0.0
+shader_parameter/scroll_speed = Vector2(1, 2)
+shader_parameter/outline_width = 10.0

@@ -2,16 +2,9 @@
 
 [ext_resource type="Script" uid="uid://da8udp4q1hca2" path="res://layer/layer_manager.gd" id="1_5s5m0"]
 [ext_resource type="PackedScene" uid="uid://denwxe25gb6hk" path="res://layer/polygon_renderer.tscn" id="2_yu3p7"]
-[ext_resource type="Shader" uid="uid://dg3iffvb4ul85" path="res://assets/shaders/basic_texture.gdshader" id="3_glmfq"]
 [ext_resource type="AudioStream" uid="uid://b0uoxen5r4tjn" path="res://assets/sfx/freesound_community-wrong-47985.mp3" id="3_uortr"]
-[ext_resource type="Material" uid="uid://cwrhb5ax57ywe" path="res://layer/layer_result_texture_mat.tres" id="3_y223t"]
+[ext_resource type="Material" uid="uid://dei1m8r2g1mbl" path="res://layer/layer_materials/ground.tres" id="3_y223t"]
 [ext_resource type="AudioStream" uid="uid://db0byybk3dy4k" path="res://assets/sfx/UIClick_Book Tap UI Confirm_RogueWaves_KawaiiUI.wav" id="4_h3t2q"]
-[ext_resource type="Texture2D" uid="uid://bucfsnapy4ew1" path="res://assets/graphics/ground_texture_1.png" id="4_u2y17"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_glmfq"]
-shader = ExtResource("3_glmfq")
-shader_parameter/input_texture = ExtResource("4_u2y17")
-shader_parameter/texture_scale = 500.0
 
 [node name="LayerManager" type="CanvasLayer" unique_id=52178726]
 script = ExtResource("1_5s5m0")
@@ -23,11 +16,7 @@ unique_name_in_owner = true
 polygon = PackedVector2Array(8, 0, 8, 8, 0, 8, 0, 0)
 metadata/_custom_type_script = "uid://b6lkky6ocw7he"
 
-[node name="LayerResultRenderer2" parent="LayerResult" unique_id=916725132 instance=ExtResource("2_yu3p7")]
-unique_name_in_owner = true
-render_material = SubResource("ShaderMaterial_glmfq")
-
-[node name="LayerResultRenderer" parent="LayerResult" unique_id=839204198 instance=ExtResource("2_yu3p7")]
+[node name="LayerResultRenderer" parent="LayerResult" unique_id=916725132 instance=ExtResource("2_yu3p7")]
 unique_name_in_owner = true
 render_material = ExtResource("3_y223t")
 

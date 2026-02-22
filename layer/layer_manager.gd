@@ -19,6 +19,8 @@ var layer_materials: Array[Material] = \
 	preload("res://layer/layer_materials/material4.tres"),
 ]
 
+var layer_selection_renderers: Array[PolygonRenderer] = []
+
 var layers: Array[Layer]
 
 var result_colliders: Array[CollisionPolygon2D]
@@ -46,10 +48,19 @@ var selected_layer_index: int = 0:
 
 
 func _ready() -> void:
+	var layer_idx = 0
 	for child in get_children():
 		if child is Layer:
 			layers.push_back(child)
 			child.player_to_track = player_to_track
+			# Setup layer materials
+			child.polygon_renderer.render_material = layer_materials[layer_idx % len(layer_materials)]
+			# Setup layer selection
+			var selection_renderer := PolygonRenderer.add_renderer(self )
+			selection_renderer.render_material = preload("res://layer/layer_materials/marching_ants.tres")
+			layer_selection_renderers.push_back(selection_renderer)
+			
+			layer_idx += 1
 	
 	if len(layers) <= 0:
 		layers.push_back(Layer.new())
@@ -95,20 +106,23 @@ func update_result(delta: float) -> void:
 	player_to_track.get_next_velocity(delta)
 
 	# Update the layer polygons
-	var layer_idx = 0
 	for layer in layers:
 		layer.update_shapes()
-		# Setup layer rendering
-		layer.polygon_renderer.render_polygons(layer.polygon_layer.shapes)
-		layer.polygon_renderer.render_material = layer_materials[layer_idx % len(layer_materials)]
-		layer.polygon_renderer.global_position = Vector2.ZERO
-		layer_idx += 1
 
 	# Calculate result polygons by combining layers
+	var layer_idx = 0
 	var render_result := PolygonLayer.new()
 	for layer in layers:
 		render_result = render_result.apply_to(layer.polygon_layer)
 		layer.polygon_layer_result = render_result.duplicate()
+
+		layer_selection_renderers[layer_idx].render_polygons(layer.polygon_layer.shapes)
+		if (layer.locked):
+			layer_selection_renderers[layer_idx].hide()
+		else:
+			layer_selection_renderers[layer_idx].show()
+
+		layer_idx += 1
 
 	# Strategy for ensuring the player appropriately passes through layers when unlocked:
 	#  1. For each layer, determine if it adds to or takes away from the final level shape
@@ -140,7 +154,6 @@ func update_result(delta: float) -> void:
 
 	# Construct final render (Polygon2Ds)
 	%LayerResultRenderer.render_polygons(render_result.shapes)
-	%LayerResultRenderer2.render_polygons(render_result.shapes)
 	
 
 func _process(_delta: float) -> void:

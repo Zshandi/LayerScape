@@ -99,6 +99,10 @@ func update_shapes() -> void:
 	for child in get_children():
 		if child is Polygon2D:
 			polygon_layer.shapes.push_back(_global_polygon(child))
+	
+	# Layer rendering
+	polygon_renderer.render_polygons(polygon_layer.shapes)
+	polygon_renderer.global_position = Vector2.ZERO
 
 func get_game_objects() -> Array[GameObject]:
 	var result: Array[GameObject] = []

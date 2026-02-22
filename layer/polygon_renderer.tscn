@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://denwxe25gb6hk"]
 
 [ext_resource type="Script" uid="uid://dx4xoedogjuu2" path="res://layer/polygon_renderer.gd" id="1_uws03"]
-[ext_resource type="Material" uid="uid://cwrhb5ax57ywe" path="res://layer/layer_result_texture_mat.tres" id="2_485lm"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_uws03"]
 viewport_path = NodePath("SubViewport")
@@ -11,7 +10,6 @@ script = ExtResource("1_uws03")
 
 [node name="RenderTexture" type="TextureRect" parent="." unique_id=620990433]
 unique_name_in_owner = true
-material = ExtResource("2_485lm")
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = SubResource("ViewportTexture_uws03")
