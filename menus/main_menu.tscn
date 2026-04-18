@@ -37,6 +37,7 @@ layout_mode = 2
 theme = ExtResource("2_ij7vn")
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer/MenuButtonsContainer" unique_id=621424240]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_ij7vn")
 text = "Start"

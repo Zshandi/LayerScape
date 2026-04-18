@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+func _ready() -> void:
+	%StartButton.grab_focus()
+
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
