@@ -19,7 +19,8 @@ var layer_materials: Array[Material] = \
 	preload("res://layer/layer_materials/material4.tres"),
 ]
 
-var layer_selection_renderers: Array[PolygonRenderer] = []
+var layer_selection_renderer: PolygonRenderer
+
 
 var layers: Array[Layer]
 
@@ -56,9 +57,9 @@ func _ready() -> void:
 			# Setup layer materials
 			child.polygon_renderer.render_material = layer_materials[layer_idx % len(layer_materials)]
 			# Setup layer selection
-			var selection_renderer := PolygonRenderer.add_renderer(self )
-			selection_renderer.render_material = preload("res://layer/layer_materials/marching_ants.tres")
-			layer_selection_renderers.push_back(selection_renderer)
+			# var selection_renderer := PolygonRenderer.add_renderer(self )
+			# selection_renderer.render_material = preload("res://layer/layer_materials/marching_ants.tres")
+			#layer_selection_renderers.push_back(selection_renderer)
 			
 			layer_idx += 1
 	
@@ -66,6 +67,9 @@ func _ready() -> void:
 		layers.push_back(Layer.new())
 	layers.reverse()
 	layers[selected_layer_index].selected = true
+
+	layer_selection_renderer = PolygonRenderer.add_renderer(self )
+	layer_selection_renderer.render_material = preload("res://layer/layer_materials/marching_ants.tres")
 
 	# TODO: Allow overriding this...
 	MusicPlayer.play_mysterious_cave()
@@ -110,19 +114,19 @@ func update_result(delta: float) -> void:
 		layer.update_shapes()
 
 	# Calculate result polygons by combining layers
-	var layer_idx = 0
 	var render_result := PolygonLayer.new()
+	# This is for rendering the selection outline
+	var selection_render_result := PolygonLayer.new()
 	for layer in layers:
 		render_result = render_result.apply_to(layer.polygon_layer)
 		layer.polygon_layer_result = render_result.duplicate()
 
-		layer_selection_renderers[layer_idx].render_polygons(layer.polygon_layer.shapes)
-		if (layer.locked):
-			layer_selection_renderers[layer_idx].hide()
-		else:
-			layer_selection_renderers[layer_idx].show()
-
-		layer_idx += 1
+		if (not layer.locked):
+			var layer_selection_polygon := layer.polygon_layer.duplicate()
+			layer_selection_polygon.blend_operation = Geometry2D.OPERATION_UNION
+			selection_render_result = selection_render_result.apply_to(layer_selection_polygon)
+	
+	layer_selection_renderer.render_polygons(selection_render_result.shapes)
 
 	# Strategy for ensuring the player appropriately passes through layers when unlocked:
 	#  1. For each layer, determine if it adds to or takes away from the final level shape
