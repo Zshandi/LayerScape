@@ -26,6 +26,7 @@ main_hud = NodePath("../LevelMainHud")
 script = ExtResource("5_nxbu0")
 
 [node name="Polygon2D" parent="LevelLayers/Layer1" unique_id=2046395115 instance=ExtResource("6_oc1a8")]
+texture = null
 
 [node name="Goal" parent="LevelLayers/Layer1" unique_id=770949225 instance=ExtResource("7_rvv6r")]
 position = Vector2(1792, 760)
@@ -39,5 +40,6 @@ goal_node = NodePath("../../LevelLayers/Layer1/Goal")
 [node name="LevelForeground" parent="." unique_id=929823706 instance=ExtResource("9_3htpd")]
 
 [node name="LevelMainHud" parent="." unique_id=1211863054 instance=ExtResource("10_047je")]
+layer = 100
 
 [connection signal="reached_goal" from="LevelContents/Character" to="." method="_on_character_reached_goal"]

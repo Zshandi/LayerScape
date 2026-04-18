@@ -29,10 +29,12 @@ theme_override_constants/separation = 50
 
 [node name="MenuTitle" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2133446239]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("1_8gy84")
 text = "Main Menu"
 
 [node name="MenuButtonsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=2109451291]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = ExtResource("2_ij7vn")
 
