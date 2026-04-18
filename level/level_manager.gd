@@ -19,7 +19,6 @@ func _ready() -> void:
 	var current_scene_path := get_tree().current_scene.scene_file_path
 	var current_scene_file := current_scene_path.get_file()
 	# When we load, just load the first level
-	# TODO: Move this to the main menu button
 	if current_level == -1:
 		if not (get_tree().current_scene is Level):
 			if current_scene_file == "main.tscn":
@@ -49,7 +48,7 @@ func load_level(idx: int) -> void:
 
 	level_node = levels[current_level].scene.instantiate()
 	get_tree().change_scene_to_node.call_deferred(level_node)
-	
+
 func reload_level() -> void:
 	level_node = null
 	get_tree().reload_current_scene()
@@ -62,3 +61,6 @@ func _on_level_complete() -> void:
 		reload_level()
 	else:
 		load_level(current_level + 1)
+
+func load_main_menu():
+	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
