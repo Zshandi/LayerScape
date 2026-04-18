@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cnvxb2w6imgup" path="res://layer/layer_hud.tscn" id="1_c3e6f"]
 [ext_resource type="Script" uid="uid://cl7l3i4pcjiud" path="res://level/level_main_hud.gd" id="1_oh7lj"]
 [ext_resource type="Script" uid="uid://c6bf8q07m81ss" path="res://tools/debug_polygons.gd" id="2_oh7lj"]
+[ext_resource type="PackedScene" uid="uid://b8t2k33vwm1er" path="res://menus/pause_menu.tscn" id="4_ga8eg"]
 
 [node name="LevelMainHud" type="CanvasLayer" unique_id=1211863054]
 script = ExtResource("1_oh7lj")
@@ -14,3 +15,6 @@ layer = 50
 [node name="DebugPolygons" type="Node2D" parent="." unique_id=982533439]
 script = ExtResource("2_oh7lj")
 metadata/_custom_type_script = "uid://c6bf8q07m81ss"
+
+[node name="PauseMenu" parent="." unique_id=946261841 instance=ExtResource("4_ga8eg")]
+layer = 200
