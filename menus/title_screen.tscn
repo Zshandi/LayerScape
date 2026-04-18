@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dudxbcq0r07k4"]
+
+[ext_resource type="Script" uid="uid://cush3iu4kpqih" path="res://menus/title_screen.gd" id="1_dpr3f"]
+[ext_resource type="Texture2D" uid="uid://7vclweb362px" path="res://assets/screenshot-cover.png" id="2_vw2mf"]
+[ext_resource type="Theme" uid="uid://dlyu8bx5p5ack" path="res://menus/menu_theme.tres" id="3_dpr3f"]
+
+[node name="TitleScreen" type="CanvasLayer" unique_id=644472507]
+script = ExtResource("1_dpr3f")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1523854890]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vw2mf")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=598130988]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer" unique_id=1726716571]
+layout_mode = 2
+theme = ExtResource("3_dpr3f")
+text = "Press any key to continue"
