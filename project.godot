@@ -21,6 +21,7 @@ config/canvas_textures/default_texture_filter=0
 
 LevelManager="*uid://biucudf4cgbpg"
 MusicPlayer="*uid://45kyyyt8wwmn"
+Options="*uid://cu6b337h6uhaf"
 
 [display]
 

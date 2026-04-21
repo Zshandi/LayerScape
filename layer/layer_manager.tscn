@@ -25,12 +25,15 @@ render_material = ExtResource("3_y223t")
 [node name="CantUnlockSound" type="AudioStreamPlayer" parent="LayerSoundFX" unique_id=960084136]
 unique_name_in_owner = true
 stream = ExtResource("3_uortr")
+bus = &"Sound"
 
 [node name="LockLayerSound" type="AudioStreamPlayer" parent="LayerSoundFX" unique_id=1431579673]
 unique_name_in_owner = true
 stream = ExtResource("4_h3t2q")
 pitch_scale = 0.53
+bus = &"Sound"
 
 [node name="UnlockLayerSound" type="AudioStreamPlayer" parent="LayerSoundFX" unique_id=2055207871]
 unique_name_in_owner = true
 stream = ExtResource("4_h3t2q")
+bus = &"Sound"

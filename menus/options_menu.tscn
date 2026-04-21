@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://bbngi2tsy082p"]
+
+[ext_resource type="Script" uid="uid://ca01b5qo37n6h" path="res://menus/options_menu.gd" id="1_cet7k"]
+[ext_resource type="Theme" uid="uid://rj2vgsv2wo6w" path="res://menus/menu_title_font.tres" id="1_wyyb7"]
+[ext_resource type="Theme" uid="uid://dlyu8bx5p5ack" path="res://menus/menu_theme.tres" id="2_cet7k"]
+[ext_resource type="AudioStream" uid="uid://cxaiklkrhnfl3" path="res://assets/music/mysterious_cave.wav" id="4_1vpws"]
+[ext_resource type="AudioStream" uid="uid://cyaoghx1333y5" path="res://assets/sfx/TOONVox_Voice Synth UI E_RogueWaves_KawaiiUI.wav" id="5_sg76y"]
+
+[node name="OptionsMenuContainer" type="CenterContainer" unique_id=1041693007]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cet7k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1153750704]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="MenuTitle" type="Label" parent="VBoxContainer" unique_id=64522858]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_wyyb7")
+text = "Options"
+
+[node name="MenuButtonsContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=437715527]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme = ExtResource("2_cet7k")
+
+[node name="BackButton" type="Button" parent="VBoxContainer/MenuButtonsContainer" unique_id=343200078]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_cet7k")
+text = "Back"
+
+[node name="FullScreenButton" type="Button" parent="VBoxContainer/MenuButtonsContainer" unique_id=1885141659]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_cet7k")
+toggle_mode = true
+text = "Enter Full Screen"
+
+[node name="MusicVolumeContainer" type="MarginContainer" parent="VBoxContainer/MenuButtonsContainer" unique_id=1584930265]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MenuButtonsContainer/MusicVolumeContainer" unique_id=1849724358]
+layout_mode = 2
+color = Color(0, 0, 0, 0.43137255)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MenuButtonsContainer/MusicVolumeContainer" unique_id=1921013011]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MenuButtonsContainer/MusicVolumeContainer/MarginContainer" unique_id=1938406944]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VolumeLabel" type="Label" parent="VBoxContainer/MenuButtonsContainer/MusicVolumeContainer/MarginContainer/HBoxContainer" unique_id=375492657]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+text = "Music"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="VBoxContainer/MenuButtonsContainer/MusicVolumeContainer/MarginContainer/HBoxContainer" unique_id=1354534389]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Music" type="AudioStreamPlayer" parent="VBoxContainer/MenuButtonsContainer/MusicVolumeContainer" unique_id=636044643]
+unique_name_in_owner = true
+stream = ExtResource("4_1vpws")
+bus = &"Music"
+
+[node name="SoundVolumeContainer" type="MarginContainer" parent="VBoxContainer/MenuButtonsContainer" unique_id=1958078201]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MenuButtonsContainer/SoundVolumeContainer" unique_id=1095095437]
+layout_mode = 2
+color = Color(0, 0, 0, 0.43137255)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MenuButtonsContainer/SoundVolumeContainer" unique_id=726328824]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MenuButtonsContainer/SoundVolumeContainer/MarginContainer" unique_id=2112895441]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VolumeLabel" type="Label" parent="VBoxContainer/MenuButtonsContainer/SoundVolumeContainer/MarginContainer/HBoxContainer" unique_id=564834264]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+text = "Sound"
+
+[node name="SoundVolumeSlider" type="HSlider" parent="VBoxContainer/MenuButtonsContainer/SoundVolumeContainer/MarginContainer/HBoxContainer" unique_id=263877413]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Sound" type="AudioStreamPlayer" parent="VBoxContainer/MenuButtonsContainer/SoundVolumeContainer" unique_id=1638568217]
+unique_name_in_owner = true
+stream = ExtResource("5_sg76y")
+bus = &"Sound"
+
+[node name="EraseSaveDataContainer" type="VBoxContainer" parent="VBoxContainer/MenuButtonsContainer" unique_id=124064023]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EraseBaseContainer" type="VBoxContainer" parent="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer" unique_id=1333878378]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EraseSaveDataButton" type="Button" parent="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer/EraseBaseContainer" unique_id=1488977696]
+layout_mode = 2
+theme = ExtResource("2_cet7k")
+text = "Erase Save Data"
+
+[node name="SpaceHolder" type="Button" parent="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer/EraseBaseContainer" unique_id=1605626339]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_cet7k")
+text = "[Don't look at me!]"
+
+[node name="EraseConfirmContainer" type="VBoxContainer" parent="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer" unique_id=1170335263]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EraseCancelButton" type="Button" parent="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer/EraseConfirmContainer" unique_id=1309338141]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_cet7k")
+text = "Cancel
+"
+
+[node name="EraseConfirmButton" type="Button" parent="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer/EraseConfirmContainer" unique_id=683969084]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_cet7k")
+text = "Confirm Erase"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtonsContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/MenuButtonsContainer/FullScreenButton" to="." method="_on_full_screen_button_toggled"]
+[connection signal="value_changed" from="VBoxContainer/MenuButtonsContainer/MusicVolumeContainer/MarginContainer/HBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MenuButtonsContainer/SoundVolumeContainer/MarginContainer/HBoxContainer/SoundVolumeSlider" to="." method="_on_sound_volume_slider_value_changed"]
