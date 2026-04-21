@@ -6,6 +6,7 @@ func _ready() -> void:
 func toggle_pause():
 	get_tree().paused = not get_tree().paused
 	visible = get_tree().paused
+	%ResumeButton.grab_focus()
 	if visible:
 		# Note that if we want any animations etc. in pause menu,
 		#  then we need to use global uniform instead (not ideal)
