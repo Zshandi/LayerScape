@@ -40,6 +40,5 @@ goal_node = NodePath("../../LevelLayers/Layer1/Goal")
 [node name="LevelForeground" parent="." unique_id=929823706 instance=ExtResource("9_3htpd")]
 
 [node name="LevelMainHud" parent="." unique_id=1211863054 instance=ExtResource("10_047je")]
-layer = 100
 
 [connection signal="reached_goal" from="LevelContents/Character" to="." method="_on_character_reached_goal"]
