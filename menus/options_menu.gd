@@ -86,11 +86,15 @@ func reload_options() -> void:
 
 
 func open_erase_save_confirmation() -> void:
+	if !is_inside_tree():
+		return
 	%EraseBaseContainer.hide()
 	%EraseConfirmContainer.show()
 	%EraseCancelButton.grab_focus()
 
 func close_erase_save_confirmation() -> void:
+	if !is_inside_tree():
+		return
 	%EraseConfirmContainer.hide()
 	%EraseBaseContainer.show()
 	%EraseSaveDataButton.grab_focus()
