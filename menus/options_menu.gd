@@ -59,6 +59,8 @@ func _on_back_button_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	if not visible:
+		close_erase_save_confirmation()
+
 		if music_volume_tween != null:
 			print_debug("music_volume_tween not null, reset")
 			music_volume_tween.kill()
@@ -81,3 +83,25 @@ func reload_options() -> void:
 		music_volume_slider.set_value_no_signal(Options.music_volume)
 		sound_volume_slider.set_value_no_signal(Options.sound_volume)
 		update_button_texts()
+
+
+func open_erase_save_confirmation() -> void:
+	%EraseBaseContainer.hide()
+	%EraseConfirmContainer.show()
+	%EraseCancelButton.grab_focus()
+
+func close_erase_save_confirmation() -> void:
+	%EraseConfirmContainer.hide()
+	%EraseBaseContainer.show()
+	%EraseSaveDataButton.grab_focus()
+
+func _on_erase_save_data_button_pressed() -> void:
+	open_erase_save_confirmation()
+
+func _on_erase_cancel_button_pressed() -> void:
+	close_erase_save_confirmation()
+
+func _on_erase_confirm_button_pressed() -> void:
+	close_erase_save_confirmation()
+	# TODO: Actually erase save data once we have save data
+	print_debug("ERASE ASVE CONFIRMED")

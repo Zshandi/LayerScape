@@ -121,6 +121,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="EraseSaveDataButton" type="Button" parent="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer/EraseBaseContainer" unique_id=1488977696]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_cet7k")
 text = "Erase Save Data"
@@ -134,17 +135,17 @@ text = "[Don't look at me!]"
 
 [node name="EraseConfirmContainer" type="VBoxContainer" parent="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer" unique_id=1170335263]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="EraseCancelButton" type="Button" parent="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer/EraseConfirmContainer" unique_id=1309338141]
-visible = false
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_cet7k")
 text = "Cancel
 "
 
 [node name="EraseConfirmButton" type="Button" parent="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer/EraseConfirmContainer" unique_id=683969084]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_cet7k")
 text = "Confirm Erase"
@@ -154,3 +155,6 @@ text = "Confirm Erase"
 [connection signal="toggled" from="VBoxContainer/MenuButtonsContainer/FullScreenButton" to="." method="_on_full_screen_button_toggled"]
 [connection signal="value_changed" from="VBoxContainer/MenuButtonsContainer/MusicVolumeContainer/MarginContainer/HBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/MenuButtonsContainer/SoundVolumeContainer/MarginContainer/HBoxContainer/SoundVolumeSlider" to="." method="_on_sound_volume_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer/EraseBaseContainer/EraseSaveDataButton" to="." method="_on_erase_save_data_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer/EraseConfirmContainer/EraseCancelButton" to="." method="_on_erase_cancel_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtonsContainer/EraseSaveDataContainer/EraseConfirmContainer/EraseConfirmButton" to="." method="_on_erase_confirm_button_pressed"]
