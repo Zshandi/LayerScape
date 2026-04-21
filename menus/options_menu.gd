@@ -29,7 +29,6 @@ func _on_music_volume_slider_value_changed(value: float) -> void:
 		%Music.play()
 	
 	if music_volume_tween != null:
-		print_debug("music_volume_tween not null, reset")
 		music_volume_tween.kill()
 		%Music.volume_linear = 1.0
 	music_volume_tween = create_tween()
@@ -37,7 +36,6 @@ func _on_music_volume_slider_value_changed(value: float) -> void:
 	music_volume_tween.tween_property(%Music, "volume_linear", 0, 2)
 	music_volume_tween.tween_callback(
 		func():
-			print_debug("music_volume_tween done, reset")
 			music_volume_tween=null
 			%Music.volume_linear=1.0
 			%Music.stop()
@@ -62,7 +60,6 @@ func _on_visibility_changed() -> void:
 		close_erase_save_confirmation()
 
 		if music_volume_tween != null:
-			print_debug("music_volume_tween not null, reset")
 			music_volume_tween.kill()
 			music_volume_tween = null
 		%Music.stop()
