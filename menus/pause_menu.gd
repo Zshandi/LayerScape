@@ -36,3 +36,12 @@ func _on_restart_button_pressed() -> void:
 
 func _on_resume_button_pressed() -> void:
 	toggle_pause()
+
+func _on_options_button_pressed() -> void:
+	%PauseMenu.hide()
+	%OptionsMenu.show()
+
+func _on_options_menu_closed() -> void:
+	%OptionsMenu.hide()
+	%PauseMenu.show()
+	%OptionsButton.grab_focus()
