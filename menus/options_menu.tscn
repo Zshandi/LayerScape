@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ca01b5qo37n6h" path="res://menus/options_menu.gd" id="1_cet7k"]
 [ext_resource type="Theme" uid="uid://rj2vgsv2wo6w" path="res://menus/menu_title_font.tres" id="1_wyyb7"]
 [ext_resource type="Theme" uid="uid://dlyu8bx5p5ack" path="res://menus/menu_theme.tres" id="2_cet7k"]
-[ext_resource type="AudioStream" uid="uid://cxaiklkrhnfl3" path="res://assets/music/mysterious_cave.wav" id="4_1vpws"]
+[ext_resource type="AudioStream" uid="uid://cd4u3nj0n308l" path="res://assets/music/mysterious_cave.wav" id="4_sg76y"]
 [ext_resource type="AudioStream" uid="uid://cyaoghx1333y5" path="res://assets/sfx/TOONVox_Voice Synth UI E_RogueWaves_KawaiiUI.wav" id="5_sg76y"]
 
 [node name="OptionsMenuContainer" type="CenterContainer" unique_id=1041693007]
@@ -74,7 +74,7 @@ value = 0.5
 
 [node name="Music" type="AudioStreamPlayer" parent="VBoxContainer/MenuButtonsContainer/MusicVolumeContainer" unique_id=636044643]
 unique_name_in_owner = true
-stream = ExtResource("4_1vpws")
+stream = ExtResource("4_sg76y")
 bus = &"Music"
 
 [node name="SoundVolumeContainer" type="MarginContainer" parent="VBoxContainer/MenuButtonsContainer" unique_id=1958078201]
