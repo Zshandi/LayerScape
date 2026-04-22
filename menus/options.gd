@@ -1,6 +1,7 @@
 extends Node
 
 var music_volume_name := "music_volume"
+var music_volume_default := 1.0
 var music_volume: float:
 	get:
 		var index = AudioServer.get_bus_index(&"Music")
@@ -10,6 +11,7 @@ var music_volume: float:
 		AudioServer.set_bus_volume_db(index, linear_to_db(value))
 
 var sound_volume_name := "sound_volume"
+var sound_volume_default := 1.0
 var sound_volume: float:
 	get:
 		var index = AudioServer.get_bus_index(&"Sound")
@@ -21,6 +23,7 @@ var sound_volume: float:
 var last_windowed_mode := DisplayServer.WINDOW_MODE_WINDOWED
 
 var is_full_screen_name := "is_full_screen"
+var is_full_screen_default := false
 var is_full_screen: bool:
 	get:
 		return DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
@@ -33,6 +36,7 @@ var is_full_screen: bool:
 			DisplayServer.window_set_mode(last_windowed_mode)
 
 func _ready() -> void:
+	reset_to_defaults()
 	read_options()
 
 func write_options() -> void:
@@ -58,9 +62,14 @@ func read_options() -> void:
 	
 	print_debug("loading options: ", data)
 
-	is_full_screen = _get_option(data, is_full_screen_name, is_full_screen)
-	music_volume = _get_option(data, music_volume_name, music_volume)
-	sound_volume = _get_option(data, sound_volume_name, sound_volume)
+	is_full_screen = _get_option(data, is_full_screen_name, is_full_screen_default)
+	music_volume = _get_option(data, music_volume_name, music_volume_default)
+	sound_volume = _get_option(data, sound_volume_name, sound_volume_default)
+
+func reset_to_defaults() -> void:
+	music_volume = music_volume_default
+	sound_volume = sound_volume_default
+	is_full_screen = is_full_screen_default
 
 func _get_option(data: Dictionary, option_name: String, default: Variant) -> Variant:
 	if option_name in data:
