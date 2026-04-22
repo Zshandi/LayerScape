@@ -18,12 +18,9 @@ var sound_volume_slider: Slider = %SoundVolumeSlider
 var music_volume_tween: Tween
 
 func _on_full_screen_button_toggled(toggled_on: bool) -> void:
-	print_debug("_on_full_screen_button_toggled: ", toggled_on)
 	Options.is_full_screen = toggled_on
 	# Need to wait a moment for full screen on Web to update
-	print_debug("before get_tree().create_timer(0.1).timeout")
 	await get_tree().create_timer(0.1).timeout
-	print_debug("get_tree().create_timer(0.1).timeout")
 	update_button_texts()
 
 func _on_music_volume_slider_value_changed(value: float) -> void:
@@ -112,3 +109,9 @@ func _on_erase_confirm_button_pressed() -> void:
 	close_erase_save_confirmation()
 	# TODO: Actually erase save data once we have save data
 	print_debug("ERASE ASVE CONFIRMED")
+
+
+func _on_reset_to_defaults_button_pressed() -> void:
+	Options.reset_to_defaults()
+	await get_tree().create_timer(0.1).timeout
+	reload_options()
