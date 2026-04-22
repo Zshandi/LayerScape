@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+global uniform float time_pausable;
+
 uniform float frequency = 1.0;
 uniform float frequency_offset = 0.0;
 uniform float thickness = 10.0;
@@ -25,7 +27,7 @@ float sample(vec2 uv) {
 	
 	float dist = original_distance / relative_size;
 	
-	float dist_time = dist - ((TIME + frequency_offset) * frequency * total_repeat_distance);
+	float dist_time = dist - ((time_pausable + frequency_offset) * frequency * total_repeat_distance);
 
 	float relative_dist = dist_time - original_distance;
 

@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+global uniform float time_pausable;
+
 uniform sampler2D scrolling_texture : repeat_enable;
 uniform vec4 modulate : source_color;
 uniform float scale_multiplier = 4.0;
@@ -16,7 +18,7 @@ void fragment() {
 	}
 	else
 	{
-		vec2 tiled_uv = UV * scale_multiplier + scroll_speed * TIME;
+		vec2 tiled_uv = UV * scale_multiplier + scroll_speed * time_pausable;
 
 		// rotate the UV
 		float angle = radians(rotation_degrees);

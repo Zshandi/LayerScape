@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bnwwcft5fkixw"]
 
 [ext_resource type="Script" uid="uid://byrnaq4gbbfig" path="res://game_objects/goal.gd" id="1_6k3qi"]
-[ext_resource type="Shader" uid="uid://7l8krw7e5qji" path="res://game_objects/goal.gdshader" id="2_7epht"]
+[ext_resource type="Shader" uid="uid://7l8krw7e5qji" path="res://assets/shaders/goal.gdshader" id="2_7epht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7sh37"]
 size = Vector2(100, 160)

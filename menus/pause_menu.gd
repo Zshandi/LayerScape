@@ -12,12 +12,12 @@ func toggle_pause():
 
 	%ResumeButton.grab_focus()
 
-	if visible:
-		# Note that if we want any animations etc. in pause menu,
-		#  then we need to use global uniform instead (not ideal)
-		Engine.time_scale = 0.0
-	else:
-		Engine.time_scale = 1.0
+	# if visible:
+	# 	# Note that if we want any animations etc. in pause menu,
+	# 	#  then we need to use global uniform instead (not ideal)
+	# 	Engine.time_scale = 0.0
+	# else:
+	# 	Engine.time_scale = 1.0
 
 func _input(_event: InputEvent) -> void:
 	if not visible and get_tree().paused:

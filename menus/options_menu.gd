@@ -18,9 +18,12 @@ var sound_volume_slider: Slider = %SoundVolumeSlider
 var music_volume_tween: Tween
 
 func _on_full_screen_button_toggled(toggled_on: bool) -> void:
+	print_debug("_on_full_screen_button_toggled: ", toggled_on)
 	Options.is_full_screen = toggled_on
 	# Need to wait a moment for full screen on Web to update
+	print_debug("before get_tree().create_timer(0.1).timeout")
 	await get_tree().create_timer(0.1).timeout
+	print_debug("get_tree().create_timer(0.1).timeout")
 	update_button_texts()
 
 func _on_music_volume_slider_value_changed(value: float) -> void:
@@ -47,9 +50,12 @@ func _on_sound_volume_slider_value_changed(value: float) -> void:
 	%Sound.play()
 
 func update_button_texts() -> void:
+	print_debug("update_button_texts")
 	if Options.is_full_screen:
+		print_debug("setting full screen button text: Exit Full Screen")
 		toggle_full_screen_btn.text = "Exit Full Screen"
 	else:
+		print_debug("setting full screen button text: Enter Full Screen")
 		toggle_full_screen_btn.text = "Enter Full Screen"
 
 func _on_back_button_pressed() -> void:
