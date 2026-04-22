@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+global uniform float time_pausable;
+
 uniform vec2 scroll_speed = vec2(0.1, 0.0);
 
 uniform float sample_scale = 1.0;
@@ -9,7 +11,7 @@ void fragment() {
     
     effective_scroll = scroll_speed;
 
-    vec2 offset = effective_scroll * TIME;
+    vec2 offset = effective_scroll * time_pausable;
     
     vec2 scrolled_uv = UV + offset;
     

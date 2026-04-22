@@ -17,11 +17,16 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 config/canvas_textures/default_texture_filter=0
 
+[audio]
+
+buses/default_bus_layout="uid://opxlkw2w4vqn"
+
 [autoload]
 
 LevelManager="*uid://biucudf4cgbpg"
 MusicPlayer="*uid://45kyyyt8wwmn"
 Options="*uid://cu6b337h6uhaf"
+ShaderTime="*uid://cbjq3bjbvggc7"
 
 [display]
 
@@ -104,3 +109,10 @@ debug_toggle={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[shader_globals]
+
+time_pausable={
+"type": "float",
+"value": 0.0
+}
